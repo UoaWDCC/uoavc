@@ -10,7 +10,12 @@
     "format": "biome format --write"
   },
   "dependencies": {
+    "@payloadcms/db-mongodb": "^3.79.1",
+    "@payloadcms/next": "^3.79.1",
+    "@payloadcms/richtext-lexical": "^3.79.1",
+    "graphql": "^16.13.1",
     "next": "16.1.7",
+    "payload": "^3.79.1",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
