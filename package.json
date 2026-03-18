@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
-    "typegen": "payload generate:types"
+    "typegen": "payload generate:types",
+    "postinstall": "lefthook install"
   },
   "dependencies": {
     "@payloadcms/db-mongodb": "^3.79.1",
@@ -28,6 +29,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "lefthook": "^2.1.4",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
