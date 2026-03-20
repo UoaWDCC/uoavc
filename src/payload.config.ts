@@ -1,15 +1,14 @@
-import { mongooseAdapter } from "@payloadcms/db-mongodb";
-import { lexicalEditor } from "@payloadcms/richtext-lexical";
-import path from "path";
-import { buildConfig } from "payload";
-import { fileURLToPath } from "url";
-import sharp from "sharp";
+import { mongooseAdapter } from "@payloadcms/db-mongodb"
+import { lexicalEditor } from "@payloadcms/richtext-lexical"
+import path from "path"
+import { buildConfig } from "payload"
+import sharp from "sharp"
+import { fileURLToPath } from "url"
+import { Media } from "./payload/collections/Media"
+import { Users } from "./payload/collections/Users"
 
-import { Users } from "./payload/collections/Users";
-import { Media } from "./payload/collections/Media";
-
-const filename = fileURLToPath(import.meta.url);
-const dirname = path.dirname(filename);
+const filename = fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
 
 export default buildConfig({
   admin: {
@@ -25,8 +24,8 @@ export default buildConfig({
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
   db: mongooseAdapter({
-    url: process.env.DATABASE_URL || "",
+    url: process.env.DATABASE_URI || "",
   }),
   sharp,
   plugins: [],
-});
+})
