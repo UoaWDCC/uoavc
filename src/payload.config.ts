@@ -1,9 +1,9 @@
+import path from "node:path"
+import { fileURLToPath } from "node:url"
 import { mongooseAdapter } from "@payloadcms/db-mongodb"
 import { lexicalEditor } from "@payloadcms/richtext-lexical"
-import path from "path"
 import { buildConfig } from "payload"
 import sharp from "sharp"
-import { fileURLToPath } from "url"
 import { Media } from "./payload/collections/Media"
 import { Users } from "./payload/collections/Users"
 
