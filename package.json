@@ -7,7 +7,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "biome check",
+    "lint": "biome check .",
+    "lint:fix": "biome check . --write",
+    "lint:fix:unsafe": "biome check . --write --unsafe",
     "format": "biome format --write",
     "typegen": "payload generate:types",
     "postinstall": "lefthook install"
