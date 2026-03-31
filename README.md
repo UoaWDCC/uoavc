@@ -132,6 +132,10 @@ GitHub Actions runs on every push to `main` and on pull requests:
 
 Deployment to Fly.io triggers automatically after a successful push to `main`.
 
+## Contributions
+
+To contribute to this project please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) guidelines.
+
 ## Project Team
 
 | Name           | Role            |
