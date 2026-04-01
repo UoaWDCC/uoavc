@@ -22,5 +22,4 @@ Closes # (issue) <!-- Remove if not linked to an issue -->
 - [ ] My code follows the style guidelines of this project
 - [ ] I have commented my code in hard-to-understand areas
 - [ ] I have made corresponding changes to the documentation if needed
-- [ ] I have added thorough tests that prove my fix is effective and that my feature works
 - [ ] I've requested a review from another team member
