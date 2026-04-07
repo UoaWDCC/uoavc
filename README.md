@@ -145,7 +145,7 @@ To contribute to this project please refer to the [CONTRIBUTING.md](CONTRIBUTING
 | Seolina Cho    | Designer        |
 | William Huang  | Developer       |
 | (Fill Ela)     | Developer       |
-| (Fill Youdao)  | Developer       |
+| Youdao Xing    | Developer       |
 | Hajun Kim      | Developer       |
 | (Fill Shimpei) | Developer       |
 | Jason Lim      | Developer       |
