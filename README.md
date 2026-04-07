@@ -147,6 +147,6 @@ To contribute to this project please refer to the [CONTRIBUTING.md](CONTRIBUTING
 | Ela Yildiz     | Developer       |
 | Youdao Xing    | Developer       |
 | Hajun Kim      | Developer       |
-| (Fill Shimpei) | Developer       |
+| Shimpei Yumiba | Developer       |
 | Jason Lim      | Developer       |
 | (Fill Hayden)  | Developer       |
