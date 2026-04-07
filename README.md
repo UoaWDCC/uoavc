@@ -147,6 +147,6 @@ To contribute to this project please refer to the [CONTRIBUTING.md](CONTRIBUTING
 | (Fill Ela)     | Developer       |
 | (Fill Youdao)  | Developer       |
 | (Fill Hajun)   | Developer       |
-| (Fill Shimpei) | Developer       |
+| Shimpei Yumiba | Developer       |
 | (Fill Jason)   | Developer       |
 | (Fill Hayden)  | Developer       |
