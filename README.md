@@ -144,7 +144,7 @@ To contribute to this project please refer to the [CONTRIBUTING.md](CONTRIBUTING
 | Ashlee Shum    | Project Manager |
 | Seolina Cho    | Designer        |
 | (Fill William) | Developer       |
-| (Fill Ela)     | Developer       |
+| Ela Yildiz     | Developer       |
 | (Fill Youdao)  | Developer       |
 | (Fill Hajun)   | Developer       |
 | (Fill Shimpei) | Developer       |
