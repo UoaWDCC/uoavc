@@ -140,13 +140,13 @@ To contribute to this project please refer to the [CONTRIBUTING.md](CONTRIBUTING
 
 | Name           | Role            |
 | -------------- | --------------- |
-| Aleck Shen     | Tech Lead       |
+| (Fill Aleck)   | Tech Lead       |
 | Ashlee Shum    | Project Manager |
 | Seolina Cho    | Designer        |
-| William Huang  | Developer       |
-| Ela Yildiz     | Developer       |
-| Youdao Xing    | Developer       |
-| Hajun Kim      | Developer       |
-| Shimpei Yumiba | Developer       |
-| Jason Lim      | Developer       |
-| Hayden Law     | Developer       |
+| (Fill William) | Developer       |
+| (Fill Ela)     | Developer       |
+| (Fill Youdao)  | Developer       |
+| (Fill Hajun)   | Developer       |
+| (Fill Shimpei) | Developer       |
+| (Fill Jason)   | Developer       |
+| (Fill Hayden)  | Developer       |
