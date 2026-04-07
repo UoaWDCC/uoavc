@@ -148,5 +148,5 @@ To contribute to this project please refer to the [CONTRIBUTING.md](CONTRIBUTING
 | (Fill Youdao)  | Developer       |
 | Hajun Kim      | Developer       |
 | (Fill Shimpei) | Developer       |
-| (Fill Jason)   | Developer       |
+| Jason Lim      | Developer       |
 | (Fill Hayden)  | Developer       |
