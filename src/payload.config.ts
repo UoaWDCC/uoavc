@@ -6,6 +6,7 @@ import { buildConfig } from "payload"
 import sharp from "sharp"
 import { EventRegistrations } from "./payload/collections/EventRegistrations"
 import { Events } from "./payload/collections/Events"
+import { Admin } from "./payload/collections/Admin"
 import { Media } from "./payload/collections/Media"
 import { Users } from "./payload/collections/Users"
 
@@ -14,12 +15,12 @@ const dirname = path.dirname(filename)
 
 export default buildConfig({
   admin: {
-    user: Users.slug,
+    user: Admin.slug,
     importMap: {
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, EventRegistrations, Events],
+  collections: [Users, Media, EventRegistrations, Events, Admin],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
