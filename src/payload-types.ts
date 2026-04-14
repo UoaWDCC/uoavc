@@ -74,6 +74,8 @@ export interface Config {
     'event-registrations': EventRegistration;
     events: Event;
     executives: Executive;
+    'event-registrations': EventRegistration;
+    events: Event;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -87,6 +89,8 @@ export interface Config {
     'event-registrations': EventRegistrationsSelect<false> | EventRegistrationsSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
     executives: ExecutivesSelect<false> | ExecutivesSelect<true>;
+    'event-registrations': EventRegistrationsSelect<false> | EventRegistrationsSelect<true>;
+    events: EventsSelect<false> | EventsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -251,6 +255,32 @@ export interface Executive {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "event-registrations".
+ */
+export interface EventRegistration {
+  id: string;
+  event: string | Event;
+  user?: (string | null) | User;
+  guestName?: string | null;
+  guestEmail?: string | null;
+  registrationStatus: 'registered' | 'waitlisted' | 'cancelled';
+  registeredAt: string;
+  amountPaid?: number | null;
+  paymentStatus?: ('pending' | 'paid' | 'free') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events".
+ */
+export interface Event {
+  id: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -294,6 +324,14 @@ export interface PayloadLockedDocument {
         value: string | Event;
         relationTo: 'executives';
         value: string | Executive;
+      } | null)
+    | ({
+        relationTo: 'event-registrations';
+        value: string | EventRegistration;
+      } | null)
+    | ({
+        relationTo: 'events';
+        value: string | Event;
       } | null);
   globalSlug?: string | null;
   user:
@@ -439,6 +477,30 @@ export interface ExecutivesSelect<T extends boolean = true> {
   bio?: T;
   photo?: T;
   order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "event-registrations_select".
+ */
+export interface EventRegistrationsSelect<T extends boolean = true> {
+  event?: T;
+  user?: T;
+  guestName?: T;
+  guestEmail?: T;
+  registrationStatus?: T;
+  registeredAt?: T;
+  amountPaid?: T;
+  paymentStatus?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events_select".
+ */
+export interface EventsSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
 }
