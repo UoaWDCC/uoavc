@@ -4,6 +4,7 @@ import { mongooseAdapter } from "@payloadcms/db-mongodb"
 import { lexicalEditor } from "@payloadcms/richtext-lexical"
 import { buildConfig } from "payload"
 import sharp from "sharp"
+import { Admin } from "./payload/collections/Admin"
 import { Media } from "./payload/collections/Media"
 import { Users } from "./payload/collections/Users"
 
@@ -12,12 +13,12 @@ const dirname = path.dirname(filename)
 
 export default buildConfig({
   admin: {
-    user: Users.slug,
+    user: Admin.slug,
     importMap: {
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media],
+  collections: [Admin, Users, Media],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
