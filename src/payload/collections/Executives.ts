@@ -1,13 +1,4 @@
-import type { Access, CollectionConfig } from "payload"
-
-type UserWithRole = {
-  role?: string | null
-}
-
-const isAdmin: Access = ({ req }) => {
-  const user = req.user as UserWithRole | null | undefined
-  return user?.role === "admin"
-}
+import type { CollectionConfig } from "payload"
 
 export const Executives: CollectionConfig = {
   slug: "executives",
@@ -17,9 +8,6 @@ export const Executives: CollectionConfig = {
   },
   access: {
     read: () => true,
-    create: isAdmin,
-    update: isAdmin,
-    delete: isAdmin,
   },
   fields: [
     {
