@@ -72,6 +72,7 @@ export interface Config {
     users: User;
     media: Media;
     executives: Executive;
+    events: Event;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -83,6 +84,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     executives: ExecutivesSelect<false> | ExecutivesSelect<true>;
+    events: EventsSelect<false> | EventsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -225,6 +227,44 @@ export interface Executive {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events".
+ */
+export interface Event {
+  id: string;
+  title: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  eventType: 'social-session' | 'event';
+  date: string;
+  startTime: string;
+  endTime?: string | null;
+  location: string;
+  image?: (string | null) | Media;
+  maxCapacity: number;
+  waitlistCapacity?: number | null;
+  memberPrice?: number | null;
+  nonMemberPrice?: number | null;
+  registrationOpenAt?: string | null;
+  registrationCloseAt?: string | null;
+  status: 'upcoming' | 'ongoing' | 'completed' | 'cancelled';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -262,6 +302,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'executives';
         value: string | Executive;
+      } | null)
+    | ({
+        relationTo: 'events';
+        value: string | Event;
       } | null);
   globalSlug?: string | null;
   user:
@@ -387,6 +431,29 @@ export interface ExecutivesSelect<T extends boolean = true> {
   bio?: T;
   photo?: T;
   order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events_select".
+ */
+export interface EventsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  eventType?: T;
+  date?: T;
+  startTime?: T;
+  endTime?: T;
+  location?: T;
+  image?: T;
+  maxCapacity?: T;
+  waitlistCapacity?: T;
+  memberPrice?: T;
+  nonMemberPrice?: T;
+  registrationOpenAt?: T;
+  registrationCloseAt?: T;
+  status?: T;
   updatedAt?: T;
   createdAt?: T;
 }
