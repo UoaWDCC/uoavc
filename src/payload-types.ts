@@ -73,6 +73,7 @@ export interface Config {
     media: Media;
     'event-registrations': EventRegistration;
     events: Event;
+    executives: Executive;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -85,6 +86,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     'event-registrations': EventRegistrationsSelect<false> | EventRegistrationsSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
+    executives: ExecutivesSelect<false> | ExecutivesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -235,6 +237,15 @@ export interface EventRegistration {
  */
 export interface Event {
   id: string;
+ * via the `definition` "executives".
+ */
+export interface Executive {
+  id: string;
+  name: string;
+  role: string;
+  bio?: string | null;
+  photo?: (string | null) | Media;
+  order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -281,6 +292,8 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'events';
         value: string | Event;
+        relationTo: 'executives';
+        value: string | Executive;
       } | null);
   globalSlug?: string | null;
   user:
@@ -418,6 +431,14 @@ export interface EventRegistrationsSelect<T extends boolean = true> {
  * via the `definition` "events_select".
  */
 export interface EventsSelect<T extends boolean = true> {
+ * via the `definition` "executives_select".
+ */
+export interface ExecutivesSelect<T extends boolean = true> {
+  name?: T;
+  role?: T;
+  bio?: T;
+  photo?: T;
+  order?: T;
   updatedAt?: T;
   createdAt?: T;
 }

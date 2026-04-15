@@ -8,6 +8,7 @@ import sharp from "sharp"
 import { EventRegistrations } from "./payload/collections/EventRegistrations"
 import { Events } from "./payload/collections/Events"
 import { Admin } from "./payload/collections/Admin"
+import { Executives } from "./payload/collections/Executives"
 import { Media } from "./payload/collections/Media"
 import { Users } from "./payload/collections/Users"
 
@@ -21,7 +22,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, EventRegistrations, Events, Admin],
+  collections: [Users, Media, EventRegistrations, Events, Admin, Executives],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
