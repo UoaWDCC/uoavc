@@ -171,6 +171,10 @@ export interface Admin {
  */
 export interface User {
   id: string;
+  firstName: string;
+  lastName: string;
+  upi?: string | null;
+  phone?: string | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -342,6 +346,10 @@ export interface AdminSelect<T extends boolean = true> {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  firstName?: T;
+  lastName?: T;
+  upi?: T;
+  phone?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
