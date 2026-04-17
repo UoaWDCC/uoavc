@@ -63,19 +63,17 @@ export type SupportedTimezones =
 
 export interface Config {
   auth: {
-    admin: AdminAuthOperations;
     users: UserAuthOperations;
+    admin: AdminAuthOperations;
   };
   blocks: {};
   collections: {
-    admin: Admin;
     users: User;
     media: Media;
     'event-registrations': EventRegistration;
     events: Event;
+    admin: Admin;
     executives: Executive;
-    'event-registrations': EventRegistration;
-    events: Event;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -83,14 +81,12 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
-    admin: AdminSelect<false> | AdminSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'event-registrations': EventRegistrationsSelect<false> | EventRegistrationsSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
+    admin: AdminSelect<false> | AdminSelect<true>;
     executives: ExecutivesSelect<false> | ExecutivesSelect<true>;
-    'event-registrations': EventRegistrationsSelect<false> | EventRegistrationsSelect<true>;
-    events: EventsSelect<false> | EventsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -106,28 +102,10 @@ export interface Config {
   widgets: {
     collections: CollectionsWidget;
   };
-  user: Admin | User;
+  user: User | Admin;
   jobs: {
     tasks: unknown;
     workflows: unknown;
-  };
-}
-export interface AdminAuthOperations {
-  forgotPassword: {
-    email: string;
-    password: string;
-  };
-  login: {
-    email: string;
-    password: string;
-  };
-  registerFirstUser: {
-    email: string;
-    password: string;
-  };
-  unlock: {
-    email: string;
-    password: string;
   };
 }
 export interface UserAuthOperations {
@@ -148,30 +126,23 @@ export interface UserAuthOperations {
     password: string;
   };
 }
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "admin".
- */
-export interface Admin {
-  id: string;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
-  collection: 'admin';
+export interface AdminAuthOperations {
+  forgotPassword: {
+    email: string;
+    password: string;
+  };
+  login: {
+    email: string;
+    password: string;
+  };
+  registerFirstUser: {
+    email: string;
+    password: string;
+  };
+  unlock: {
+    email: string;
+    password: string;
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -240,6 +211,36 @@ export interface EventRegistration {
  */
 export interface Event {
   id: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "admin".
+ */
+export interface Admin {
+  id: string;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+  collection: 'admin';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "executives".
  */
 export interface Executive {
@@ -249,32 +250,6 @@ export interface Executive {
   bio?: string | null;
   photo?: (string | null) | Media;
   order?: number | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "event-registrations".
- */
-export interface EventRegistration {
-  id: string;
-  event: string | Event;
-  user?: (string | null) | User;
-  guestName?: string | null;
-  guestEmail?: string | null;
-  registrationStatus: 'registered' | 'waitlisted' | 'cancelled';
-  registeredAt: string;
-  amountPaid?: number | null;
-  paymentStatus?: ('pending' | 'paid' | 'free') | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "events".
- */
-export interface Event {
-  id: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -303,10 +278,6 @@ export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
-        relationTo: 'admin';
-        value: string | Admin;
-      } | null)
-    | ({
         relationTo: 'users';
         value: string | User;
       } | null)
@@ -321,26 +292,24 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'events';
         value: string | Event;
+      } | null)
+    | ({
+        relationTo: 'admin';
+        value: string | Admin;
+      } | null)
+    | ({
         relationTo: 'executives';
         value: string | Executive;
-      } | null)
-    | ({
-        relationTo: 'event-registrations';
-        value: string | EventRegistration;
-      } | null)
-    | ({
-        relationTo: 'events';
-        value: string | Event;
       } | null);
   globalSlug?: string | null;
   user:
     | {
-        relationTo: 'admin';
-        value: string | Admin;
-      }
-    | {
         relationTo: 'users';
         value: string | User;
+      }
+    | {
+        relationTo: 'admin';
+        value: string | Admin;
       };
   updatedAt: string;
   createdAt: string;
@@ -353,12 +322,12 @@ export interface PayloadPreference {
   id: string;
   user:
     | {
-        relationTo: 'admin';
-        value: string | Admin;
-      }
-    | {
         relationTo: 'users';
         value: string | User;
+      }
+    | {
+        relationTo: 'admin';
+        value: string | Admin;
       };
   key?: string | null;
   value?:
@@ -383,28 +352,6 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "admin_select".
- */
-export interface AdminSelect<T extends boolean = true> {
-  updatedAt?: T;
-  createdAt?: T;
-  email?: T;
-  resetPasswordToken?: T;
-  resetPasswordExpiration?: T;
-  salt?: T;
-  hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
-  sessions?:
-    | T
-    | {
-        id?: T;
-        createdAt?: T;
-        expiresAt?: T;
-      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -467,6 +414,33 @@ export interface EventRegistrationsSelect<T extends boolean = true> {
  * via the `definition` "events_select".
  */
 export interface EventsSelect<T extends boolean = true> {
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "admin_select".
+ */
+export interface AdminSelect<T extends boolean = true> {
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "executives_select".
  */
 export interface ExecutivesSelect<T extends boolean = true> {
@@ -475,30 +449,6 @@ export interface ExecutivesSelect<T extends boolean = true> {
   bio?: T;
   photo?: T;
   order?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "event-registrations_select".
- */
-export interface EventRegistrationsSelect<T extends boolean = true> {
-  event?: T;
-  user?: T;
-  guestName?: T;
-  guestEmail?: T;
-  registrationStatus?: T;
-  registeredAt?: T;
-  amountPaid?: T;
-  paymentStatus?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "events_select".
- */
-export interface EventsSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
 }
