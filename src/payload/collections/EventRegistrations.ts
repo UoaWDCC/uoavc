@@ -7,23 +7,22 @@ export const EventRegistrations: CollectionConfig = {
       const user = req.user
 
       if (!user) return false // Guests cannot read registrations
-
-      if ((user as { role?: string }).role === "admin") return true // Admins can read all
-
-      return {
-        user: {
-          equals: user.id, // Regular users only read their own
-        },
+      if (user.collection === "admin") return true // Full access for admins
+      if (user.collection === "users") {
+        return {
+          createdBy: { equals: user.id }, // Regular users can only see own registrations
+        }
       }
+      return false
     },
     create: () => true,
     update: ({ req }) => {
       const user = req.user
-      return !!user && (user as { role?: string }).role === "admin" // Admins only
+      return !!user && user.collection === "admin" // Admins only
     },
     delete: ({ req }) => {
       const user = req.user
-      return !!user && (user as { role?: string }).role === "admin" // Admins only
+      return !!user && user.collection === "admin" // Admins only
     },
   },
   hooks: {
