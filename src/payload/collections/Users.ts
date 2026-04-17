@@ -22,18 +22,13 @@ export const Users: CollectionConfig = {
       required: true,
     },
     {
-      name: "upiOrEmail",
+      name: "email",
       type: "text",
+      required: true,
     },
     {
-      name: "membershipStatus",
-      type: "select",
-      options: [
-        { label: "Member", value: "member" },
-        { label: "Non-member", value: "non-member" },
-      ],
-      defaultValue: "non-member",
-      required: true,
+      name: "upi",
+      type: "text",
     },
     {
       name: "phone",

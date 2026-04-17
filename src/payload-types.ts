@@ -173,8 +173,7 @@ export interface User {
   id: string;
   firstName: string;
   lastName: string;
-  upiOrEmail?: string | null;
-  membershipStatus: 'member' | 'non-member';
+  upi?: string | null;
   phone?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -349,8 +348,7 @@ export interface AdminSelect<T extends boolean = true> {
 export interface UsersSelect<T extends boolean = true> {
   firstName?: T;
   lastName?: T;
-  upiOrEmail?: T;
-  membershipStatus?: T;
+  upi?: T;
   phone?: T;
   updatedAt?: T;
   createdAt?: T;
