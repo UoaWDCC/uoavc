@@ -10,7 +10,7 @@ export const EventRegistrations: CollectionConfig = {
       if (user.collection === "admin") return true // Full access for admins
       if (user.collection === "users") {
         return {
-          createdBy: { equals: user.id }, // Regular users can only see own registrations
+          user: { equals: user.id }, // Regular users can only see own registrations
         }
       }
       return false
