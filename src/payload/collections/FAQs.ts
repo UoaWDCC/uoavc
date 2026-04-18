@@ -1,5 +1,4 @@
 import type { CollectionConfig } from "payload"
-import type { User } from "@/payload-types"
 
 export const FAQs: CollectionConfig = {
   slug: "faqs",
@@ -31,8 +30,8 @@ export const FAQs: CollectionConfig = {
         equals: true,
       },
     }),
-    create: ({ req }) => (req.user as User | null)?.role === "admin",
-    update: ({ req }) => (req.user as User | null)?.role === "admin",
-    delete: ({ req }) => (req.user as User | null)?.role === "admin",
+    create: ({ req }) => req.user?.collection === "admin",
+    update: ({ req }) => req.user?.collection === "admin",
+    delete: ({ req }) => req.user?.collection === "admin",
   },
 }
