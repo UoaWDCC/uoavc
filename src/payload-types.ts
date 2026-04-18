@@ -65,7 +65,6 @@ export interface Config {
   auth: {
     admin: AdminAuthOperations;
     users: UserAuthOperations;
-    admin: AdminAuthOperations;
   };
   blocks: {};
   collections: {
