@@ -175,6 +175,7 @@ export interface User {
   lastName: string;
   upi?: string | null;
   phone?: string | null;
+  role: 'admin' | 'member';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -350,6 +351,7 @@ export interface UsersSelect<T extends boolean = true> {
   lastName?: T;
   upi?: T;
   phone?: T;
+  role?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
