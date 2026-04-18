@@ -73,7 +73,6 @@ export interface Config {
     media: Media;
     'event-registrations': EventRegistration;
     events: Event;
-    admin: Admin;
     executives: Executive;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -87,7 +86,6 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     'event-registrations': EventRegistrationsSelect<false> | EventRegistrationsSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
-    admin: AdminSelect<false> | AdminSelect<true>;
     executives: ExecutivesSelect<false> | ExecutivesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
