@@ -34,15 +34,5 @@ export const Users: CollectionConfig = {
       name: "phone",
       type: "text",
     },
-    {
-      name: "role",
-      type: "select",
-      required: true,
-      defaultValue: "member",
-      options: [
-        { label: "Admin", value: "admin" },
-        { label: "Member", value: "member" },
-      ],
-    },
   ],
 }
