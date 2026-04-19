@@ -74,6 +74,7 @@ export interface Config {
     'event-registrations': EventRegistration;
     events: Event;
     executives: Executive;
+    faqs: Faq;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -87,6 +88,7 @@ export interface Config {
     'event-registrations': EventRegistrationsSelect<false> | EventRegistrationsSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
     executives: ExecutivesSelect<false> | ExecutivesSelect<true>;
+    faqs: FaqsSelect<false> | FaqsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -197,6 +199,7 @@ export interface User {
   lastName: string;
   upi?: string | null;
   phone?: string | null;
+  role: 'admin' | 'member';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -302,6 +305,33 @@ export interface Executive {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs".
+ */
+export interface Faq {
+  id: string;
+  question: string;
+  answer: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  order?: number | null;
+  published: boolean;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -347,6 +377,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'executives';
         value: string | Executive;
+      } | null)
+    | ({
+        relationTo: 'faqs';
+        value: string | Faq;
       } | null);
   globalSlug?: string | null;
   user:
@@ -431,6 +465,7 @@ export interface UsersSelect<T extends boolean = true> {
   lastName?: T;
   upi?: T;
   phone?: T;
+  role?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -522,6 +557,18 @@ export interface ExecutivesSelect<T extends boolean = true> {
   bio?: T;
   photo?: T;
   order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs_select".
+ */
+export interface FaqsSelect<T extends boolean = true> {
+  question?: T;
+  answer?: T;
+  order?: T;
+  published?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -9,6 +9,7 @@ import { Admin } from "./payload/collections/Admin"
 import { EventRegistrations } from "./payload/collections/EventRegistrations"
 import { Events } from "./payload/collections/Events"
 import { Executives } from "./payload/collections/Executives"
+import { FAQs } from "./payload/collections/FAQs"
 import { Media } from "./payload/collections/Media"
 import { Users } from "./payload/collections/Users"
 
@@ -22,7 +23,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, EventRegistrations, Events, Admin, Executives],
+  collections: [Admin, Users, Media, Executives, FAQs, Events, EventRegistrations],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
