@@ -22,14 +22,16 @@ export const FAQs: CollectionConfig = {
       name: "published",
       type: "checkbox",
       required: true,
+      defaultValue: true,
     },
   ],
   access: {
-    read: () => ({
-      published: {
-        equals: true,
-      },
-    }),
+    read: ({ req }) => {
+      if (req.user?.collection === "admin") {
+        return true
+      }
+      return { published: { equals: true } }
+    },
     create: ({ req }) => req.user?.collection === "admin",
     update: ({ req }) => req.user?.collection === "admin",
     delete: ({ req }) => req.user?.collection === "admin",
