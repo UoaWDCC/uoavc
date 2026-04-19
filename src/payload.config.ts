@@ -6,6 +6,8 @@ import { lexicalEditor } from "@payloadcms/richtext-lexical"
 import { buildConfig } from "payload"
 import sharp from "sharp"
 import { Admin } from "./payload/collections/Admin"
+import { EventRegistrations } from "./payload/collections/EventRegistrations"
+import { Events } from "./payload/collections/Events"
 import { Executives } from "./payload/collections/Executives"
 import { FAQs } from "./payload/collections/FAQs"
 import { Media } from "./payload/collections/Media"
@@ -21,7 +23,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Admin, Users, Media, Executives, FAQs],
+  collections: [Admin, Users, Media, Executives, FAQs, Events, EventRegistrations],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
