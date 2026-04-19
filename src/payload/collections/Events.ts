@@ -29,6 +29,7 @@ export const Events: CollectionConfig = {
     defaultColumns: ["title", "eventType", "date", "location", "status", "updatedAt"],
   },
   access: {
+    // Anyone can see events, only admins can add, edit, or remove them
     read: () => true,
     create: isAdmin,
     update: isAdmin,
