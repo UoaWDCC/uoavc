@@ -11,6 +11,7 @@ import { Events } from "./payload/collections/Events"
 import { Executives } from "./payload/collections/Executives"
 import { FAQs } from "./payload/collections/FAQs"
 import { Media } from "./payload/collections/Media"
+import { SocialSessions } from "./payload/collections/SocialSessions"
 import { Users } from "./payload/collections/Users"
 
 const filename = fileURLToPath(import.meta.url)
@@ -23,7 +24,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Admin, Users, Media, Executives, FAQs, Events, EventRegistrations],
+  collections: [Admin, Users, Media, Executives, FAQs, Events, SocialSessions, EventRegistrations],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
