@@ -74,6 +74,7 @@ export interface Config {
     executives: Executive;
     faqs: Faq;
     events: Event;
+    'social-sessions': SocialSession;
     'event-registrations': EventRegistration;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -88,6 +89,7 @@ export interface Config {
     executives: ExecutivesSelect<false> | ExecutivesSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
+    'social-sessions': SocialSessionsSelect<false> | SocialSessionsSelect<true>;
     'event-registrations': EventRegistrationsSelect<false> | EventRegistrationsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -299,6 +301,87 @@ export interface Event {
   createdAt: string;
 }
 /**
+ * Weekly club social sessions with registration, capacity limits, and pricing.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-sessions".
+ */
+export interface SocialSession {
+  id: string;
+  /**
+   * Public-facing title of the social session.
+   */
+  title: string;
+  /**
+   * Full description shown on the social session page.
+   */
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Date the session takes place.
+   */
+  date: string;
+  /**
+   * Start time, e.g. '7:00pm'.
+   */
+  startTime: string;
+  /**
+   * End time, e.g. '9:00pm'.
+   */
+  endTime?: string | null;
+  /**
+   * Venue or address for the session.
+   */
+  location: string;
+  /**
+   * Optional cover image for the session card.
+   */
+  image?: (string | null) | Media;
+  /**
+   * Maximum number of confirmed registrations before new sign-ups go to the waitlist.
+   */
+  maxCapacity: number;
+  /**
+   * Maximum number of waitlisted registrations. Set to 0 to disable the waitlist.
+   */
+  waitlistCapacity: number;
+  /**
+   * Price charged to authenticated club members. Leave blank for free.
+   */
+  memberPrice?: number | null;
+  /**
+   * Price charged to guests (non-members). Leave blank for free.
+   */
+  nonMemberPrice?: number | null;
+  /**
+   * When registration opens. Registrations before this time are rejected.
+   */
+  registrationOpenAt?: string | null;
+  /**
+   * When registration closes. Registrations after this time are rejected.
+   */
+  registrationCloseAt?: string | null;
+  /**
+   * Lifecycle state of the session.
+   */
+  status: 'upcoming' | 'ongoing' | 'completed' | 'cancelled';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "event-registrations".
  */
@@ -362,6 +445,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'events';
         value: string | Event;
+      } | null)
+    | ({
+        relationTo: 'social-sessions';
+        value: string | SocialSession;
       } | null)
     | ({
         relationTo: 'event-registrations';
@@ -518,6 +605,28 @@ export interface EventsSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   eventType?: T;
+  date?: T;
+  startTime?: T;
+  endTime?: T;
+  location?: T;
+  image?: T;
+  maxCapacity?: T;
+  waitlistCapacity?: T;
+  memberPrice?: T;
+  nonMemberPrice?: T;
+  registrationOpenAt?: T;
+  registrationCloseAt?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-sessions_select".
+ */
+export interface SocialSessionsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
   date?: T;
   startTime?: T;
   endTime?: T;
