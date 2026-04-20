@@ -263,12 +263,20 @@ export interface Faq {
   createdAt: string;
 }
 /**
+ * Display-only event cards. Sign-ups go to an external Google Form via googleFormUrl.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "events".
  */
 export interface Event {
   id: string;
+  /**
+   * Public-facing title of the event.
+   */
   title: string;
+  /**
+   * Full description shown on the event card.
+   */
   description: {
     root: {
       type: string;
@@ -284,19 +292,34 @@ export interface Event {
     };
     [k: string]: unknown;
   };
-  eventType: 'social-session' | 'event';
+  /**
+   * Date the event takes place.
+   */
   date: string;
+  /**
+   * Start time, e.g. '7:00pm'.
+   */
   startTime: string;
+  /**
+   * End time, e.g. '9:00pm'.
+   */
   endTime?: string | null;
+  /**
+   * Venue or address for the event.
+   */
   location: string;
+  /**
+   * Optional cover image for the event card.
+   */
   image?: (string | null) | Media;
-  maxCapacity: number;
-  waitlistCapacity?: number | null;
-  memberPrice?: number | null;
-  nonMemberPrice?: number | null;
-  registrationOpenAt?: string | null;
-  registrationCloseAt?: string | null;
-  status: 'upcoming' | 'ongoing' | 'completed' | 'cancelled';
+  /**
+   * External Google Form URL for sign-ups. Event card will link out to this URL.
+   */
+  googleFormUrl?: string | null;
+  /**
+   * Lifecycle state of the event.
+   */
+  status: 'upcoming' | 'completed' | 'cancelled';
   updatedAt: string;
   createdAt: string;
 }
@@ -604,18 +627,12 @@ export interface FaqsSelect<T extends boolean = true> {
 export interface EventsSelect<T extends boolean = true> {
   title?: T;
   description?: T;
-  eventType?: T;
   date?: T;
   startTime?: T;
   endTime?: T;
   location?: T;
   image?: T;
-  maxCapacity?: T;
-  waitlistCapacity?: T;
-  memberPrice?: T;
-  nonMemberPrice?: T;
-  registrationOpenAt?: T;
-  registrationCloseAt?: T;
+  googleFormUrl?: T;
   status?: T;
   updatedAt?: T;
   createdAt?: T;
