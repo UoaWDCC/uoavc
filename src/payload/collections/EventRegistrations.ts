@@ -27,15 +27,18 @@ export const EventRegistrations: CollectionConfig = {
   },
   hooks: {
     beforeChange: [
-      ({ data, operation }) => {
+      ({ data, operation, req }) => {
         if (operation === "create") {
+          if (req.user?.collection === "users") {
+            data.user = req.user.id
+          }
           return {
             ...data,
             registeredAt: new Date().toISOString(),
           }
         }
 
-        return data // Only set timestamp when record is first created
+        return data
       },
     ],
   },
