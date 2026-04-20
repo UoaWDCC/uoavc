@@ -75,7 +75,7 @@ export interface Config {
     faqs: Faq;
     events: Event;
     'social-sessions': SocialSession;
-    'event-registrations': EventRegistration;
+    'social-session-registrations': SocialSessionRegistration;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -90,7 +90,7 @@ export interface Config {
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
     'social-sessions': SocialSessionsSelect<false> | SocialSessionsSelect<true>;
-    'event-registrations': EventRegistrationsSelect<false> | EventRegistrationsSelect<true>;
+    'social-session-registrations': SocialSessionRegistrationsSelect<false> | SocialSessionRegistrationsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -405,18 +405,44 @@ export interface SocialSession {
   createdAt: string;
 }
 /**
+ * Member and guest registrations for social sessions.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "event-registrations".
+ * via the `definition` "social-session-registrations".
  */
-export interface EventRegistration {
+export interface SocialSessionRegistration {
   id: string;
-  event: string | Event;
+  /**
+   * The social session being registered for.
+   */
+  socialSession: string | SocialSession;
+  /**
+   * Authenticated member, if any. Left blank for guest registrations.
+   */
   user?: (string | null) | User;
+  /**
+   * Full name for guest (non-member) registrations.
+   */
   guestName?: string | null;
+  /**
+   * Contact email for guest (non-member) registrations.
+   */
   guestEmail?: string | null;
+  /**
+   * Current state of this registration.
+   */
   registrationStatus: 'registered' | 'waitlisted' | 'cancelled';
+  /**
+   * Timestamp the registration was created.
+   */
   registeredAt: string;
+  /**
+   * Amount paid (NZD). Null for free or pending registrations.
+   */
   amountPaid?: number | null;
+  /**
+   * Payment state for paid social sessions.
+   */
   paymentStatus?: ('pending' | 'paid' | 'free') | null;
   updatedAt: string;
   createdAt: string;
@@ -474,8 +500,8 @@ export interface PayloadLockedDocument {
         value: string | SocialSession;
       } | null)
     | ({
-        relationTo: 'event-registrations';
-        value: string | EventRegistration;
+        relationTo: 'social-session-registrations';
+        value: string | SocialSessionRegistration;
       } | null);
   globalSlug?: string | null;
   user:
@@ -661,10 +687,10 @@ export interface SocialSessionsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "event-registrations_select".
+ * via the `definition` "social-session-registrations_select".
  */
-export interface EventRegistrationsSelect<T extends boolean = true> {
-  event?: T;
+export interface SocialSessionRegistrationsSelect<T extends boolean = true> {
+  socialSession?: T;
   user?: T;
   guestName?: T;
   guestEmail?: T;
