@@ -8,9 +8,21 @@ export const Users: CollectionConfig = {
   auth: {
     tokenExpiration: 43200,
   },
+  access: {
+    create: () => true,
+    read: ({ req }) => {
+      if (!req.user) return false
+      if (req.user.collection === "admin") return true
+      return { id: { equals: req.user.id } }
+    },
+    update: ({ req }) => {
+      if (!req.user) return false
+      if (req.user.collection === "admin") return true
+      return { id: { equals: req.user.id } }
+    },
+    delete: ({ req }) => req.user?.collection === "admin",
+  },
   fields: [
-    // Email added by default
-    // Add more fields as needed
     {
       name: "firstName",
       type: "text",
@@ -18,11 +30,6 @@ export const Users: CollectionConfig = {
     },
     {
       name: "lastName",
-      type: "text",
-      required: true,
-    },
-    {
-      name: "email",
       type: "text",
       required: true,
     },
