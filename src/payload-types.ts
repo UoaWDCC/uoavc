@@ -63,12 +63,19 @@ export type SupportedTimezones =
 
 export interface Config {
   auth: {
+    admin: AdminAuthOperations;
     users: UserAuthOperations;
   };
   blocks: {};
   collections: {
+    admin: Admin;
     users: User;
     media: Media;
+    executives: Executive;
+    faqs: Faq;
+    events: Event;
+    'social-sessions': SocialSession;
+    'social-session-registrations': SocialSessionRegistration;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -76,8 +83,14 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
+    admin: AdminSelect<false> | AdminSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    executives: ExecutivesSelect<false> | ExecutivesSelect<true>;
+    faqs: FaqsSelect<false> | FaqsSelect<true>;
+    events: EventsSelect<false> | EventsSelect<true>;
+    'social-sessions': SocialSessionsSelect<false> | SocialSessionsSelect<true>;
+    'social-session-registrations': SocialSessionRegistrationsSelect<false> | SocialSessionRegistrationsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -93,10 +106,28 @@ export interface Config {
   widgets: {
     collections: CollectionsWidget;
   };
-  user: User;
+  user: Admin | User;
   jobs: {
     tasks: unknown;
     workflows: unknown;
+  };
+}
+export interface AdminAuthOperations {
+  forgotPassword: {
+    email: string;
+    password: string;
+  };
+  login: {
+    email: string;
+    password: string;
+  };
+  registerFirstUser: {
+    email: string;
+    password: string;
+  };
+  unlock: {
+    email: string;
+    password: string;
   };
 }
 export interface UserAuthOperations {
@@ -119,10 +150,39 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "admin".
+ */
+export interface Admin {
+  id: string;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+  collection: 'admin';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
   id: string;
+  firstName: string;
+  lastName: string;
+  upi?: string | null;
+  phone?: string | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -163,6 +223,232 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "executives".
+ */
+export interface Executive {
+  id: string;
+  name: string;
+  role: string;
+  bio?: string | null;
+  photo?: (string | null) | Media;
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs".
+ */
+export interface Faq {
+  id: string;
+  question: string;
+  answer: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  order?: number | null;
+  published: boolean;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Display-only event cards. Sign-ups go to an external Google Form via googleFormUrl.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events".
+ */
+export interface Event {
+  id: string;
+  /**
+   * Public-facing title of the event.
+   */
+  title: string;
+  /**
+   * Full description shown on the event card.
+   */
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Date the event takes place.
+   */
+  date: string;
+  /**
+   * Start time, e.g. '7:00pm'.
+   */
+  startTime: string;
+  /**
+   * End time, e.g. '9:00pm'.
+   */
+  endTime?: string | null;
+  /**
+   * Venue or address for the event.
+   */
+  location: string;
+  /**
+   * Optional cover image for the event card.
+   */
+  image?: (string | null) | Media;
+  /**
+   * External Google Form URL for sign-ups. Event card will link out to this URL.
+   */
+  googleFormUrl?: string | null;
+  /**
+   * Lifecycle state of the event.
+   */
+  status: 'upcoming' | 'completed' | 'cancelled';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Weekly club social sessions with registration, capacity limits, and pricing.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-sessions".
+ */
+export interface SocialSession {
+  id: string;
+  /**
+   * Public-facing title of the social session.
+   */
+  title: string;
+  /**
+   * Full description shown on the social session page.
+   */
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Date the session takes place.
+   */
+  date: string;
+  /**
+   * Start time, e.g. '7:00pm'.
+   */
+  startTime: string;
+  /**
+   * End time, e.g. '9:00pm'.
+   */
+  endTime?: string | null;
+  /**
+   * Venue or address for the session.
+   */
+  location: string;
+  /**
+   * Optional cover image for the session card.
+   */
+  image?: (string | null) | Media;
+  /**
+   * Maximum number of confirmed registrations before new sign-ups go to the waitlist.
+   */
+  maxCapacity: number;
+  /**
+   * Maximum number of waitlisted registrations. Set to 0 to disable the waitlist.
+   */
+  waitlistCapacity: number;
+  /**
+   * Price charged to authenticated club members. Leave blank for free.
+   */
+  memberPrice?: number | null;
+  /**
+   * Price charged to guests (non-members). Leave blank for free.
+   */
+  nonMemberPrice?: number | null;
+  /**
+   * When registration opens. Registrations before this time are rejected.
+   */
+  registrationOpenAt?: string | null;
+  /**
+   * When registration closes. Registrations after this time are rejected.
+   */
+  registrationCloseAt?: string | null;
+  /**
+   * Lifecycle state of the session.
+   */
+  status: 'upcoming' | 'ongoing' | 'completed' | 'cancelled';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Member and guest registrations for social sessions.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-session-registrations".
+ */
+export interface SocialSessionRegistration {
+  id: string;
+  /**
+   * The social session being registered for.
+   */
+  socialSession: string | SocialSession;
+  /**
+   * Authenticated member, if any. Left blank for guest registrations.
+   */
+  user?: (string | null) | User;
+  /**
+   * Full name for guest (non-member) registrations.
+   */
+  guestName?: string | null;
+  /**
+   * Contact email for guest (non-member) registrations.
+   */
+  guestEmail?: string | null;
+  /**
+   * Current state of this registration.
+   */
+  registrationStatus: 'registered' | 'waitlisted' | 'cancelled';
+  /**
+   * Timestamp the registration was created.
+   */
+  registeredAt: string;
+  /**
+   * Amount paid (NZD). Null for free or pending registrations.
+   */
+  amountPaid?: number | null;
+  /**
+   * Payment state for paid social sessions.
+   */
+  paymentStatus?: ('pending' | 'paid' | 'free') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -186,18 +472,47 @@ export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
+        relationTo: 'admin';
+        value: string | Admin;
+      } | null)
+    | ({
         relationTo: 'users';
         value: string | User;
       } | null)
     | ({
         relationTo: 'media';
         value: string | Media;
+      } | null)
+    | ({
+        relationTo: 'executives';
+        value: string | Executive;
+      } | null)
+    | ({
+        relationTo: 'faqs';
+        value: string | Faq;
+      } | null)
+    | ({
+        relationTo: 'events';
+        value: string | Event;
+      } | null)
+    | ({
+        relationTo: 'social-sessions';
+        value: string | SocialSession;
+      } | null)
+    | ({
+        relationTo: 'social-session-registrations';
+        value: string | SocialSessionRegistration;
       } | null);
   globalSlug?: string | null;
-  user: {
-    relationTo: 'users';
-    value: string | User;
-  };
+  user:
+    | {
+        relationTo: 'admin';
+        value: string | Admin;
+      }
+    | {
+        relationTo: 'users';
+        value: string | User;
+      };
   updatedAt: string;
   createdAt: string;
 }
@@ -207,10 +522,15 @@ export interface PayloadLockedDocument {
  */
 export interface PayloadPreference {
   id: string;
-  user: {
-    relationTo: 'users';
-    value: string | User;
-  };
+  user:
+    | {
+        relationTo: 'admin';
+        value: string | Admin;
+      }
+    | {
+        relationTo: 'users';
+        value: string | User;
+      };
   key?: string | null;
   value?:
     | {
@@ -237,9 +557,35 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "admin_select".
+ */
+export interface AdminSelect<T extends boolean = true> {
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  firstName?: T;
+  lastName?: T;
+  upi?: T;
+  phone?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -274,6 +620,86 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "executives_select".
+ */
+export interface ExecutivesSelect<T extends boolean = true> {
+  name?: T;
+  role?: T;
+  bio?: T;
+  photo?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs_select".
+ */
+export interface FaqsSelect<T extends boolean = true> {
+  question?: T;
+  answer?: T;
+  order?: T;
+  published?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events_select".
+ */
+export interface EventsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  date?: T;
+  startTime?: T;
+  endTime?: T;
+  location?: T;
+  image?: T;
+  googleFormUrl?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-sessions_select".
+ */
+export interface SocialSessionsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  date?: T;
+  startTime?: T;
+  endTime?: T;
+  location?: T;
+  image?: T;
+  maxCapacity?: T;
+  waitlistCapacity?: T;
+  memberPrice?: T;
+  nonMemberPrice?: T;
+  registrationOpenAt?: T;
+  registrationCloseAt?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-session-registrations_select".
+ */
+export interface SocialSessionRegistrationsSelect<T extends boolean = true> {
+  socialSession?: T;
+  user?: T;
+  guestName?: T;
+  guestEmail?: T;
+  registrationStatus?: T;
+  registeredAt?: T;
+  amountPaid?: T;
+  paymentStatus?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

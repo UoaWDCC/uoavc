@@ -12,8 +12,8 @@ importers:
         specifier: ^3.79.1
         version: 3.79.1(payload@3.79.1(graphql@16.13.1)(typescript@5.9.3))
       '@payloadcms/email-resend':
-        specifier: ^3.82.1
-        version: 3.82.1(payload@3.79.1(graphql@16.13.1)(typescript@5.9.3))
+        specifier: ^3.79.1
+        version: 3.79.1(payload@3.79.1(graphql@16.13.1)(typescript@5.9.3))
       '@payloadcms/next':
         specifier: ^3.79.1
         version: 3.79.1(@types/react@19.2.14)(graphql@16.13.1)(monaco-editor@0.55.1)(next@16.1.7(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.77.4))(payload@3.79.1(graphql@16.13.1)(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3)
@@ -922,11 +922,11 @@ packages:
     peerDependencies:
       payload: 3.79.1
 
-  '@payloadcms/email-resend@3.82.1':
-    resolution: {integrity: sha512-qKBZU+0MSw/2vhcx9fdTnGcsL3XmJ2CBo4Ha+TqB7xnAgXUG8z7uKfVMP+P3I5+DzUxZ445oihKpgtc2oUEAzg==}
+  '@payloadcms/email-resend@3.79.1':
+    resolution: {integrity: sha512-GBkepmjhCD6CcOUGohenbfEkIQogpOvnOIszB4fS135M8vx3IGIMi4CbtiNHg2s37k2g/xSXRO2ECA5Y00Qerg==}
     engines: {node: ^18.20.2 || >=20.9.0}
     peerDependencies:
-      payload: 3.82.1
+      payload: 3.79.1
 
   '@payloadcms/graphql@3.79.1':
     resolution: {integrity: sha512-l3sVTir93q9anng7kPdbnfo1fF5XsWcDB5xW/po44gLUSmMOOqnKtMrYQy18URWqi9PwUe4W1Z7aZLbtyQgixg==}
@@ -3269,7 +3269,7 @@ snapshots:
       - socks
       - supports-color
 
-  '@payloadcms/email-resend@3.82.1(payload@3.79.1(graphql@16.13.1)(typescript@5.9.3))':
+  '@payloadcms/email-resend@3.79.1(payload@3.79.1(graphql@16.13.1)(typescript@5.9.3))':
     dependencies:
       payload: 3.79.1(graphql@16.13.1)(typescript@5.9.3)
 
