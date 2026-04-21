@@ -1,4 +1,5 @@
-import payload from "payload"
+import { getPayload } from "payload"
+import config from "@/payload.config"
 
 interface RegistrationConfirmationEmailProps {
   to: string
@@ -9,7 +10,8 @@ interface RegistrationConfirmationEmailProps {
 }
 
 const sendRegistrationConfirmation = async (props: RegistrationConfirmationEmailProps) => {
-  const emailContent = `Hello,\n\nThank you for registering for ${props.sessionTitle}.\n\n The session is on ${props.sessionDate} at ${props.sessionTime} at ${props.sessionLocation}.\n\n Kind Regards,\n\n UOAVC Team`
+  const payload = await getPayload({ config: await config })
+  const emailContent = `Hello,\n\nThank you for registering for ${props.sessionTitle}.\n\n The session is on ${props.sessionDate} at ${props.sessionTime} at ${props.sessionLocation}.\n\n Kind Regards,\n UOAVC Team`
 
   try {
     await payload.sendEmail({
