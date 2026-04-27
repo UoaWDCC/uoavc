@@ -71,10 +71,10 @@ export interface Config {
     admin: Admin;
     users: User;
     media: Media;
-    'event-registrations': EventRegistration;
-    events: Event;
     executives: Executive;
     faqs: Faq;
+    events: Event;
+    'event-registrations': EventRegistration;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -85,10 +85,10 @@ export interface Config {
     admin: AdminSelect<false> | AdminSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    'event-registrations': EventRegistrationsSelect<false> | EventRegistrationsSelect<true>;
-    events: EventsSelect<false> | EventsSelect<true>;
     executives: ExecutivesSelect<false> | ExecutivesSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
+    events: EventsSelect<false> | EventsSelect<true>;
+    'event-registrations': EventRegistrationsSelect<false> | EventRegistrationsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -146,24 +146,6 @@ export interface UserAuthOperations {
     password: string;
   };
 }
-export interface AdminAuthOperations {
-  forgotPassword: {
-    email: string;
-    password: string;
-  };
-  login: {
-    email: string;
-    password: string;
-  };
-  registerFirstUser: {
-    email: string;
-    password: string;
-  };
-  unlock: {
-    email: string;
-    password: string;
-  };
-}
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "admin".
@@ -199,7 +181,6 @@ export interface User {
   lastName: string;
   upi?: string | null;
   phone?: string | null;
-  role: 'admin' | 'member';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -237,57 +218,6 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "event-registrations".
- */
-export interface EventRegistration {
-  id: string;
-  event: string | Event;
-  user?: (string | null) | User;
-  guestName?: string | null;
-  guestEmail?: string | null;
-  registrationStatus: 'registered' | 'waitlisted' | 'cancelled';
-  registeredAt: string;
-  amountPaid?: number | null;
-  paymentStatus?: ('pending' | 'paid' | 'free') | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "events".
- */
-export interface Event {
-  id: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "admin".
- */
-export interface Admin {
-  id: string;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
-  collection: 'admin';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -332,6 +262,32 @@ export interface Faq {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events".
+ */
+export interface Event {
+  id: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "event-registrations".
+ */
+export interface EventRegistration {
+  id: string;
+  event: string | Event;
+  user?: (string | null) | User;
+  guestName?: string | null;
+  guestEmail?: string | null;
+  registrationStatus: 'registered' | 'waitlisted' | 'cancelled';
+  registeredAt: string;
+  amountPaid?: number | null;
+  paymentStatus?: ('pending' | 'paid' | 'free') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -367,20 +323,20 @@ export interface PayloadLockedDocument {
         value: string | Media;
       } | null)
     | ({
-        relationTo: 'event-registrations';
-        value: string | EventRegistration;
-      } | null)
-    | ({
-        relationTo: 'events';
-        value: string | Event;
-      } | null)
-    | ({
         relationTo: 'executives';
         value: string | Executive;
       } | null)
     | ({
         relationTo: 'faqs';
         value: string | Faq;
+      } | null)
+    | ({
+        relationTo: 'events';
+        value: string | Event;
+      } | null)
+    | ({
+        relationTo: 'event-registrations';
+        value: string | EventRegistration;
       } | null);
   globalSlug?: string | null;
   user:
@@ -465,7 +421,6 @@ export interface UsersSelect<T extends boolean = true> {
   lastName?: T;
   upi?: T;
   phone?: T;
-  role?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -503,52 +458,6 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "event-registrations_select".
- */
-export interface EventRegistrationsSelect<T extends boolean = true> {
-  event?: T;
-  user?: T;
-  guestName?: T;
-  guestEmail?: T;
-  registrationStatus?: T;
-  registeredAt?: T;
-  amountPaid?: T;
-  paymentStatus?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "events_select".
- */
-export interface EventsSelect<T extends boolean = true> {
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "admin_select".
- */
-export interface AdminSelect<T extends boolean = true> {
-  updatedAt?: T;
-  createdAt?: T;
-  email?: T;
-  resetPasswordToken?: T;
-  resetPasswordExpiration?: T;
-  salt?: T;
-  hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
-  sessions?:
-    | T
-    | {
-        id?: T;
-        createdAt?: T;
-        expiresAt?: T;
-      };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "executives_select".
  */
 export interface ExecutivesSelect<T extends boolean = true> {
@@ -569,6 +478,30 @@ export interface FaqsSelect<T extends boolean = true> {
   answer?: T;
   order?: T;
   published?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events_select".
+ */
+export interface EventsSelect<T extends boolean = true> {
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "event-registrations_select".
+ */
+export interface EventRegistrationsSelect<T extends boolean = true> {
+  event?: T;
+  user?: T;
+  guestName?: T;
+  guestEmail?: T;
+  registrationStatus?: T;
+  registeredAt?: T;
+  amountPaid?: T;
+  paymentStatus?: T;
   updatedAt?: T;
   createdAt?: T;
 }
