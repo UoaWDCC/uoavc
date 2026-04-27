@@ -1,5 +1,19 @@
+import { Inter, Staatliches } from "next/font/google"
 import type React from "react"
 import "./globals.css"
+
+const staatliches = Staatliches({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-staatliches",
+  weight: "400",
+})
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+})
 
 export const metadata = {
   description: "A blank template using Payload in a Next.js app.",
@@ -10,8 +24,8 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
   return (
-    <html lang="en">
-      <body>
+    <html className={`${staatliches.variable} ${inter.variable} antialiased`} lang="en">
+      <body className="font-body">
         <main>{children}</main>
       </body>
     </html>
