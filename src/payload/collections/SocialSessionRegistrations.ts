@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload"
+import { handleCancellation } from "./hooks/socialSessionRegistrations/handleCancellation"
 
 // SocialSessionRegistrations — on-site registrations for a social session.
 // Members register via their authenticated account; guests register with a
@@ -28,7 +29,11 @@ export const SocialSessionRegistrations: CollectionConfig = {
     create: () => true,
     update: ({ req }) => {
       const user = req.user
-      return !!user && user.collection === "admin"
+      if (!user) return false
+      if (user.collection === "admin") return true
+      return {
+        user: { equals: user.id }, // (FIX) Allow updates if the registration belongs to the user
+      }
     },
     delete: ({ req }) => {
       const user = req.user
@@ -37,6 +42,7 @@ export const SocialSessionRegistrations: CollectionConfig = {
   },
   hooks: {
     beforeChange: [
+      handleCancellation,
       ({ data, operation, req }) => {
         if (operation === "create") {
           if (req.user?.collection === "users") {
