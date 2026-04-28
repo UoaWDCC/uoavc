@@ -11,6 +11,9 @@ export const Executives: CollectionConfig = {
   },
   access: {
     read: () => true,
+    create: ({ req }) => req.user?.collection === "admin",
+    update: ({ req }) => req.user?.collection === "admin",
+    delete: ({ req }) => req.user?.collection === "admin",
   },
   fields: [
     {
