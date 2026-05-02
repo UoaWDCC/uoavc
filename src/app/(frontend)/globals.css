@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #004cb3;
+  --color-brand-yellow: #ffbe00;
+  --color-brand-navy: #08345b;
+  --color-brand-light-blue: #93dbf4;
+  --color-brand-light-grey: #edebe8;
+}
+
+@theme inline {
+  --font-heading: var(--font-staatliches);
+  --font-body: var(--font-inter);
+}
