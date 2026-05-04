@@ -149,6 +149,8 @@ export interface UserAuthOperations {
   };
 }
 /**
+ * Club executive accounts with full CMS access.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "admin".
  */
@@ -174,14 +176,28 @@ export interface Admin {
   collection: 'admin';
 }
 /**
+ * Club member accounts used for social session registration.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
   id: string;
+  /**
+   * Member's first name.
+   */
   firstName: string;
+  /**
+   * Member's last name.
+   */
   lastName: string;
+  /**
+   * University of Auckland UPI, if the member is a UoA student.
+   */
   upi?: string | null;
+  /**
+   * Contact phone number.
+   */
   phone?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -203,11 +219,16 @@ export interface User {
   collection: 'users';
 }
 /**
+ * Uploaded images referenced by events, social sessions, and executives.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
 export interface Media {
   id: string;
+  /**
+   * Alt text describing the image for screen readers and accessibility.
+   */
   alt: string;
   updatedAt: string;
   createdAt: string;
@@ -222,26 +243,51 @@ export interface Media {
   focalY?: number | null;
 }
 /**
+ * Club executive profiles shown on the public Executive Team page.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "executives".
  */
 export interface Executive {
   id: string;
+  /**
+   * Full name of the executive.
+   */
   name: string;
+  /**
+   * Role title, e.g. 'President', 'Treasurer', 'Social Coordinator'.
+   */
   role: string;
+  /**
+   * Short biography displayed on the executive's profile card.
+   */
   bio?: string | null;
+  /**
+   * Profile photo for the executive's card.
+   */
   photo?: (string | null) | Media;
+  /**
+   * Display order on the executive team page. Lower numbers appear first.
+   */
   order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
 /**
+ * Frequently asked questions shown on the public FAQ page.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "faqs".
  */
 export interface Faq {
   id: string;
+  /**
+   * The question, shown as the FAQ entry heading.
+   */
   question: string;
+  /**
+   * The answer, supports rich formatting and links.
+   */
   answer: {
     root: {
       type: string;
@@ -257,7 +303,13 @@ export interface Faq {
     };
     [k: string]: unknown;
   };
+  /**
+   * Display order on the FAQ page. Lower numbers appear first.
+   */
   order?: number | null;
+  /**
+   * If unchecked, this FAQ is hidden from the public and visible only to admins.
+   */
   published: boolean;
   updatedAt: string;
   createdAt: string;
