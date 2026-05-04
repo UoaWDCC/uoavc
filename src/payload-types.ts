@@ -74,7 +74,8 @@ export interface Config {
     executives: Executive;
     faqs: Faq;
     events: Event;
-    'event-registrations': EventRegistration;
+    'social-sessions': SocialSession;
+    'social-session-registrations': SocialSessionRegistration;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -88,7 +89,8 @@ export interface Config {
     executives: ExecutivesSelect<false> | ExecutivesSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
-    'event-registrations': EventRegistrationsSelect<false> | EventRegistrationsSelect<true>;
+    'social-sessions': SocialSessionsSelect<false> | SocialSessionsSelect<true>;
+    'social-session-registrations': SocialSessionRegistrationsSelect<false> | SocialSessionRegistrationsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -147,6 +149,8 @@ export interface UserAuthOperations {
   };
 }
 /**
+ * Club executive accounts with full CMS access.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "admin".
  */
@@ -172,14 +176,28 @@ export interface Admin {
   collection: 'admin';
 }
 /**
+ * Club member accounts used for social session registration.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
   id: string;
+  /**
+   * Member's first name.
+   */
   firstName: string;
+  /**
+   * Member's last name.
+   */
   lastName: string;
+  /**
+   * University of Auckland UPI, if the member is a UoA student.
+   */
   upi?: string | null;
+  /**
+   * Contact phone number.
+   */
   phone?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -201,11 +219,16 @@ export interface User {
   collection: 'users';
 }
 /**
+ * Uploaded images referenced by events, social sessions, and executives.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
 export interface Media {
   id: string;
+  /**
+   * Alt text describing the image for screen readers and accessibility.
+   */
   alt: string;
   updatedAt: string;
   createdAt: string;
@@ -220,26 +243,51 @@ export interface Media {
   focalY?: number | null;
 }
 /**
+ * Club executive profiles shown on the public Executive Team page.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "executives".
  */
 export interface Executive {
   id: string;
+  /**
+   * Full name of the executive.
+   */
   name: string;
+  /**
+   * Role title, e.g. 'President', 'Treasurer', 'Social Coordinator'.
+   */
   role: string;
+  /**
+   * Short biography displayed on the executive's profile card.
+   */
   bio?: string | null;
+  /**
+   * Profile photo for the executive's card.
+   */
   photo?: (string | null) | Media;
+  /**
+   * Display order on the executive team page. Lower numbers appear first.
+   */
   order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
 /**
+ * Frequently asked questions shown on the public FAQ page.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "faqs".
  */
 export interface Faq {
   id: string;
+  /**
+   * The question, shown as the FAQ entry heading.
+   */
   question: string;
+  /**
+   * The answer, supports rich formatting and links.
+   */
   answer: {
     root: {
       type: string;
@@ -255,33 +303,198 @@ export interface Faq {
     };
     [k: string]: unknown;
   };
+  /**
+   * Display order on the FAQ page. Lower numbers appear first.
+   */
   order?: number | null;
+  /**
+   * If unchecked, this FAQ is hidden from the public and visible only to admins.
+   */
   published: boolean;
   updatedAt: string;
   createdAt: string;
 }
 /**
+ * Display-only event cards. Sign-ups go to an external Google Form via googleFormUrl.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "events".
  */
 export interface Event {
   id: string;
+  /**
+   * Public-facing title of the event.
+   */
+  title: string;
+  /**
+   * Full description shown on the event card.
+   */
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Date the event takes place.
+   */
+  date: string;
+  /**
+   * Start time, e.g. '7:00pm'.
+   */
+  startTime: string;
+  /**
+   * End time, e.g. '9:00pm'.
+   */
+  endTime?: string | null;
+  /**
+   * Venue or address for the event.
+   */
+  location: string;
+  /**
+   * Optional cover image for the event card.
+   */
+  image?: (string | null) | Media;
+  /**
+   * External Google Form URL for sign-ups. Event card will link out to this URL.
+   */
+  googleFormUrl?: string | null;
+  /**
+   * Lifecycle state of the event.
+   */
+  status: 'upcoming' | 'completed' | 'cancelled';
   updatedAt: string;
   createdAt: string;
 }
 /**
+ * Weekly club social sessions with registration, capacity limits, and pricing.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "event-registrations".
+ * via the `definition` "social-sessions".
  */
-export interface EventRegistration {
+export interface SocialSession {
   id: string;
-  event: string | Event;
+  /**
+   * Public-facing title of the social session.
+   */
+  title: string;
+  /**
+   * Full description shown on the social session page.
+   */
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Date the session takes place.
+   */
+  date: string;
+  /**
+   * Start time, e.g. '7:00pm'.
+   */
+  startTime: string;
+  /**
+   * End time, e.g. '9:00pm'.
+   */
+  endTime?: string | null;
+  /**
+   * Venue or address for the session.
+   */
+  location: string;
+  /**
+   * Optional cover image for the session card.
+   */
+  image?: (string | null) | Media;
+  /**
+   * Maximum number of confirmed registrations before new sign-ups go to the waitlist.
+   */
+  maxCapacity: number;
+  /**
+   * Maximum number of waitlisted registrations. Set to 0 to disable the waitlist.
+   */
+  waitlistCapacity: number;
+  /**
+   * Price charged to authenticated club members. Leave blank for free.
+   */
+  memberPrice?: number | null;
+  /**
+   * Price charged to guests (non-members). Leave blank for free.
+   */
+  nonMemberPrice?: number | null;
+  /**
+   * When registration opens. Registrations before this time are rejected.
+   */
+  registrationOpenAt?: string | null;
+  /**
+   * When registration closes. Registrations after this time are rejected.
+   */
+  registrationCloseAt?: string | null;
+  /**
+   * Lifecycle state of the session.
+   */
+  status: 'upcoming' | 'ongoing' | 'completed' | 'cancelled';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Member and guest registrations for social sessions.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-session-registrations".
+ */
+export interface SocialSessionRegistration {
+  id: string;
+  /**
+   * The social session being registered for.
+   */
+  socialSession: string | SocialSession;
+  /**
+   * Authenticated member, if any. Left blank for guest registrations.
+   */
   user?: (string | null) | User;
+  /**
+   * Full name for guest (non-member) registrations.
+   */
   guestName?: string | null;
+  /**
+   * Contact email for guest (non-member) registrations.
+   */
   guestEmail?: string | null;
+  /**
+   * Current state of this registration.
+   */
   registrationStatus: 'registered' | 'waitlisted' | 'cancelled';
+  /**
+   * Timestamp the registration was created.
+   */
   registeredAt: string;
+  /**
+   * Amount paid (NZD). Null for free or pending registrations.
+   */
   amountPaid?: number | null;
+  /**
+   * Payment state for paid social sessions.
+   */
   paymentStatus?: ('pending' | 'paid' | 'free') | null;
   updatedAt: string;
   createdAt: string;
@@ -335,8 +548,12 @@ export interface PayloadLockedDocument {
         value: string | Event;
       } | null)
     | ({
-        relationTo: 'event-registrations';
-        value: string | EventRegistration;
+        relationTo: 'social-sessions';
+        value: string | SocialSession;
+      } | null)
+    | ({
+        relationTo: 'social-session-registrations';
+        value: string | SocialSessionRegistration;
       } | null);
   globalSlug?: string | null;
   user:
@@ -486,15 +703,46 @@ export interface FaqsSelect<T extends boolean = true> {
  * via the `definition` "events_select".
  */
 export interface EventsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  date?: T;
+  startTime?: T;
+  endTime?: T;
+  location?: T;
+  image?: T;
+  googleFormUrl?: T;
+  status?: T;
   updatedAt?: T;
   createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "event-registrations_select".
+ * via the `definition` "social-sessions_select".
  */
-export interface EventRegistrationsSelect<T extends boolean = true> {
-  event?: T;
+export interface SocialSessionsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  date?: T;
+  startTime?: T;
+  endTime?: T;
+  location?: T;
+  image?: T;
+  maxCapacity?: T;
+  waitlistCapacity?: T;
+  memberPrice?: T;
+  nonMemberPrice?: T;
+  registrationOpenAt?: T;
+  registrationCloseAt?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-session-registrations_select".
+ */
+export interface SocialSessionRegistrationsSelect<T extends boolean = true> {
+  socialSession?: T;
   user?: T;
   guestName?: T;
   guestEmail?: T;

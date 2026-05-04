@@ -1,1 +1,65 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@theme {
+  --color-brand-primary: #004cb3;
+  --color-brand-yellow: #ffbe00;
+  --color-brand-navy: #08345b;
+  --color-brand-light-blue: #93dbf4;
+  --color-brand-light-grey: #edebe8;
+}
+
+@theme inline {
+  --font-heading: var(--font-staatliches);
+  --font-body: var(--font-inter);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+}
+
+:root {
+  --radius: 9999px;
+  --background: white;
+  --foreground: var(--color-brand-navy);
+  --card: white;
+  --card-foreground: var(--color-brand-navy);
+  --popover: white;
+  --popover-foreground: var(--color-brand-navy);
+  --primary: var(--color-brand-primary);
+  --primary-foreground: white;
+  --secondary: var(--color-brand-yellow);
+  --secondary-foreground: var(--color-brand-navy);
+  --muted: var(--color-brand-light-grey);
+  --muted-foreground: var(--color-brand-navy);
+  --accent: var(--color-brand-light-blue);
+  --accent-foreground: var(--color-brand-navy);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: var(--color-brand-light-grey);
+  --input: var(--color-brand-light-grey);
+  --ring: var(--color-brand-primary);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
