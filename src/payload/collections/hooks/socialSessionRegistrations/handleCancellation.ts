@@ -9,15 +9,18 @@ export const handleCancellation: CollectionBeforeChangeHook = ({
 }) => {
   if (operation !== "update") return data // Skip if the operation is not update
 
-  if (data.registrationStatus !== "cancelled") return data // Skip if data.registrationStatus is not 'cancelled'
+  const prev = originalDoc.registrationStatus
+  const next = data.registrationStatus
+  if (prev === next) return data
 
   const user = req.user
-
-  if (!user) {
-    throw new APIError("You must be logged in to cancel a registration", 403)
-  }
+  if (!user) return data
 
   if (user.collection === "admin") return data // Allow admins to cancel any registration
+
+  if (user.collection !== "admin" && next !== "cancelled") {
+  throw new Forbidden() 
+  }
 
   let registrationUser: string | undefined
   if (typeof originalDoc.user === "string") {
