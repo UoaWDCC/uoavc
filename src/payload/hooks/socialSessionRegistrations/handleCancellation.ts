@@ -1,5 +1,5 @@
 import type { CollectionBeforeChangeHook } from "payload"
-import { APIError } from "payload"
+import { APIError, Forbidden } from "payload"
 
 export const handleCancellation: CollectionBeforeChangeHook = ({
   data,
@@ -16,10 +16,10 @@ export const handleCancellation: CollectionBeforeChangeHook = ({
   const user = req.user
   if (!user) return data
 
-  if ((user.collection as unknown as string) === "admin") return data // Allow admins to cancel any registration
+  if (user.collection === "admin") return data // Allow admins to cancel any registration
 
-  if ((user.collection as unknown as string) !== "admin" && next !== "cancelled") {
-    throw new APIError("Only admins can update registration status from cancelled", 403)
+  if (next !== "cancelled") {
+    throw new Forbidden()
   }
 
   let registrationUser: string | undefined

@@ -1,5 +1,5 @@
 import type { CollectionConfig } from "payload"
-import { handleCancellation } from "./hooks/socialSessionRegistrations/handleCancellation"
+import { handleCancellation } from "../hooks/socialSessionRegistrations/handleCancellation"
 
 // SocialSessionRegistrations — on-site registrations for a social session.
 // Members register via their authenticated account; guests register with a
