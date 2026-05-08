@@ -1,5 +1,5 @@
 import type { CollectionBeforeChangeHook } from "payload"
-import { APIError, Forbidden } from "payload"
+import { Forbidden } from "payload"
 
 export const handleCancellation: CollectionBeforeChangeHook = ({
   data,
@@ -30,7 +30,7 @@ export const handleCancellation: CollectionBeforeChangeHook = ({
   }
 
   if (registrationUser !== user.id) {
-    throw new APIError("You are not allowed to cancel this registration", 403) // Only allow users to cancel their own registrations
+    throw new Forbidden()
   }
 
   return data
