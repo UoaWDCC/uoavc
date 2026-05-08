@@ -16,10 +16,10 @@ export const handleCancellation: CollectionBeforeChangeHook = ({
   const user = req.user
   if (!user) return data
 
-  if (user.collection === "admin") return data // Allow admins to cancel any registration
+  if ((user.collection as unknown as string) === "admin") return data // Allow admins to cancel any registration
 
-  if (user.collection !== "admin" && next !== "cancelled") {
-  throw new Forbidden() 
+  if ((user.collection as unknown as string) !== "admin" && next !== "cancelled") {
+    throw new APIError("Only admins can update registration status from cancelled", 403)
   }
 
   let registrationUser: string | undefined
