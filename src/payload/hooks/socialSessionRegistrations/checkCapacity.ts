@@ -1,10 +1,13 @@
 import type { CollectionBeforeChangeHook, Where } from "payload"
 
-export const beforeChangeHook: CollectionBeforeChangeHook = async ({ data, operation, req }) => {
+export const checkCapacity: CollectionBeforeChangeHook = async ({ data, operation, req }) => {
   if (operation !== "create") {
     return data
   }
   const sessionID = data.socialSession
+  if (!sessionID) {
+    throw new Error("Social session not found")
+  }
   const session = await req.payload.findByID({
     collection: "social-sessions",
     id: sessionID,
@@ -15,6 +18,9 @@ export const beforeChangeHook: CollectionBeforeChangeHook = async ({ data, opera
   if (session.status === "completed" || session.status === "cancelled") {
     throw new Error("This social session is no longer accepting registrations")
   }
+  if (!data.user && !data.guestEmail) {
+    throw new Error("Registration must include a user or guest email")
+  }
   const whereUser: Where = data.user
     ? { user: { equals: data.user } }
     : { guestEmail: { equals: data.guestEmail } }
@@ -22,9 +28,8 @@ export const beforeChangeHook: CollectionBeforeChangeHook = async ({ data, opera
     collection: "social-session-registrations",
     where: {
       and: [
-        {
-          socialSession: { equals: sessionID },
-        },
+        { socialSession: { equals: sessionID } },
+        { registrationStatus: { not_equals: "cancelled" } },
         whereUser,
       ],
     },
@@ -63,7 +68,7 @@ export const beforeChangeHook: CollectionBeforeChangeHook = async ({ data, opera
   } else if (waitlistCount.totalDocs < session.waitlistCapacity) {
     data.registrationStatus = "waitlisted"
   } else {
-    throw new Error("This social session is full and its waitlist is full")
+    throw new Error("This social session and its waitlist are full")
   }
   return data
 }
