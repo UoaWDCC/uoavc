@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload"
+import { socialSessionAvailability } from "../endpoints/socialSessionAvailability"
 
 // SocialSessions — registrable weekly club sessions with capacity, waitlist,
 // and member/non-member pricing. Registrations are made on-site through the
@@ -23,6 +24,13 @@ const statusOptions = [
 
 export const SocialSessions: CollectionConfig = {
   slug: "social-sessions",
+  endpoints: [
+    {
+      path: "/:id/availability",
+      method: "get",
+      handler: socialSessionAvailability,
+    },
+  ],
   admin: {
     useAsTitle: "title",
     defaultColumns: ["title", "date", "location", "maxCapacity", "status", "updatedAt"],

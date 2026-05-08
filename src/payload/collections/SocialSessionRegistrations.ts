@@ -1,5 +1,6 @@
 import type { CollectionConfig } from "payload"
 import { checkCapacity } from "../hooks/socialSessionRegistrations/checkCapacity"
+import { handleCancellation } from "../hooks/socialSessionRegistrations/handleCancellation"
 
 // SocialSessionRegistrations — on-site registrations for a social session.
 // Members register via their authenticated account; guests register with a
@@ -29,7 +30,11 @@ export const SocialSessionRegistrations: CollectionConfig = {
     create: () => true,
     update: ({ req }) => {
       const user = req.user
-      return !!user && user.collection === "admin"
+      if (!user) return false
+      if (user.collection === "admin") return true
+      return {
+        user: { equals: user.id }, // (FIX) Allow updates if the registration belongs to the user
+      }
     },
     delete: ({ req }) => {
       const user = req.user
@@ -38,6 +43,7 @@ export const SocialSessionRegistrations: CollectionConfig = {
   },
   hooks: {
     beforeChange: [
+      handleCancellation,
       ({ data, operation, req }) => {
         if (operation === "create") {
           if (req.user?.collection === "users") {
@@ -60,6 +66,9 @@ export const SocialSessionRegistrations: CollectionConfig = {
       type: "relationship",
       relationTo: "social-sessions",
       required: true,
+      access: {
+        update: ({ req }) => req.user?.collection === "admin",
+      },
       admin: { description: "The social session being registered for." },
     },
     {
@@ -67,6 +76,9 @@ export const SocialSessionRegistrations: CollectionConfig = {
       type: "relationship",
       relationTo: "users",
       required: false,
+      access: {
+        update: ({ req }) => req.user?.collection === "admin",
+      },
       admin: {
         description: "Authenticated member, if any. Left blank for guest registrations.",
       },
@@ -75,12 +87,18 @@ export const SocialSessionRegistrations: CollectionConfig = {
       name: "guestName",
       type: "text",
       required: false,
+      access: {
+        update: ({ req }) => req.user?.collection === "admin",
+      },
       admin: { description: "Full name for guest (non-member) registrations." },
     },
     {
       name: "guestEmail",
       type: "text",
       required: false,
+      access: {
+        update: ({ req }) => req.user?.collection === "admin",
+      },
       admin: { description: "Contact email for guest (non-member) registrations." },
     },
     {
@@ -99,12 +117,18 @@ export const SocialSessionRegistrations: CollectionConfig = {
       name: "registeredAt",
       type: "date",
       required: true,
+      access: {
+        update: ({ req }) => req.user?.collection === "admin",
+      },
       admin: { description: "Timestamp the registration was created." },
     },
     {
       name: "amountPaid",
       type: "number",
       required: false,
+      access: {
+        update: ({ req }) => req.user?.collection === "admin",
+      },
       admin: { description: "Amount paid (NZD). Null for free or pending registrations." },
     },
     {
@@ -117,6 +141,9 @@ export const SocialSessionRegistrations: CollectionConfig = {
         { label: "Paid", value: "paid" },
         { label: "Free", value: "free" },
       ],
+      access: {
+        update: ({ req }) => req.user?.collection === "admin",
+      },
       admin: { description: "Payment state for paid social sessions." },
     },
   ],
