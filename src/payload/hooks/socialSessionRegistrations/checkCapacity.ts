@@ -5,7 +5,8 @@ export const checkCapacity: CollectionBeforeChangeHook = async ({ data, operatio
   if (operation !== "create") {
     return data
   }
-  const sessionID = data.socialSession
+  const sessionID =
+    typeof data.socialSession === "string" ? data.socialSession : data.socialSession?.id
   if (!sessionID) {
     throw new APIError("socialSession is required", 400)
   }
