@@ -1,6 +1,5 @@
 import type { CollectionBeforeChangeHook, Where } from "payload"
 import { APIError } from "payload"
-import { sendRegistrationConfirmation } from "@/lib/email/registrationConfimration.ts"
 
 export const checkCapacity: CollectionBeforeChangeHook = async ({ data, operation, req }) => {
   if (operation !== "create") {
@@ -72,12 +71,5 @@ export const checkCapacity: CollectionBeforeChangeHook = async ({ data, operatio
   } else {
     throw new APIError("This social session and its waitlist are full", 409)
   }
-  await sendRegistrationConfirmation({
-    session,
-    recipient: data.user
-      ? { type: "user", id: data.user }
-      : { type: "guest", email: data.guestEmail, name: data.guestName },
-    status: data.registrationStatus,
-  })
   return data
 }
