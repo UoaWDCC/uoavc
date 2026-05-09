@@ -1,4 +1,6 @@
 import type { CollectionBeforeChangeHook, Where } from "payload"
+import { APIError } from "payload"
+import { sendRegistrationConfirmation } from "@/lib/email/registrationConfimration.ts"
 
 export const checkCapacity: CollectionBeforeChangeHook = async ({ data, operation, req }) => {
   if (operation !== "create") {
@@ -6,20 +8,20 @@ export const checkCapacity: CollectionBeforeChangeHook = async ({ data, operatio
   }
   const sessionID = data.socialSession
   if (!sessionID) {
-    throw new Error("Social session not found")
+    throw new APIError("socialSession is required", 400)
   }
   const session = await req.payload.findByID({
     collection: "social-sessions",
     id: sessionID,
   })
   if (!session) {
-    throw new Error("Social session not found")
+    throw new APIError("Social session not found", 404)
   }
   if (session.status === "completed" || session.status === "cancelled") {
-    throw new Error("This social session is no longer accepting registrations")
+    throw new APIError("This social session is no longer accepting registrations", 400)
   }
   if (!data.user && !data.guestEmail) {
-    throw new Error("Registration must include a user or guest email")
+    throw new APIError("Registration must include a user or guest email", 400)
   }
   const whereUser: Where = data.user
     ? { user: { equals: data.user } }
@@ -35,7 +37,7 @@ export const checkCapacity: CollectionBeforeChangeHook = async ({ data, operatio
     },
   })
   if (alreadyRegistered.totalDocs !== 0) {
-    throw new Error("You are already registered for this social session")
+    throw new APIError("You are already registered for this social session", 409)
   }
   const registeredCount = await req.payload.count({
     collection: "social-session-registrations",
@@ -68,7 +70,14 @@ export const checkCapacity: CollectionBeforeChangeHook = async ({ data, operatio
   } else if (waitlistCount.totalDocs < session.waitlistCapacity) {
     data.registrationStatus = "waitlisted"
   } else {
-    throw new Error("This social session and its waitlist are full")
+    throw new APIError("This social session and its waitlist are full", 409)
   }
+  await sendRegistrationConfirmation({
+    session,
+    recipient: data.user
+      ? { type: "user", id: data.user }
+      : { type: "guest", email: data.guestEmail, name: data.guestName },
+    status: data.registrationStatus,
+  })
   return data
 }
