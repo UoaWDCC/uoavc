@@ -1,5 +1,6 @@
 import type { CollectionBeforeChangeHook, Where } from "payload"
 import { APIError } from "payload"
+import sendRegistrationConfirmation from "@/lib/email/registrationConfirmation"
 
 export const checkCapacity: CollectionBeforeChangeHook = async ({ data, operation, req }) => {
   if (operation !== "create") {
@@ -72,5 +73,34 @@ export const checkCapacity: CollectionBeforeChangeHook = async ({ data, operatio
   } else {
     throw new APIError("This social session and its waitlist are full", 409)
   }
+
+  let recipientEmail: string | undefined
+  if (data.user) {
+    const userID = typeof data.user === "string" ? data.user : data.user.id
+    try {
+      const user = await req.payload.findByID({ collection: "users", id: userID })
+      recipientEmail = user.email
+    } catch {
+      recipientEmail = undefined
+    }
+  } else if (data.guestEmail) {
+    recipientEmail = data.guestEmail
+  }
+
+  if (recipientEmail) {
+    await sendRegistrationConfirmation({
+      to: recipientEmail,
+      sessionTitle: session.title,
+      sessionDate: new Date(session.date).toLocaleDateString("en-NZ", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }),
+      sessionTime: `${session.startTime} - ${session.endTime}`,
+      sessionLocation: session.location,
+      isWaitlisted: data.registrationStatus === "waitlisted",
+    })
+  }
+
   return data
 }
