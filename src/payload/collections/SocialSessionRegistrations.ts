@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload"
+import { checkCapacity } from "../hooks/socialSessionRegistrations/checkCapacity"
 import { handleCancellation } from "../hooks/socialSessionRegistrations/handleCancellation"
 
 // SocialSessionRegistrations — on-site registrations for a social session.
@@ -56,6 +57,7 @@ export const SocialSessionRegistrations: CollectionConfig = {
 
         return data
       },
+      checkCapacity,
     ],
   },
   fields: [
