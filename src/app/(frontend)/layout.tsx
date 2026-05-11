@@ -1,5 +1,6 @@
 import { Inter, Staatliches } from "next/font/google"
 import type React from "react"
+import { Navbar } from "@/components"
 import "./globals.css"
 
 const staatliches = Staatliches({
@@ -26,6 +27,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html className={`${staatliches.variable} ${inter.variable} antialiased`} lang="en">
       <body className="font-body">
+        <Navbar />
         <main>{children}</main>
       </body>
     </html>
