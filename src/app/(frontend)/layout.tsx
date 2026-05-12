@@ -1,8 +1,8 @@
 import { Inter, Staatliches } from "next/font/google"
 import type React from "react"
-import { Navbar } from "@/components"
 import "./globals.css"
-import Footer from "@/components/footer"
+import { Navbar } from "@/components"
+import Footer from "@/components/Footer/Footer"
 
 const staatliches = Staatliches({
   subsets: ["latin"],
