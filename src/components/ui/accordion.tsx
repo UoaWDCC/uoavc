@@ -22,7 +22,7 @@ function AccordionItem({
   return (
     <AccordionPrimitive.Item
       className={cn(
-        "overflow-hidden transition-colors duration-300 border-2 border-transparent bg-accent data-[state=closed]:hover:border-foreground data-[state=closed]:hover:bg-transparent data-[state=open]:border-secondary data-[state=open]:bg-background w-[1412px]",
+        "w-[1412px] overflow-hidden border-2 border-transparent bg-accent transition-colors duration-300 data-[state=open]:border-secondary data-[state=open]:bg-background data-[state=closed]:hover:border-foreground data-[state=closed]:hover:bg-transparent",
         className,
       )}
       data-slot="accordion-item"
@@ -40,7 +40,7 @@ function AccordionTrigger({
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
         className={cn(
-          "group/accordion-trigger relative flex flex-1 cursor-pointer items-center justify-between border border-transparent px-4 py-3 text-left text-sm font-normal text-foreground transition-all outline-none transition-all duration-300 hover:bg-transparent hover:text-secondary-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-secondary data-[state=open]:text-secondary-foreground **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-foreground h-[50px] text-[20px]",
+          "group/accordion-trigger relative flex h-[50px] flex-1 cursor-pointer items-center justify-between border border-transparent px-4 py-3 text-left font-normal text-[20px] text-foreground text-sm outline-none transition-all transition-all duration-300 hover:bg-transparent hover:text-secondary-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-secondary data-[state=open]:text-secondary-foreground **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-foreground",
           className,
         )}
         data-slot="accordion-trigger"
@@ -67,13 +67,13 @@ function AccordionContent({
 }: React.ComponentProps<typeof AccordionPrimitive.Content>) {
   return (
     <AccordionPrimitive.Content
-      className="text-sm data-open:animate-accordion-down data-closed:animate-accordion-up text-[20px]"
+      className="text-[20px] text-sm data-closed:animate-accordion-up data-open:animate-accordion-down"
       data-slot="accordion-content"
       {...props}
     >
       <div
         className={cn(
-          " px-4 pt-4 pb-4 transition-colors hover:bg-transparent [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
+          "px-4 pt-4 pb-4 transition-colors hover:bg-transparent [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
           className,
         )}
       >
