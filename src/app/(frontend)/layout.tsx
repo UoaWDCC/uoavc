@@ -27,7 +27,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html className={`${staatliches.variable} ${inter.variable} antialiased`} lang="en">
-      <body className="font-body flex flex-col min-h-screen">
+      <body className="flex min-h-screen flex-col font-body">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
