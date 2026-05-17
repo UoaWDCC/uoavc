@@ -1,61 +1,72 @@
-import Link from "next/dist/client/link"
+import Link from "next/link"
+import { FaDiscord, FaInstagram, FaTiktok } from "react-icons/fa"
 import Logo from "@/components/Logo/Logo"
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear() // Get the current year
+  const currentYear = new Date().getFullYear() // Get current year
 
   return (
     <footer className="bg-brand-primary text-brand-light-grey">
-      <div className="mx-auto max-w-7xl px-6 py-10">
+      <div className="mx-auto px-20 py-10">
         {/* Main Section */}
         <div className="flex flex-col gap-12 md:flex-row md:justify-between">
           {/* Title */}
           <div className="max-w-md">
-            <h3 className="font-heading text-4xl uppercase tracking-wide">Contact Us!</h3>
-
+            <h3 className="font-heading text-4xl uppercase tracking-wide">Contact Us!</h3>{" "}
+            {/* Hover effect to be added */}
             <a
-              className="mt-10 block text-brand-light-grey/90 text-lg"
+              className="mt-10 block text-brand-light-grey/90 text-xl"
               href="mailto:uoavolleyball+secretary@gmail.com"
             >
               uoavolleyball+secretary@gmail.com
             </a>
+            {/* Socials */}
+            <div className="mt-6 flex gap-8">
+              <a
+                className="group flex h-14 w-14 items-center justify-center rounded-full border-2 border-e-brand-light-grey transition duration-300 ease-in-out hover:bg-white"
+                href="https://www.instagram.com/uoavc/?hl=en"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <FaInstagram
+                  className="text-brand-light-grey transition duration-300 ease-in-out group-hover:text-brand-primary"
+                  size={38}
+                />
+              </a>
 
-            <div className="mt-6 flex gap-4">
-              {/* Socials */}
               <a
-                className=""
-                href="https://www.instagram.com/uoavolleyball/"
+                className="group flex h-14 w-14 items-center justify-center rounded-full border-2 border-e-brand-light-grey transition duration-300 ease-in-out hover:bg-white"
+                href="https://www.tiktok.com/@uoavc"
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                Instagram
+                <FaTiktok
+                  className="text-brand-light-grey transition duration-300 ease-in-out group-hover:text-brand-primary"
+                  size={28}
+                />
               </a>
+
               <a
-                className=""
-                href="https://www.tiktok.com/@uoavolleyball"
+                className="group flex h-14 w-14 items-center justify-center rounded-full border-2 border-e-brand-light-grey transition duration-300 ease-in-out hover:bg-white"
+                href="https://discord.com/invite/aMDKvsWcyz"
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                Tiktok
-              </a>
-              <a
-                className=""
-                href="https://discord.gg/uoavolleyball"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Discord
+                <FaDiscord
+                  className="text-brand-light-grey transition duration-300 group-hover:text-brand-primary"
+                  size={40}
+                />
               </a>
             </div>
           </div>
 
           {/* Page Links */}
-          <div className="flex items-start gap-16 lg:gap-24">
+          <div className="flex items-start gap-16 px-20 lg:gap-24">
             {/* Events */}
             <div className="pt-10">
-              <h4 className="mb-4 font-semibold text-lg">Events</h4>
+              <h4 className="mb-4 font-semibold text-xl">Events</h4>
 
-              <ul className="space-y-2 text-brand-light-grey/90 text-lg">
+              <ul className="space-y-2 text-brand-light-grey/90 text-xl">
                 <li>
                   <Link className="transition hover:underline" href="/events/upcoming">
                     Upcoming Events
@@ -72,9 +83,9 @@ export default function Footer() {
 
             {/* About */}
             <div className="pt-10">
-              <h4 className="mb-4 font-semibold text-lg">About</h4>
+              <h4 className="mb-4 font-semibold text-xl">About</h4>
 
-              <ul className="space-y-2 text-brand-light-grey/90 text-lg">
+              <ul className="space-y-2 text-brand-light-grey/90 text-xl">
                 <li>
                   <Link className="transition hover:underline" href="/events/executives">
                     Executives
@@ -91,9 +102,9 @@ export default function Footer() {
 
             {/* FAQ */}
             <div className="pt-10">
-              <h4 className="mb-4 font-semibold text-lg">FAQ</h4>
+              <h4 className="mb-4 font-semibold text-xl">FAQ</h4>
 
-              <ul className="space-y-2 text-brand-light-grey/90 text-lg">
+              <ul className="space-y-2 text-brand-light-grey/90 text-xl">
                 <li>
                   <Link className="transition hover:underline" href="/events/faq">
                     FAQ
@@ -104,9 +115,9 @@ export default function Footer() {
 
             {/* Login */}
             <div className="pt-10">
-              <h4 className="mb-4 font-semibold text-lg">Login</h4>
+              <h4 className="mb-4 font-semibold text-xl">Login</h4>
 
-              <ul className="space-y-2 text-brand-light-grey/90 text-lg">
+              <ul className="space-y-2 text-brand-light-grey/90 text-xl">
                 <li>
                   <Link className="transition hover:underline" href="/events/signup">
                     Sign Up
@@ -129,7 +140,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-10 border-brand-light-grey/70 border-t pt-4">
-          <p className="text-brand-light-grey text-lg">&copy;{currentYear} UOAVC + WDCC</p>
+          <p className="text-brand-light-grey text-xl">&copy;{currentYear} UOAVC + WDCC</p>
         </div>
       </div>
     </footer>
