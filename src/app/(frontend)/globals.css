@@ -33,6 +33,37 @@
   --color-popover-foreground: var(--popover-foreground);
 }
 
+/* Custom animation */
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  20% {
+    transform: rotate(-5deg);
+  }
+
+  40% {
+    transform: rotate(5deg);
+  }
+
+  60% {
+    transform: rotate(-4deg);
+  }
+
+  75% {
+    transform: rotate(-4deg);
+  }
+
+  85% {
+    transform: rotate(-4deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 :root {
   --radius: 9999px;
   --background: white;

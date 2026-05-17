@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import { FaDiscord, FaInstagram, FaTiktok } from "react-icons/fa"
 import Logo from "@/components/Logo/Logo"
@@ -12,8 +14,9 @@ export default function Footer() {
         <div className="flex flex-col gap-12 md:flex-row md:justify-between">
           {/* Title */}
           <div className="max-w-md">
-            <h3 className="font-heading text-4xl uppercase tracking-wide">Contact Us!</h3>{" "}
-            {/* Hover effect to be added */}
+            <h3 className="inline-block origin-center font-heading text-[2.5rem] uppercase tracking-thin hover:animate-[wiggle_1500ms_ease-out]">
+              Contact Us!
+            </h3>
             <a
               className="mt-10 block text-brand-light-grey/90 text-xl"
               href="mailto:uoavolleyball+secretary@gmail.com"
@@ -23,19 +26,19 @@ export default function Footer() {
             {/* Socials */}
             <div className="mt-6 flex gap-8">
               <a
-                className="group flex h-14 w-14 items-center justify-center rounded-full border-2 border-e-brand-light-grey transition duration-300 ease-in-out hover:bg-white"
+                className="group flex h-13 w-13 items-center justify-center rounded-full border-2 border-e-brand-light-grey transition duration-300 ease-in-out hover:bg-white"
                 href="https://www.instagram.com/uoavc/?hl=en"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <FaInstagram
                   className="text-brand-light-grey transition duration-300 ease-in-out group-hover:text-brand-primary"
-                  size={38}
+                  size={36}
                 />
               </a>
 
               <a
-                className="group flex h-14 w-14 items-center justify-center rounded-full border-2 border-e-brand-light-grey transition duration-300 ease-in-out hover:bg-white"
+                className="group flex h-13 w-13 items-center justify-center rounded-full border-2 border-e-brand-light-grey transition duration-300 ease-in-out hover:bg-white"
                 href="https://www.tiktok.com/@uoavc"
                 rel="noopener noreferrer"
                 target="_blank"
@@ -47,7 +50,7 @@ export default function Footer() {
               </a>
 
               <a
-                className="group flex h-14 w-14 items-center justify-center rounded-full border-2 border-e-brand-light-grey transition duration-300 ease-in-out hover:bg-white"
+                className="group flex h-13 w-13 items-center justify-center rounded-full border-2 border-e-brand-light-grey transition duration-300 ease-in-out hover:bg-white"
                 href="https://discord.com/invite/aMDKvsWcyz"
                 rel="noopener noreferrer"
                 target="_blank"
