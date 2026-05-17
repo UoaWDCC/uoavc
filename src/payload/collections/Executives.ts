@@ -31,19 +31,43 @@ export const Executives: CollectionConfig = {
       },
     },
     {
+      name: "photo",
+      type: "upload",
+      relationTo: "media",
+      required: false,
+      admin: { description: "Profile photo for the executive's card." },
+    },
+    {
+      name: "degree",
+      type: "text",
+      required: false,
+      admin: {
+        description: "Degree of study, e.g 'BCom', 'BSc'.",
+      },
+    },
+    {
+      name: "position",
+      type: "text",
+      required: false,
+      admin: {
+        description: "Main volleyball position, e.g 'Outside', 'Libero', 'Setter'.",
+      },
+    },
+    {
+      name: "yearsOfExperience",
+      type: "number",
+      required: false,
+      admin: {
+        description: "Years of volleyball experience.",
+      },
+    },
+    {
       name: "bio",
       type: "textarea",
       required: false,
       admin: {
         description: "Short biography displayed on the executive's profile card.",
       },
-    },
-    {
-      name: "photo",
-      type: "upload",
-      relationTo: "media",
-      required: false,
-      admin: { description: "Profile photo for the executive's card." },
     },
     {
       name: "order",
