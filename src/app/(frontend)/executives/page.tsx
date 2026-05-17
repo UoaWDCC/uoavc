@@ -33,12 +33,12 @@ export default async function ExecutivesPage() {
   return (
     <main className="min-h-screen bg-brand-light-grey px-6 py-10 sm:px-8 sm:py-12">
       <div className="mx-auto max-w-4xl">
-        <h1 className="font-heading mb-10 text-center text-3xl text-brand-primary uppercase sm:text-4xl">
+        <h1 className="mb-10 text-center font-heading text-3xl text-brand-primary uppercase sm:text-4xl">
           Executive Team
         </h1>
 
         {executives.length === 0 ? (
-          <p className="font-body text-center text-brand-primary text-lg">
+          <p className="text-center font-body text-brand-primary text-lg">
             No executive profiles to display.
           </p>
         ) : (

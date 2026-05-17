@@ -29,7 +29,7 @@ export default function ExecCard({
 
   return (
     <article className="mx-auto flex w-full max-w-[220px] flex-col items-center text-center">
-      <p className="font-heading mb-3 max-w-full break-all text-center text-[#7FA6D8] text-sm uppercase tracking-wide sm:text-base">
+      <p className="mb-3 max-w-full break-all text-center font-heading text-[#7FA6D8] text-sm uppercase tracking-wide sm:text-base">
         {role}
       </p>
 
@@ -37,13 +37,13 @@ export default function ExecCard({
         {photoUrl ? (
           <Image alt={photoAlt} className="object-cover" fill src={photoUrl} />
         ) : (
-          <div className="flex h-full w-full items-center justify-center text-xs text-slate-500">
+          <div className="flex h-full w-full items-center justify-center text-slate-500 text-xs">
             No photo
           </div>
         )}
       </div>
 
-      <h3 className="font-heading mb-2 text-brand-primary text-lg uppercase leading-tight sm:text-xl">
+      <h3 className="mb-2 font-heading text-brand-primary text-lg uppercase leading-tight sm:text-xl">
         {name}
       </h3>
 
