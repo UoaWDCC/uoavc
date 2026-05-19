@@ -1,2 +1,2 @@
-export { Faq } from "./FAQ/Faq"
+export { Faq } from "./FAQ/FAQ"
 export { Navbar } from "./Navbar/Navbar"
