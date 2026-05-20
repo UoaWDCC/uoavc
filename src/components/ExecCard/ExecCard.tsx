@@ -6,13 +6,10 @@ type ExecCardProps = {
   degree?: string | null
   position?: string | null
   yearsOfExperience?: number | null
-  photo?:
-    | {
-        url?: string | null
-        alt?: string | null
-      }
-    | string
-    | null
+  photo?: {
+    url?: string | null
+    alt?: string | null
+  } | null
 }
 
 export default function ExecCard({
@@ -23,17 +20,16 @@ export default function ExecCard({
   yearsOfExperience,
   photo,
 }: ExecCardProps) {
-  const photoUrl = typeof photo === "string" ? photo : (photo?.url ?? null)
-  const photoAlt =
-    typeof photo === "string" ? `${name}'s profile photo` : photo?.alt || `${name}'s profile photo`
+  const photoUrl = photo?.url ?? null
+  const photoAlt = photo?.alt || `${name}'s profile photo`
 
   return (
     <article className="mx-auto flex w-full max-w-[220px] flex-col items-center text-center">
-      <p className="mb-3 max-w-full break-all text-center font-heading text-[#7FA6D8] text-sm uppercase tracking-wide sm:text-base">
+      <p className="mb-3 max-w-full break-words text-center font-body font-bold text-[#73ABDE] text-sm uppercase tracking-wide sm:text-base">
         {role}
       </p>
 
-      <div className="relative mb-8 h-[220px] w-[220px] overflow-hidden bg-[#d9d9d9]">
+      <div className="relative mb-8 h-[220px] w-[220px] overflow-hidden bg-[#D9D9D9]">
         {photoUrl ? (
           <Image alt={photoAlt} className="object-cover" fill src={photoUrl} />
         ) : (
@@ -43,7 +39,7 @@ export default function ExecCard({
         )}
       </div>
 
-      <h3 className="mb-2 font-heading text-brand-primary text-lg uppercase leading-tight sm:text-xl">
+      <h3 className="mb-2 font-body font-bold text-brand-primary text-lg uppercase leading-tight sm:text-xl">
         {name}
       </h3>
 

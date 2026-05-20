@@ -1,23 +1,8 @@
 import { getPayload } from "payload"
 
-import ExecCard from "@/components/ExecCard"
+import ExecCard from "@/components/ExecCard/ExecCard"
 import config from "@/payload.config"
-
-type ExecutiveCardData = {
-  id: string
-  role: string
-  name: string
-  degree?: string | null
-  position?: string | null
-  yearsOfExperience?: number | null
-  photo?:
-    | {
-        url?: string | null
-        alt?: string | null
-      }
-    | string
-    | null
-}
+import type { Executive } from "@/payload-types"
 
 export default async function ExecutivesPage() {
   const payload = await getPayload({ config: await config })
@@ -28,7 +13,7 @@ export default async function ExecutivesPage() {
     limit: 100,
   })
 
-  const executives = result.docs as ExecutiveCardData[]
+  const executives = result.docs as Executive[]
 
   return (
     <main className="min-h-screen bg-brand-light-grey px-6 py-10 sm:px-8 sm:py-12">
@@ -48,7 +33,14 @@ export default async function ExecutivesPage() {
                 degree={executive.degree}
                 key={executive.id}
                 name={executive.name}
-                photo={executive.photo}
+                photo={
+                  executive.photo && typeof executive.photo !== "string"
+                    ? {
+                        url: executive.photo.url,
+                        alt: executive.photo.alt,
+                      }
+                    : null
+                }
                 position={executive.position}
                 role={executive.role}
                 yearsOfExperience={executive.yearsOfExperience}

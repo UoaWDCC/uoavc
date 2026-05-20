@@ -62,14 +62,6 @@ export const Executives: CollectionConfig = {
       },
     },
     {
-      name: "bio",
-      type: "textarea",
-      required: false,
-      admin: {
-        description: "Short biography displayed on the executive's profile card.",
-      },
-    },
-    {
       name: "order",
       type: "number",
       required: false,

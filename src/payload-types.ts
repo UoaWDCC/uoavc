@@ -275,10 +275,6 @@ export interface Executive {
    */
   yearsOfExperience?: number | null;
   /**
-   * Short biography displayed on the executive's profile card.
-   */
-  bio?: string | null;
-  /**
    * Display order on the executive team page. Lower numbers appear first.
    */
   order?: number | null;
@@ -696,7 +692,6 @@ export interface ExecutivesSelect<T extends boolean = true> {
   degree?: T;
   position?: T;
   yearsOfExperience?: T;
-  bio?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;
