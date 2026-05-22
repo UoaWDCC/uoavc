@@ -1,12 +1,8 @@
-"use client"
-
 import Link from "next/link"
 import { FaDiscord, FaInstagram, FaTiktok } from "react-icons/fa"
-import Logo from "@/components/Logo/Logo"
+import { Logo } from "@/components/Logo/Logo"
 
-export default function Footer() {
-  const currentYear = new Date().getFullYear() // Get current year
-
+export function Footer() {
   return (
     <footer className="bg-brand-primary text-brand-light-grey">
       <div className="mx-auto px-20 py-10">
@@ -14,7 +10,7 @@ export default function Footer() {
         <div className="flex flex-col gap-12 md:flex-row md:justify-between">
           {/* Title */}
           <div className="max-w-md">
-            <h3 className="inline-block origin-center font-heading text-[2.5rem] uppercase tracking-thin hover:animate-[wiggle_1500ms_ease-out]">
+            <h3 className="inline-block origin-center font-heading text-[2.5rem] uppercase tracking-tight hover:animate-[wiggle_1500ms_ease-out]">
               Contact Us!
             </h3>
             <a
@@ -26,45 +22,45 @@ export default function Footer() {
             {/* Socials */}
             <div className="mt-6 flex gap-8">
               <a
-                className="group flex h-13 w-13 items-center justify-center rounded-full border-2 border-e-brand-light-grey transition duration-300 ease-in-out hover:bg-white"
+                className="group flex h-13 w-13 items-center justify-center rounded-full border-2 border-brand-light-grey transition duration-300 ease-in-out hover:bg-white"
                 href="https://www.instagram.com/uoavc/?hl=en"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <FaInstagram
                   className="text-brand-light-grey transition duration-300 ease-in-out group-hover:text-brand-primary"
-                  size={36}
+                  size={32}
                 />
               </a>
 
               <a
-                className="group flex h-13 w-13 items-center justify-center rounded-full border-2 border-e-brand-light-grey transition duration-300 ease-in-out hover:bg-white"
+                className="group flex h-13 w-13 items-center justify-center rounded-full border-2 border-brand-light-grey transition duration-300 ease-in-out hover:bg-white"
                 href="https://www.tiktok.com/@uoavc"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <FaTiktok
                   className="text-brand-light-grey transition duration-300 ease-in-out group-hover:text-brand-primary"
-                  size={28}
+                  size={32}
                 />
               </a>
 
               <a
-                className="group flex h-13 w-13 items-center justify-center rounded-full border-2 border-e-brand-light-grey transition duration-300 ease-in-out hover:bg-white"
+                className="group flex h-13 w-13 items-center justify-center rounded-full border-2 border-brand-light-grey transition duration-300 ease-in-out hover:bg-white"
                 href="https://discord.com/invite/aMDKvsWcyz"
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 <FaDiscord
-                  className="text-brand-light-grey transition duration-300 group-hover:text-brand-primary"
-                  size={40}
+                  className="text-brand-light-grey transition duration-300 ease-in-out group-hover:text-brand-primary"
+                  size={32}
                 />
               </a>
             </div>
           </div>
 
           {/* Page Links */}
-          <div className="flex items-start gap-16 px-20 lg:gap-24">
+          <div className="flex items-start gap-16 lg:gap-24">
             {/* Events */}
             <div className="pt-10">
               <h4 className="mb-4 font-semibold text-xl">Events</h4>
@@ -143,7 +139,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-10 border-brand-light-grey/70 border-t pt-4">
-          <p className="text-brand-light-grey text-xl">&copy;{currentYear} UOAVC + WDCC</p>
+          <p className="text-brand-light-grey text-xl">&copy;2026 UOAVC + WDCC</p>
         </div>
       </div>
     </footer>

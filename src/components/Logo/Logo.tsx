@@ -4,7 +4,7 @@ import Link from "next/link"
 const FOCUS_RING =
   "rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
 
-export default function Logo() {
+export function Logo() {
   return (
     <Link aria-label="UOAVC home" className={FOCUS_RING} href="/">
       <Image
