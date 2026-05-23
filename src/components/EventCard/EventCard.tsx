@@ -36,7 +36,7 @@ export function EventCard({
   return (
     <Card
       className={cn(
-        "group hover:-translate-y-3 w-90 translate-y-0 gap-0 overflow-hidden rounded-none border-3 bg-transparent p-0 transition-transform duration-500 ease-in-out",
+        "group hover:-translate-y-3 w-90 translate-y-0 gap-0 overflow-hidden rounded-none border-4 bg-transparent p-0 transition-transform duration-500 ease-in-out",
         borderColor,
       )}
     >
