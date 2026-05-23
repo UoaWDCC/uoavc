@@ -1,3 +1,4 @@
+import { ImageIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
@@ -59,7 +60,9 @@ export function EventCard({
           {image ? (
             <Image alt={name} className="object-cover" fill sizes="360px" src={image} />
           ) : (
-            <div className="h-full w-full bg-transparent" />
+            <div className="flex h-full w-full items-center justify-center bg-muted text-muted-foreground">
+              <ImageIcon aria-hidden="true" className="h-10 w-10" />
+            </div>
           )}
 
           <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-300 ease-out group-hover:bg-brand-primary/15 group-hover:opacity-100">
