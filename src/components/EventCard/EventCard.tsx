@@ -16,7 +16,17 @@ type EventCardProps = {
   href: string
 }
 
-function EventCard({ variant, name, date, time, image, href }: EventCardProps) {
+export function EventCard({
+  variant,
+  name,
+  date,
+  time,
+  image,
+  href,
+  description,
+  location,
+  signUpLink,
+}: EventCardProps) {
   const isPast = variant === "past"
   const headerBg = isPast ? "bg-brand-yellow" : "bg-brand-primary"
   const borderColor = isPast ? "border-brand-yellow" : "border-brand-primary"
@@ -34,8 +44,13 @@ function EventCard({ variant, name, date, time, image, href }: EventCardProps) {
         <CardTitle className={cn("font-black font-heading text-6xl uppercase", titleText)}>
           {name}
         </CardTitle>
-        <CardDescription className={cn("mt-3 text-2xl leading-none", descText)}>
-          {date} {time}
+        <CardDescription className={cn("mt-3 flex flex-col gap-4 text-2xl leading-none", descText)}>
+          <p>
+            {date} {time}
+          </p>
+          <p>{description}</p>
+          <p>{location}</p>
+          <p>{signUpLink}</p>
         </CardDescription>
       </CardHeader>
 
@@ -57,5 +72,3 @@ function EventCard({ variant, name, date, time, image, href }: EventCardProps) {
     </Card>
   )
 }
-
-export { EventCard }
