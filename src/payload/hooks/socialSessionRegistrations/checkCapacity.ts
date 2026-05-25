@@ -87,7 +87,7 @@ export const checkCapacity: CollectionBeforeChangeHook = async ({ data, operatio
     recipientEmail = data.guestEmail
   }
 
-  if (recipientEmail) {
+  if (recipientEmail && data.paymentStatus !== "pending") {
     await sendRegistrationConfirmation({
       to: recipientEmail,
       sessionTitle: session.title,
