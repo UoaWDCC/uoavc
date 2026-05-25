@@ -11,11 +11,11 @@ interface CompTeamProps {
 
 const CompTeam = ({ teamName, photo, players }: CompTeamProps) => {
   return (
-    <div className="flex flex-col items-center gap-8 py-12">
+    <div className="flex flex-col items-center gap-8 py-12 mx-4">
       <h1 className="font-bold text-4xl text-brand-navy">{teamName}</h1>
 
       {photo && (
-        <div className="relative aspect-video w-5xl">
+        <div className="relative aspect-video w-full max-w-6xl">
           <Image alt={teamName} className="bg-gray-300" fill src={photo} />
         </div>
       )}
