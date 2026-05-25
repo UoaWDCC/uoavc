@@ -108,6 +108,33 @@ async function handleCheckoutSessionExpired(session: Stripe.Checkout.Session) {
   })
 }
 
+async function handlePaymentIntentFailed(paymentIntent: Stripe.PaymentIntent) {
+  const registrationId = paymentIntent.metadata?.registrationId
+  if (!registrationId) return
+
+  const payload = await getPayloadClient()
+
+  let registration: SocialSessionRegistration
+  try {
+    registration = await payload.findByID({
+      collection: "social-session-registrations",
+      id: registrationId,
+      overrideAccess: true,
+    })
+  } catch {
+    return
+  }
+
+  if (registration.registrationStatus === "cancelled") return
+
+  await payload.update({
+    collection: "social-session-registrations",
+    id: registration.id,
+    data: { registrationStatus: "cancelled" },
+    overrideAccess: true,
+  })
+}
+
 export async function POST(req: Request) {
   const body = await req.text()
   const sig = req.headers.get("stripe-signature")
@@ -132,6 +159,8 @@ export async function POST(req: Request) {
         await handleCheckoutSessionExpired(event.data.object as Stripe.Checkout.Session)
         break
       case "payment_intent.payment_failed":
+        await handlePaymentIntentFailed(event.data.object as Stripe.PaymentIntent)
+        break
       case "charge.refunded":
         break
       default:
