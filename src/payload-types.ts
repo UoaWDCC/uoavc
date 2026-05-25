@@ -495,7 +495,7 @@ export interface SocialSessionRegistration {
   /**
    * Payment state for paid social sessions.
    */
-  paymentStatus?: ('pending' | 'paid' | 'free') | null;
+  paymentStatus?: ('pending' | 'paid' | 'free' | 'refunded') | null;
   updatedAt: string;
   createdAt: string;
 }
