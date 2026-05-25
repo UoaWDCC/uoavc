@@ -108,6 +108,39 @@ async function handleCheckoutSessionExpired(session: Stripe.Checkout.Session) {
   })
 }
 
+async function handleChargeRefunded(charge: Stripe.Charge) {
+  const payload = await getPayloadClient()
+
+  if (!charge.payment_intent) return
+  const paymentIntentId =
+    typeof charge.payment_intent === "string" ? charge.payment_intent : charge.payment_intent.id
+  const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId)
+  const registrationId = paymentIntent.metadata?.registrationId
+  if (!registrationId) return
+
+  let registration: SocialSessionRegistration
+  try {
+    registration = await payload.findByID({
+      collection: "social-session-registrations",
+      id: registrationId,
+      overrideAccess: true,
+    })
+  } catch {
+    return
+  }
+
+  if (registration.paymentStatus === "refunded") return
+
+  // Setting registrationStatus: "cancelled" triggers handleCancellation which
+  // promotes the next waitlisted user.
+  await payload.update({
+    collection: "social-session-registrations",
+    id: registration.id,
+    data: { paymentStatus: "refunded", registrationStatus: "cancelled" },
+    overrideAccess: true,
+  })
+}
+
 async function handlePaymentIntentFailed(paymentIntent: Stripe.PaymentIntent) {
   const registrationId = paymentIntent.metadata?.registrationId
   if (!registrationId) return
@@ -162,6 +195,7 @@ export async function POST(req: Request) {
         await handlePaymentIntentFailed(event.data.object as Stripe.PaymentIntent)
         break
       case "charge.refunded":
+        await handleChargeRefunded(event.data.object as Stripe.Charge)
         break
       default:
         break
