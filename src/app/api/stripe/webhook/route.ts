@@ -1,9 +1,85 @@
 export const runtime = "nodejs"
 
+import { getPayload } from "payload"
 import type { Stripe } from "stripe"
+import sendRegistrationConfirmation from "@/lib/email/registrationConfirmation"
 import { stripe } from "@/lib/stripe"
+import config from "@/payload.config"
+import type { SocialSession, SocialSessionRegistration } from "@/payload-types"
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET ?? ""
+
+async function getPayloadClient() {
+  return getPayload({ config: await config })
+}
+
+async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) {
+  const registrationId = session.metadata?.registrationId
+  if (!registrationId) return
+
+  const payload = await getPayloadClient()
+
+  let registration: SocialSessionRegistration
+  try {
+    registration = await payload.findByID({
+      collection: "social-session-registrations",
+      id: registrationId,
+      overrideAccess: true,
+    })
+  } catch {
+    return
+  }
+
+  if (registration.paymentStatus === "paid") return
+
+  await payload.update({
+    collection: "social-session-registrations",
+    id: registration.id,
+    data: {
+      paymentStatus: "paid",
+      amountPaid: session.amount_total != null ? session.amount_total / 100 : undefined,
+    },
+    overrideAccess: true,
+  })
+
+  const socialSession =
+    typeof registration.socialSession === "string"
+      ? await payload.findByID({
+          collection: "social-sessions",
+          id: registration.socialSession,
+          overrideAccess: true,
+        })
+      : (registration.socialSession as SocialSession)
+
+  const recipientEmail =
+    registration.guestEmail ??
+    (registration.user
+      ? typeof registration.user === "string"
+        ? (
+            await payload.findByID({
+              collection: "users",
+              id: registration.user,
+              overrideAccess: true,
+            })
+          ).email
+        : (registration.user as { email?: string }).email
+      : undefined)
+
+  if (recipientEmail && socialSession) {
+    await sendRegistrationConfirmation({
+      to: recipientEmail,
+      sessionTitle: socialSession.title,
+      sessionDate: new Date(socialSession.date).toLocaleDateString("en-NZ", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }),
+      sessionTime: `${socialSession.startTime}${socialSession.endTime ? ` - ${socialSession.endTime}` : ""}`,
+      sessionLocation: socialSession.location,
+      isWaitlisted: registration.registrationStatus === "waitlisted",
+    })
+  }
+}
 
 export async function POST(req: Request) {
   const body = await req.text()
@@ -23,6 +99,8 @@ export async function POST(req: Request) {
   try {
     switch (event.type) {
       case "checkout.session.completed":
+        await handleCheckoutSessionCompleted(event.data.object as Stripe.Checkout.Session)
+        break
       case "checkout.session.expired":
       case "payment_intent.payment_failed":
       case "charge.refunded":
