@@ -3,7 +3,12 @@ import { APIError } from "payload"
 import sendRegistrationConfirmation from "@/lib/email/registrationConfirmation"
 import { resolveRegistrationStatus } from "./resolveRegistrationStatus"
 
-export const checkCapacity: CollectionBeforeChangeHook = async ({ data, operation, req }) => {
+export const checkCapacity: CollectionBeforeChangeHook = async ({
+  data,
+  operation,
+  req,
+  context,
+}) => {
   if (operation !== "create") {
     return data
   }
@@ -20,6 +25,13 @@ export const checkCapacity: CollectionBeforeChangeHook = async ({ data, operatio
     guestEmail: data.guestEmail,
   })
   data.registrationStatus = registrationStatus
+
+  // Paid registrations are created in a "pending" state by the Stripe checkout
+  // endpoint; their confirmation email fires on payment success instead, so the
+  // endpoint sets this flag to suppress the email here.
+  if (context?.skipConfirmationEmail) {
+    return data
+  }
 
   let recipientEmail: string | undefined
   if (data.user) {
