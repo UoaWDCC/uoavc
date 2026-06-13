@@ -33,6 +33,8 @@ export function EventCard({
   const borderColor = isPast ? "border-brand-yellow" : "border-brand-primary"
   const titleText = isPast ? "text-secondary-foreground" : "text-white"
   const descText = isPast ? "text-secondary-foreground" : "text-white"
+  const ctaLabel = isPast ? "view gallery" : "learn more"
+  const ctaVariant = isPast ? "secondary" : "tertiary"
 
   return (
     <Card
@@ -66,8 +68,8 @@ export function EventCard({
           )}
 
           <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-300 ease-out group-focus-within:bg-brand-primary/15 group-focus-within:opacity-100 group-hover:bg-brand-primary/15 group-hover:opacity-100">
-            <Button asChild className="pointer-events-auto" variant="default">
-              <Link href={href}>learn more</Link>
+            <Button asChild className="pointer-events-auto" variant={ctaVariant}>
+              <Link href={href}>{ctaLabel}</Link>
             </Button>
           </div>
         </div>
