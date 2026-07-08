@@ -31,7 +31,7 @@ export default function ExecCard({
 
       <div className="relative mb-8 h-[220px] w-[220px] overflow-hidden bg-[#D9D9D9]">
         {photoUrl ? (
-          <Image alt={photoAlt} className="object-cover" fill src={photoUrl} />
+          <Image alt={photoAlt} className="object-cover" fill sizes="220px" src={photoUrl} />
         ) : (
           <div className="flex h-full w-full items-center justify-center text-slate-500 text-xs">
             No photo
