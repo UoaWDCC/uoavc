@@ -71,6 +71,14 @@ export const socialSessionCheckout: PayloadHandler = async (req) => {
     )
   }
 
+  // We can't refund yet, so don't take money for a waitlist spot
+  if (registrationStatus === "waitlisted") {
+    return Response.json(
+      { error: "This session is full, you can join the waitlist without payment." },
+      { status: 409 },
+    )
+  }
+
   const customerEmail = isMember ? req.user?.email : guestEmail
 
   // Hold the spot with a pending registration. skipConfirmationEmail stops the
