@@ -87,7 +87,7 @@ export const socialSessionCheckout: PayloadHandler = async (req) => {
         registrationStatus,
         registeredAt: new Date().toISOString(),
         paymentStatus: "pending",
-        amountPaid: price,
+        // amountPaid stays null until payment succeeds (set by webhook #75)
       },
       req,
       context: { skipConfirmationEmail: true },
