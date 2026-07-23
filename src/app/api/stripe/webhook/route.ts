@@ -7,8 +7,6 @@ import { stripe } from "@/lib/stripe"
 import config from "@/payload.config"
 import type { SocialSession, SocialSessionRegistration } from "@/payload-types"
 
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET ?? ""
-
 async function getPayloadClient() {
   return getPayload({ config: await config })
 }
@@ -169,6 +167,11 @@ async function handlePaymentIntentFailed(paymentIntent: Stripe.PaymentIntent) {
 }
 
 export async function POST(req: Request) {
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
+  if (!webhookSecret) {
+    return new Response("Webhook secret is not configured", { status: 500 })
+  }
+
   const body = await req.text()
   const sig = req.headers.get("stripe-signature")
 
