@@ -109,15 +109,35 @@ async function handleCheckoutSessionExpired(session: Stripe.Checkout.Session) {
   })
 }
 
-async function handleChargeRefunded(charge: Stripe.Charge) {
-  const payload = await getPayloadClient()
+// Stripe does not copy Checkout Session metadata onto the PaymentIntent/Charge,
+// so resolve the parent session to find the registration.
+async function findRegistrationIdByPaymentIntent(
+  paymentIntentId: string,
+): Promise<string | undefined> {
+  const sessions = await stripe.checkout.sessions.list({
+    payment_intent: paymentIntentId,
+    limit: 1,
+  })
 
+  if (sessions.data.length === 0) return undefined
+
+  const session = sessions.data[0]
+  if (!session.metadata) return undefined
+
+  return session.metadata.registrationId
+}
+
+async function handleChargeRefunded(charge: Stripe.Charge) {
   if (!charge.payment_intent) return
   const paymentIntentId =
     typeof charge.payment_intent === "string" ? charge.payment_intent : charge.payment_intent.id
-  const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId)
-  const registrationId = paymentIntent.metadata?.registrationId
+  let registrationId: string | undefined = charge.metadata?.registrationId
+  if (!registrationId) {
+    registrationId = await findRegistrationIdByPaymentIntent(paymentIntentId)
+  }
   if (!registrationId) return
+
+  const payload = await getPayloadClient()
 
   let registration: SocialSessionRegistration
   try {
@@ -144,7 +164,10 @@ async function handleChargeRefunded(charge: Stripe.Charge) {
 }
 
 async function handlePaymentIntentFailed(paymentIntent: Stripe.PaymentIntent) {
-  const registrationId = paymentIntent.metadata?.registrationId
+  let registrationId: string | undefined = paymentIntent.metadata?.registrationId
+  if (!registrationId) {
+    registrationId = await findRegistrationIdByPaymentIntent(paymentIntent.id)
+  }
   if (!registrationId) return
 
   const payload = await getPayloadClient()
