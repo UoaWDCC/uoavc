@@ -1,6 +1,6 @@
 export const runtime = "nodejs"
 
-import { getPayload } from "payload"
+import { getPayload, NotFound } from "payload"
 import type { Stripe } from "stripe"
 import sendRegistrationConfirmation from "@/lib/email/registrationConfirmation"
 import { stripe } from "@/lib/stripe"
@@ -24,8 +24,9 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session) 
       id: registrationId,
       overrideAccess: true,
     })
-  } catch {
-    return
+  } catch (error) {
+    if (error instanceof NotFound) return
+    throw error
   }
 
   if (registration.paymentStatus === "paid") return
@@ -92,8 +93,9 @@ async function handleCheckoutSessionExpired(session: Stripe.Checkout.Session) {
       id: registrationId,
       overrideAccess: true,
     })
-  } catch {
-    return
+  } catch (error) {
+    if (error instanceof NotFound) return
+    throw error
   }
 
   if (registration.registrationStatus === "cancelled") return
@@ -123,8 +125,9 @@ async function handleChargeRefunded(charge: Stripe.Charge) {
       id: registrationId,
       overrideAccess: true,
     })
-  } catch {
-    return
+  } catch (error) {
+    if (error instanceof NotFound) return
+    throw error
   }
 
   if (registration.paymentStatus === "refunded") return
@@ -152,8 +155,9 @@ async function handlePaymentIntentFailed(paymentIntent: Stripe.PaymentIntent) {
       id: registrationId,
       overrideAccess: true,
     })
-  } catch {
-    return
+  } catch (error) {
+    if (error instanceof NotFound) return
+    throw error
   }
 
   if (registration.registrationStatus === "cancelled") return
