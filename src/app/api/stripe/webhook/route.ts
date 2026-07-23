@@ -99,6 +99,7 @@ async function handleCheckoutSessionExpired(session: Stripe.Checkout.Session) {
   }
 
   if (registration.registrationStatus === "cancelled") return
+  if (registration.paymentStatus === "paid") return
 
   await payload.update({
     collection: "social-session-registrations",
@@ -161,6 +162,7 @@ async function handlePaymentIntentFailed(paymentIntent: Stripe.PaymentIntent) {
   }
 
   if (registration.registrationStatus === "cancelled") return
+  if (registration.paymentStatus === "paid") return
 
   await payload.update({
     collection: "social-session-registrations",
