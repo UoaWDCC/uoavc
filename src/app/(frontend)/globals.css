@@ -8,6 +8,7 @@
   --color-brand-navy: #08345b;
   --color-brand-light-blue: #93dbf4;
   --color-brand-light-grey: #edebe8;
+  --color-brand-white: #f5f5f5;
 }
 
 @theme inline {
