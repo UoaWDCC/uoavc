@@ -8,8 +8,8 @@ import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 
 const INPUT_STYLES = cn(
-  "w-full rounded-full bg-brand-light-grey px-6 py-3 font-body text-base text-brand-navy",
-  "placeholder:text-brand-navy",
+  "w-full rounded-2xl bg-white px-7 py-4 font-body text-xl text-brand-primary",
+  "placeholder:text-brand-primary",
   "transition-colors duration-200 ease-out",
   "outline-none",
   "hover:text-brand-light-blue hover:placeholder:text-brand-light-blue",
@@ -26,9 +26,9 @@ export function Login() {
   }
 
   return (
-    <div className="flex w-full max-w-sm flex-col gap-6">
+    <div className="flex w-full max-w-lg flex-col gap-8">
       <Card
-        className="items-stretch gap-5 rounded-3xl bg-brand-light-blue p-8 ring-0"
+        className="items-stretch gap-6 rounded-xl bg-brand-light-blue p-12 ring-0"
         size="default"
       >
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -54,20 +54,20 @@ export function Login() {
           />
 
           <div className="flex justify-end">
-            <Link className="text-sm text-brand-navy hover:opacity-70" href="/forgot-password">
+            <Link className="text-xl text-brand-primary hover:opacity-70" href="/forgot-password">
               Forgot password?
             </Link>
           </div>
 
           <div className="flex justify-center pt-2">
-            <Button type="submit" variant="cta">
+            <Button size="md" type="submit" variant="primary">
               Sign-in
             </Button>
           </div>
         </form>
       </Card>
 
-      <p className="text-center text-sm text-brand-navy">
+      <p className="text-center text-xl text-brand-primary">
         Don&apos;t have an account?{" "}
         <Link className="font-bold hover:opacity-70" href="/sign-up">
           Create Account

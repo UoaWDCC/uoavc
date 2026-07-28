@@ -8,7 +8,10 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <main className="flex min-h-[calc(100vh-96px)] items-center justify-center px-6 py-16">
+    <main className="flex min-h-[calc(100vh-96px)] flex-col items-center gap-10 px-6 pt-20 pb-16">
+      <h1 className="text-center font-heading text-9xl uppercase tracking-wide text-brand-primary">
+        Login
+      </h1>
       <Login />
     </main>
   )
