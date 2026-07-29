@@ -25,11 +25,11 @@ export default function ExecCard({
 
   return (
     <article className="mx-auto flex w-full max-w-[220px] flex-col items-center text-center">
-      <p className="mb-3 max-w-full break-words text-center font-body font-bold text-[#73ABDE] text-sm uppercase tracking-wide sm:text-base">
+      <p className="mb-3 max-w-full break-words text-center font-body font-bold text-brand-primary text-sm uppercase tracking-wide sm:text-base">
         {role}
       </p>
 
-      <div className="relative mb-8 h-[220px] w-[220px] overflow-hidden bg-[#D9D9D9]">
+      <div className="relative mb-8 h-[220px] w-[220px] overflow-hidden rounded-xl bg-[#D9D9D9]">
         {photoUrl ? (
           <Image alt={photoAlt} className="object-cover" fill sizes="220px" src={photoUrl} />
         ) : (
