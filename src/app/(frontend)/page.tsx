@@ -1,8 +1,11 @@
 import CompTeam from "@/components/about/CompTeam/CompTeam"
 import Faq from "@/components/FAQ/FAQ"
+import UpcomingEvents from "@/components/UpcomingEvents/UpcomingEvents"
+
 export function HomePage() {
   return (
     <div>
+      <UpcomingEvents />
       <CompTeam
         photo="/team-a.jpg"
         players={[
