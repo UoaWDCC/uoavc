@@ -8,12 +8,11 @@ import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 
 const INPUT_STYLES = cn(
-  "w-full rounded-2xl bg-white px-7 py-4 font-body text-xl text-brand-primary",
+  "w-full rounded-2xl border-2 border-brand-primary bg-white px-7 py-3 font-body text-2xl text-brand-primary",
   "placeholder:text-brand-primary",
-  "transition-colors duration-200 ease-out",
-  "outline-none",
+  "transition-colors duration-200 ease-in-out",
   "hover:text-brand-light-blue hover:placeholder:text-brand-light-blue",
-  "focus:text-brand-light-blue focus:placeholder:text-brand-light-blue",
+  "focus:text-brand-primary focus:placeholder:text-transparent",
 )
 
 export function Login() {
@@ -26,12 +25,12 @@ export function Login() {
   }
 
   return (
-    <div className="flex w-full max-w-lg flex-col gap-8">
+    <div className="flex w-full max-w-xl flex-col gap-8">
       <Card
-        className="items-stretch gap-6 rounded-xl bg-brand-light-blue p-12 ring-0"
+        className="items-stretch gap-6 rounded-xl border-3 border-brand-primary bg-transparent px-10 py-14 ring-0"
         size="default"
       >
-        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
           <input
             autoComplete="email"
             className={INPUT_STYLES}
@@ -54,12 +53,15 @@ export function Login() {
           />
 
           <div className="flex justify-end">
-            <Link className="text-xl text-brand-primary hover:opacity-70" href="/forgot-password">
+            <Link
+              className="text-2xl text-brand-primary hover:underline transition-all duration-200 ease-in-out"
+              href="/forgot-password"
+            >
               Forgot password?
             </Link>
           </div>
 
-          <div className="flex justify-center pt-2">
+          <div className="flex justify-center pt-5">
             <Button size="md" type="submit" variant="primary">
               Sign-in
             </Button>
@@ -67,9 +69,12 @@ export function Login() {
         </form>
       </Card>
 
-      <p className="text-center text-xl text-brand-primary">
+      <p className="text-center text-2xl text-brand-primary">
         Don&apos;t have an account?{" "}
-        <Link className="font-bold hover:opacity-70" href="/sign-up">
+        <Link
+          className="font-bold hover:underline transition-all duration-200 ease-in-out"
+          href="/sign-up"
+        >
           Create Account
         </Link>
       </p>
