@@ -496,6 +496,10 @@ export interface SocialSessionRegistration {
    * Payment state for paid social sessions.
    */
   paymentStatus?: ('pending' | 'paid' | 'free') | null;
+  /**
+   * Stripe Checkout Session ID used to reconcile webhook events to this registration.
+   */
+  stripeCheckoutSessionId?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -750,6 +754,7 @@ export interface SocialSessionRegistrationsSelect<T extends boolean = true> {
   registeredAt?: T;
   amountPaid?: T;
   paymentStatus?: T;
+  stripeCheckoutSessionId?: T;
   updatedAt?: T;
   createdAt?: T;
 }

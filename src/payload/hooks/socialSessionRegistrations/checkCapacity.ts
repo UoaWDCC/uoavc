@@ -1,8 +1,14 @@
-import type { CollectionBeforeChangeHook, Where } from "payload"
+import type { CollectionBeforeChangeHook } from "payload"
 import { APIError } from "payload"
 import sendRegistrationConfirmation from "@/lib/email/registrationConfirmation"
+import { resolveRegistrationStatus } from "./resolveRegistrationStatus"
 
-export const checkCapacity: CollectionBeforeChangeHook = async ({ data, operation, req }) => {
+export const checkCapacity: CollectionBeforeChangeHook = async ({
+  data,
+  operation,
+  req,
+  context,
+}) => {
   if (operation !== "create") {
     return data
   }
@@ -11,67 +17,20 @@ export const checkCapacity: CollectionBeforeChangeHook = async ({ data, operatio
   if (!sessionID) {
     throw new APIError("socialSession is required", 400)
   }
-  const session = await req.payload.findByID({
-    collection: "social-sessions",
-    id: sessionID,
+
+  const { session, registrationStatus } = await resolveRegistrationStatus({
+    req,
+    sessionID,
+    user: typeof data.user === "string" ? data.user : data.user?.id,
+    guestEmail: data.guestEmail,
   })
-  if (!session) {
-    throw new APIError("Social session not found", 404)
-  }
-  if (session.status === "completed" || session.status === "cancelled") {
-    throw new APIError("This social session is no longer accepting registrations", 400)
-  }
-  if (!data.user && !data.guestEmail) {
-    throw new APIError("Registration must include a user or guest email", 400)
-  }
-  const whereUser: Where = data.user
-    ? { user: { equals: data.user } }
-    : { guestEmail: { equals: data.guestEmail } }
-  const alreadyRegistered = await req.payload.count({
-    collection: "social-session-registrations",
-    where: {
-      and: [
-        { socialSession: { equals: sessionID } },
-        { registrationStatus: { not_equals: "cancelled" } },
-        whereUser,
-      ],
-    },
-  })
-  if (alreadyRegistered.totalDocs !== 0) {
-    throw new APIError("You are already registered for this social session", 409)
-  }
-  const registeredCount = await req.payload.count({
-    collection: "social-session-registrations",
-    where: {
-      and: [
-        {
-          socialSession: { equals: sessionID },
-        },
-        {
-          registrationStatus: { equals: "registered" },
-        },
-      ],
-    },
-  })
-  const waitlistCount = await req.payload.count({
-    collection: "social-session-registrations",
-    where: {
-      and: [
-        {
-          socialSession: { equals: sessionID },
-        },
-        {
-          registrationStatus: { equals: "waitlisted" },
-        },
-      ],
-    },
-  })
-  if (registeredCount.totalDocs < session.maxCapacity) {
-    data.registrationStatus = "registered"
-  } else if (waitlistCount.totalDocs < session.waitlistCapacity) {
-    data.registrationStatus = "waitlisted"
-  } else {
-    throw new APIError("This social session and its waitlist are full", 409)
+  data.registrationStatus = registrationStatus
+
+  // Paid registrations are created in a "pending" state by the Stripe checkout
+  // endpoint; their confirmation email fires on payment success instead, so the
+  // endpoint sets this flag to suppress the email here.
+  if (context?.skipConfirmationEmail) {
+    return data
   }
 
   let recipientEmail: string | undefined
