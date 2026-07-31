@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { useState } from "react"
-
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
@@ -54,7 +53,7 @@ export function Login() {
 
           <div className="flex justify-end">
             <Link
-              className="text-2xl text-brand-primary opacity-80 hover:underline transition-all duration-200 ease-in-out"
+              className="text-brand-primary text-xl opacity-80 transition-all duration-200 ease-in-out hover:underline"
               href="/forgot-password"
             >
               Forgot password?
@@ -72,7 +71,7 @@ export function Login() {
       <p className="text-center text-2xl text-brand-primary opacity-80">
         Don&apos;t have an account?{" "}
         <Link
-          className="font-semibold hover:underline transition-all duration-200 ease-in-out"
+          className="font-semibold transition-all duration-200 ease-in-out hover:underline"
           href="/sign-up"
         >
           Create Account
