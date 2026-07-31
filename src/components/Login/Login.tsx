@@ -8,11 +8,11 @@ import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 
 const INPUT_STYLES = cn(
-  "w-full rounded-2xl border-2 border-brand-primary bg-white px-7 py-3 font-body text-2xl text-brand-primary",
+  "w-full rounded-2xl border-1 border-brand-primary bg-white px-7 py-3 font-body text-2xl text-brand-primary",
   "placeholder:text-brand-primary",
   "transition-colors duration-200 ease-in-out",
-  "hover:text-brand-light-blue hover:placeholder:text-brand-light-blue",
-  "focus:text-brand-primary focus:placeholder:text-transparent",
+  "hover:placeholder:text-brand-light-blue",
+  "focus:text-brand-primary focus:placeholder:text-transparent focus:outline-none",
 )
 
 export function Login() {
@@ -27,7 +27,7 @@ export function Login() {
   return (
     <div className="flex w-full max-w-xl flex-col gap-8">
       <Card
-        className="items-stretch gap-6 rounded-xl border-3 border-brand-primary bg-transparent px-10 py-14 ring-0"
+        className="items-stretch gap-6 rounded-xl border-2 border-brand-primary bg-transparent px-8 py-14 ring-0"
         size="default"
       >
         <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
@@ -54,7 +54,7 @@ export function Login() {
 
           <div className="flex justify-end">
             <Link
-              className="text-2xl text-brand-primary hover:underline transition-all duration-200 ease-in-out"
+              className="text-2xl text-brand-primary opacity-80 hover:underline transition-all duration-200 ease-in-out"
               href="/forgot-password"
             >
               Forgot password?
@@ -69,10 +69,10 @@ export function Login() {
         </form>
       </Card>
 
-      <p className="text-center text-2xl text-brand-primary">
+      <p className="text-center text-2xl text-brand-primary opacity-80">
         Don&apos;t have an account?{" "}
         <Link
-          className="font-bold hover:underline transition-all duration-200 ease-in-out"
+          className="font-semibold hover:underline transition-all duration-200 ease-in-out"
           href="/sign-up"
         >
           Create Account
