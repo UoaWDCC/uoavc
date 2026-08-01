@@ -15,12 +15,19 @@ export function StatCard({ variant, value, label }: StatCardProps) {
   return (
     <Card
       className={cn(
-        "items-center justify-center gap-1 rounded-none p-8 text-center transition-colors duration-300",
+        "items-center justify-center gap-[10px] rounded-[10px] px-[30px] py-5 text-center transition-colors duration-300",
         bg,
       )}
     >
-      <p className={cn("font-black font-heading text-5xl", text)}>{value}</p>
-      <p className={cn("font-body font-normal text-sm", text)}>{label}</p>
+      <p
+        className={cn(
+          "font-heading font-normal text-[128px] uppercase leading-none tracking-[-0.019em]",
+          text,
+        )}
+      >
+        {value}
+      </p>
+      <p className={cn("font-body font-medium text-xl leading-[40px]", text)}>{label}</p>
     </Card>
   )
 }
