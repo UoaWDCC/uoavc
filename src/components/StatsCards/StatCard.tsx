@@ -12,12 +12,15 @@ export function StatCard({ variant, value, label }: StatCardProps) {
   const bg = isNavy
     ? "bg-brand-primary hover:bg-brand-white"
     : "bg-brand-white hover:bg-brand-primary"
-  const text = isNavy ? "text-brand-yellow" : "text-brand-primary group-hover:text-brand-white"
+  const text = cn(
+    "transition-colors duration-500",
+    isNavy ? "text-brand-yellow" : "text-brand-primary group-hover:text-brand-white",
+  )
 
   return (
     <Card
       className={cn(
-        "group h-[199px] w-[280px] items-start justify-center gap-0 rounded-[10px] px-[30px] py-5 text-left ring-0 transition-colors duration-300",
+        "group h-[199px] w-[280px] items-start justify-center gap-0 rounded-[10px] px-[30px] py-5 text-left ring-0 transition-colors duration-500",
         bg,
       )}
     >
