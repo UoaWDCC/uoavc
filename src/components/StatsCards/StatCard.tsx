@@ -17,19 +17,21 @@ export function StatCard({ variant, value, label }: StatCardProps) {
   return (
     <Card
       className={cn(
-        "group items-center justify-center gap-[10px] rounded-[10px] px-[30px] py-5 text-center transition-colors duration-300",
+        "group h-[199px] w-[280px] items-start justify-center gap-0 rounded-[10px] px-[30px] py-5 text-left ring-0 transition-colors duration-300",
         bg,
       )}
     >
-      <p
-        className={cn(
-          "font-heading font-normal text-[128px] uppercase leading-none tracking-[-0.019em]",
-          text,
-        )}
-      >
-        {value}
-      </p>
-      <p className={cn("font-body font-medium text-xl leading-[40px]", text)}>{label}</p>
+      <div className="flex h-[159px] w-full flex-col">
+        <p
+          className={cn(
+            "font-heading font-normal text-[128px] uppercase leading-none tracking-[-0.019em]",
+            text,
+          )}
+        >
+          {value}
+        </p>
+        <p className={cn("font-body font-medium text-xl leading-none", text)}>{label}</p>
+      </div>
     </Card>
   )
 }
