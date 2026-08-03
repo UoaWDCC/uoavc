@@ -147,5 +147,19 @@ export const SocialSessionRegistrations: CollectionConfig = {
       },
       admin: { description: "Payment state for paid social sessions." },
     },
+    {
+      name: "stripeCheckoutSessionId",
+      type: "text",
+      required: false,
+      access: {
+        read: ({ req }) => req.user?.collection === "admin",
+        update: ({ req }) => req.user?.collection === "admin",
+      },
+      admin: {
+        description:
+          "Stripe Checkout Session ID used to reconcile webhook events to this registration.",
+        readOnly: true,
+      },
+    },
   ],
 }
