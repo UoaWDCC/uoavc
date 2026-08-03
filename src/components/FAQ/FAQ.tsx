@@ -26,3 +26,5 @@ export function Faq({ items }: { items: FaqItem[] }) {
     </Accordion>
   )
 }
+
+export default Faq
