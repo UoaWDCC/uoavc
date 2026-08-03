@@ -44,7 +44,16 @@ Copy the example file:
 cp .env.example .env
 ```
 
-After doing this you can edit each variable in the `.env` file with the appropriate values.
+Then fill in each variable in `.env`:
+
+| Variable | Required | Description |
+| --- | --- | --- |
+| `PAYLOAD_SECRET` | Yes | Secret used by Payload to sign auth tokens. Any long random string. |
+| `DATABASE_URI` | Yes | MongoDB connection string (local or remote). |
+| `RESEND_API_KEY` | Yes | API key for [Resend](https://resend.com), used to send transactional emails (e.g. registration confirmations). |
+| `STRIPE_SECRET_KEY` | Yes | Stripe secret key (use a `sk_test_...` key in development). Required by the social session checkout endpoint. |
+| `STRIPE_WEBHOOK_SECRET` | Yes | Stripe webhook signing secret (`whsec_...`), used to verify incoming payment events. |
+| `NEXT_PUBLIC_SITE_URL` | Yes | Public base URL of the site (e.g. `http://localhost:3000` in development). Used to build Stripe Checkout `success_url` / `cancel_url`. |
 
 ### Scripts
 

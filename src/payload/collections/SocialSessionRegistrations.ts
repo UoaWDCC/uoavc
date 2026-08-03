@@ -140,11 +140,26 @@ export const SocialSessionRegistrations: CollectionConfig = {
         { label: "Pending", value: "pending" },
         { label: "Paid", value: "paid" },
         { label: "Free", value: "free" },
+        { label: "Refunded", value: "refunded" },
       ],
       access: {
         update: ({ req }) => req.user?.collection === "admin",
       },
       admin: { description: "Payment state for paid social sessions." },
+    },
+    {
+      name: "stripeCheckoutSessionId",
+      type: "text",
+      required: false,
+      access: {
+        read: ({ req }) => req.user?.collection === "admin",
+        update: ({ req }) => req.user?.collection === "admin",
+      },
+      admin: {
+        description:
+          "Stripe Checkout Session ID used to reconcile webhook events to this registration.",
+        readOnly: true,
+      },
     },
   ],
 }

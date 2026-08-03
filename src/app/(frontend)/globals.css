@@ -3,7 +3,7 @@
 @import "shadcn/tailwind.css";
 
 @theme {
-  --color-brand-primary: #004cb3;
+  --color-brand-primary: #002cba;
   --color-brand-yellow: #ffbe00;
   --color-brand-navy: #08345b;
   --color-brand-light-blue: #93dbf4;
@@ -42,6 +42,37 @@
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
+}
+
+/* Custom animation */
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  20% {
+    transform: rotate(-5deg);
+  }
+
+  40% {
+    transform: rotate(5deg);
+  }
+
+  60% {
+    transform: rotate(-4deg);
+  }
+
+  75% {
+    transform: rotate(4deg);
+  }
+
+  85% {
+    transform: rotate(-2deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 :root {
