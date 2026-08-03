@@ -503,11 +503,12 @@ export interface SocialSessionRegistration {
   /**
    * Payment state for paid social sessions.
    */
-  paymentStatus?: ('pending' | 'paid' | 'free') | null;
+  paymentStatus?: ('pending' | 'paid' | 'free' | 'refunded') | null;
   /**
    * Stripe Checkout Session ID used to reconcile webhook events to this registration.
    */
   stripeCheckoutSessionId?: string | null;
+
   updatedAt: string;
   createdAt: string;
 }
