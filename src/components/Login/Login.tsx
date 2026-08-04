@@ -7,10 +7,10 @@ import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 
 const INPUT_STYLES = cn(
-  "w-full rounded-2xl border-1 border-brand-primary bg-white px-7 py-3 font-body text-2xl text-brand-primary",
+  "w-full rounded-xl border-1 border-brand-primary bg-white px-6 py-3 font-body text-2xl text-brand-primary",
   "placeholder:text-brand-primary",
   "transition-colors duration-200 ease-in-out",
-  "hover:placeholder:text-brand-light-blue",
+  "hover:placeholder:text-brand-yellow",
   "focus:text-brand-primary focus:placeholder:text-transparent focus:outline-none",
 )
 
@@ -24,9 +24,9 @@ export function Login() {
   }
 
   return (
-    <div className="flex w-full max-w-xl flex-col gap-8">
+    <div className="flex w-xl max-w-lg flex-col gap-7">
       <Card
-        className="items-stretch gap-6 rounded-xl border-2 border-brand-primary bg-transparent px-8 py-14 ring-0"
+        className="items-stretch gap-6 rounded-xl border-2 border-brand-primary bg-transparent px-6 py-10 ring-0"
         size="default"
       >
         <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
@@ -60,7 +60,7 @@ export function Login() {
             </Link>
           </div>
 
-          <div className="flex justify-center pt-5">
+          <div className="flex justify-center pt-3">
             <Button size="md" type="submit" variant="primary">
               Sign-in
             </Button>
@@ -68,7 +68,7 @@ export function Login() {
         </form>
       </Card>
 
-      <p className="text-center text-2xl text-brand-primary opacity-80">
+      <p className="text-center text-xl text-brand-primary opacity-80">
         Don&apos;t have an account?{" "}
         <Link
           className="font-semibold transition-all duration-200 ease-in-out hover:underline"
