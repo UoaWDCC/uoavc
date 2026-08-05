@@ -123,7 +123,7 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link className="transition hover:underline" href="/events/login">
+                  <Link className="transition hover:underline" href="/log-in">
                     Login
                   </Link>
                 </li>
