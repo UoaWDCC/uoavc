@@ -74,9 +74,7 @@ export function Navbar() {
         <NavLink href="/events">Events</NavLink>
         <NavLink href="/about">About</NavLink>
         <NavLink href="/faq">FAQ</NavLink>
-        <NavLink className="text-primary hover:text-brand-yellow" href="/log-in">
-          Login
-        </NavLink>
+        <NavLink href="/log-in">Login</NavLink>
       </div>
     </nav>
   )
