@@ -17,13 +17,13 @@ const events = [
 
 export default function UpcomingEvents() {
   return (
-    <section className="bg-[#0E2BB3] py-20">
+    <section className="bg-brand-primary py-20">
       <div className="mx-auto max-w-7xl px-6">
         <h1 className="text-center font-heading text-7xl text-white uppercase md:text-9xl">
           Upcoming Events
         </h1>
 
-        <p className="mx-auto mt-8 max-w-5xl text-center text-base text-white md:text-xl mb-30">
+        <p className="mx-auto mt-8 mb-30 max-w-5xl text-center text-base text-white md:text-xl">
           The University of Auckland Volleyball Club caters to players of all skill levels, even
           those outside UOA!
         </p>
