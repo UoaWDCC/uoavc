@@ -40,7 +40,7 @@ function AccordionTrigger({
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
         className={cn(
-          "group/accordion-trigger relative flex h-[50px] flex-1 cursor-pointer items-center justify-between rounded-md px-6 py-8 text-left font-semibold text-[20px] text-primary shadow-md/20 outline-none transition-all duration-300 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring disabled:pointer-events-none disabled:opacity-50 data-[state=open]:border-primary data-[state=open]:border-b-2 data-[state=open]:bg-white **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-10 **:data-[slot=accordion-trigger-icon]:text-foreground",
+          "group/accordion-trigger relative flex h-[50px] flex-1 cursor-pointer items-center justify-between rounded-md px-6 py-8 text-left font-semibold text-[20px] text-primary shadow-md/20 outline-none transition-all duration-300 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring disabled:pointer-events-none disabled:opacity-50 data-[state=open]:border-primary data-[state=open]:border-b-2 data-[state=open]:bg-white **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-10 **:data-[slot=accordion-trigger-icon]:text-primary",
           className,
         )}
         data-slot="accordion-trigger"
