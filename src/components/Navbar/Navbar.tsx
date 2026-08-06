@@ -28,10 +28,8 @@ function NavLink({
     <Link
       aria-current={isActive ? "page" : undefined}
       className={cn(
-        "group inline-flex items-center gap-1.5 transition-all duration-200 ease-out",
-        !isActive && "hover:text-gray-500",
+        "group inline-flex items-center gap-1.5 text-primary transition-all duration-200 ease-out hover:text-brand-yellow",
         HOVER_BOLD_TEXT_SHADOW,
-        isActive && "text-primary",
         FOCUS_RING,
         className,
       )}
@@ -73,9 +71,7 @@ export function Navbar() {
         <NavLink href="/events">Events</NavLink>
         <NavLink href="/about">About</NavLink>
         <NavLink href="/faq">FAQ</NavLink>
-        <NavLink className="text-primary hover:text-brand-yellow" href="/log-in">
-          Login
-        </NavLink>
+        <NavLink href="/log-in">Login</NavLink>
       </div>
     </nav>
   )
