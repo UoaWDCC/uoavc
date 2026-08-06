@@ -68,7 +68,7 @@ export function Login() {
         </form>
       </Card>
 
-      <p className="text-center text-lg text-brand-primary opacity-80">
+      <p className="text-center text-brand-primary text-lg opacity-80">
         Don&apos;t have an account?{" "}
         <Link
           className="font-semibold transition-all duration-200 ease-in-out hover:underline"

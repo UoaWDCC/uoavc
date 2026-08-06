@@ -23,7 +23,7 @@ export default function UpcomingEvents() {
           Upcoming Events
         </h1>
 
-        <p className="mx-auto mt-8 max-w-5xl text-center text-base text-white md:text-xl mb-30">
+        <p className="mx-auto mt-8 mb-30 max-w-5xl text-center text-base text-white md:text-xl">
           The University of Auckland Volleyball Club caters to players of all skill levels, even
           those outside UOA!
         </p>
