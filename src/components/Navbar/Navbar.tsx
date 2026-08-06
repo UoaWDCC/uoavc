@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation"
 import type { ReactNode } from "react"
 import { cn } from "@/lib/utils"
 
-const BOLD_TEXT_SHADOW = "[text-shadow:0.4px_0_0_currentColor,-0.4px_0_0_currentColor]"
 const HOVER_BOLD_TEXT_SHADOW = "hover:[text-shadow:0.4px_0_0_currentColor,-0.4px_0_0_currentColor]"
 
 const FOCUS_RING =
@@ -32,7 +31,7 @@ function NavLink({
         "group inline-flex items-center gap-1.5 transition-all duration-200 ease-out",
         !isActive && "hover:text-gray-500",
         HOVER_BOLD_TEXT_SHADOW,
-        isActive && `text-primary ${BOLD_TEXT_SHADOW}`,
+        isActive && "text-primary",
         FOCUS_RING,
         className,
       )}
