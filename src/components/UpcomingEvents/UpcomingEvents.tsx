@@ -17,7 +17,7 @@ const events = [
 
 export default function UpcomingEvents() {
   return (
-    <section className="bg-[#0E2BB3] py-20">
+    <section className="bg-brand-primary py-20">
       <div className="mx-auto max-w-7xl px-6">
         <h1 className="text-center font-heading text-7xl text-white uppercase md:text-9xl">
           Upcoming Events
