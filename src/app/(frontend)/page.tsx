@@ -12,7 +12,7 @@ export function HomePage() {
           { name: "Bob", position: "Midfielder" },
           { name: "Charlie", position: "Defender" },
         ]}
-        teamName="UOACS MEN"
+        teamName="UOAVC MEN"
       />
       <CompTeam
         photo="/team-b.jpg"
@@ -21,7 +21,7 @@ export function HomePage() {
           { name: "Bob", position: "Midfielder" },
           { name: "Charlie", position: "Defender" },
         ]}
-        teamName="UOACS WOMEN"
+        teamName="UOAVC WOMEN"
       />
     </div>
   )
