@@ -17,6 +17,18 @@ export function StatCard({ variant, value, label }: StatCardProps) {
     isNavy ? "text-brand-yellow" : "text-brand-primary group-hover:text-brand-white",
   )
 
+  const multiplierIndex = value.indexOf("x")
+  const valueContent =
+    multiplierIndex === -1 ? (
+      value
+    ) : (
+      <>
+        {value.slice(0, multiplierIndex)}
+        <span className="ml-3 inline-block scale-x-175 align-middle text-[64px]">x</span>
+        {value.slice(multiplierIndex + 1)}
+      </>
+    )
+
   return (
     <Card
       className={cn(
@@ -31,7 +43,7 @@ export function StatCard({ variant, value, label }: StatCardProps) {
             text,
           )}
         >
-          {value}
+          {valueContent}
         </p>
         <p className={cn("font-body font-medium text-xl leading-none", text)}>{label}</p>
       </div>
