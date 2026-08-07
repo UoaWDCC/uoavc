@@ -28,7 +28,7 @@ function NavLink({
     <Link
       aria-current={isActive ? "page" : undefined}
       className={cn(
-        "group inline-flex items-center gap-1.5 text-primary transition-all duration-200 ease-out hover:text-brand-yellow",
+        "group inline-flex items-center gap-[5px] text-primary transition-all duration-200 ease-out hover:text-brand-yellow",
         HOVER_BOLD_TEXT_SHADOW,
         FOCUS_RING,
         className,
@@ -55,19 +55,19 @@ export function Navbar() {
   return (
     <nav
       aria-label="Main"
-      className="sticky top-0 z-50 flex items-center justify-between bg-background py-4 pr-6 pl-6 md:pr-8"
+      className="sticky top-0 z-50 flex items-center justify-between bg-background py-[14px] pr-[20px] pl-[20px] md:pr-[27px]"
     >
       <Link aria-label="UOAVC home" className={FOCUS_RING} href="/">
         <Image
           alt="UOAVC logo"
           className="transition-transform duration-300 ease-out hover:rotate-20 hover:scale-110"
-          height={64}
+          height={54}
           priority
           src="/logo.svg"
-          width={64}
+          width={54}
         />
       </Link>
-      <div className="flex items-center gap-16 text-lg md:gap-20 lg:gap-24">
+      <div className="flex items-center gap-[54px] text-[15px] md:gap-[68px] lg:gap-[82px]">
         <NavLink href="/events">Events</NavLink>
         <NavLink href="/about">About</NavLink>
         <NavLink href="/faq">FAQ</NavLink>
