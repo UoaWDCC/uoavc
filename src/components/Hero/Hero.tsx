@@ -2,14 +2,14 @@ import Image from "next/image"
 
 export function Hero() {
   return (
-    <section className="relative min-h-[calc(100svh-60px)] overflow-hidden md:h-[calc(100svh-96px)] md:min-h-0">
+    <section className="relative min-h-[calc(100svh-82px)] overflow-hidden md:h-[calc(100svh-82px)] md:min-h-0">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[#F8E4A8] [clip-path:polygon(0_13%,0_100%,76%_100%)]" />
         <div className="absolute inset-0 bg-[#FADA7A] [clip-path:polygon(0_25%,0_100%,65%_100%)]" />
         <div className="absolute inset-0 bg-[#FBD45E] [clip-path:polygon(0_37%,0_100%,55%_100%)]" />
       </div>
 
-      <div className="relative z-10 grid min-h-[calc(100svh-60px)] grid-cols-1 md:h-full md:min-h-0 md:grid-cols-2">
+      <div className="relative z-10 grid min-h-[calc(100svh-82px)] grid-cols-1 md:h-full md:min-h-0 md:grid-cols-2">
         <div className="flex items-center justify-center px-6">
           <div className="relative aspect-[485/583] w-[clamp(180px,min(32vw,57.2vh),485px)]">
             <Image
@@ -24,13 +24,13 @@ export function Hero() {
         </div>
 
         <div className="flex flex-col items-center justify-center px-8 py-[clamp(0.5rem,3vh,2rem)]">
-          <div className="w-full max-w-[657px]">
+          <div className="w-full max-w-[500px]">
             <h1 className="text-center font-heading text-primary">
-              <span className="mx-auto block w-fit origin-center whitespace-nowrap text-[clamp(3rem,min(9.13vw,16.35vh),8.66rem)] leading-[1.15] tracking-[-0.019em] transition-transform duration-500 ease-out hover:scale-[1.149]">
+              <span className="ml-auto block w-fit origin-center whitespace-nowrap text-[clamp(3rem,min(9.13vw,16.35vh),8.66rem)] leading-[1.15] tracking-[-0.019em] transition-transform duration-500 ease-out hover:scale-[1.149]">
                 WELCOME TO
               </span>
 
-              <span className="mx-auto mt-[clamp(-1.5rem,-1.5vh,-0.25rem)] block w-fit origin-center whitespace-nowrap text-[clamp(5.5rem,min(17.62vw,31.55vh),16.72rem)] leading-[1] transition-transform duration-500 ease-out hover:scale-[1.142]">
+              <span className="mt-[clamp(-1.5rem,-1.5vh,-0.25rem)] ml-auto block w-fit origin-center whitespace-nowrap text-[clamp(5.5rem,min(17.62vw,31.55vh),16.72rem)] leading-[1] transition-transform duration-500 ease-out hover:scale-[1.142]">
                 UOAVC
               </span>
             </h1>
