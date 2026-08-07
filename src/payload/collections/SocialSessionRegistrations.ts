@@ -140,6 +140,7 @@ export const SocialSessionRegistrations: CollectionConfig = {
         { label: "Pending", value: "pending" },
         { label: "Paid", value: "paid" },
         { label: "Free", value: "free" },
+        { label: "Refunded", value: "refunded" },
       ],
       access: {
         update: ({ req }) => req.user?.collection === "admin",

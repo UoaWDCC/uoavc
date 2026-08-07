@@ -259,13 +259,21 @@ export interface Executive {
    */
   role: string;
   /**
-   * Short biography displayed on the executive's profile card.
-   */
-  bio?: string | null;
-  /**
    * Profile photo for the executive's card.
    */
   photo?: (string | null) | Media;
+  /**
+   * Degree of study, e.g 'BCom', 'BSc'.
+   */
+  degree?: string | null;
+  /**
+   * Main volleyball position, e.g 'Outside', 'Libero', 'Setter'.
+   */
+  position?: string | null;
+  /**
+   * Years of volleyball experience.
+   */
+  yearsOfExperience?: number | null;
   /**
    * Display order on the executive team page. Lower numbers appear first.
    */
@@ -495,11 +503,12 @@ export interface SocialSessionRegistration {
   /**
    * Payment state for paid social sessions.
    */
-  paymentStatus?: ('pending' | 'paid' | 'free') | null;
+  paymentStatus?: ('pending' | 'paid' | 'free' | 'refunded') | null;
   /**
    * Stripe Checkout Session ID used to reconcile webhook events to this registration.
    */
   stripeCheckoutSessionId?: string | null;
+
   updatedAt: string;
   createdAt: string;
 }
@@ -684,8 +693,10 @@ export interface MediaSelect<T extends boolean = true> {
 export interface ExecutivesSelect<T extends boolean = true> {
   name?: T;
   role?: T;
-  bio?: T;
   photo?: T;
+  degree?: T;
+  position?: T;
+  yearsOfExperience?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;
