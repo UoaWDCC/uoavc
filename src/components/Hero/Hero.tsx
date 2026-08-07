@@ -24,7 +24,7 @@ export function Hero() {
         </div>
 
         <div className="flex flex-col items-center justify-center px-8 py-[clamp(0.5rem,3vh,2rem)]">
-          <div className="w-full max-w-[500px]">
+          <div className="md:-translate-x-[100px] w-full max-w-[620px]">
             <h1 className="text-center font-heading text-primary">
               <span className="ml-auto block w-fit origin-center whitespace-nowrap text-[clamp(3rem,min(9.13vw,16.35vh),8.66rem)] leading-[1.15] tracking-[-0.019em] transition-transform duration-500 ease-out hover:scale-[1.149]">
                 WELCOME TO
