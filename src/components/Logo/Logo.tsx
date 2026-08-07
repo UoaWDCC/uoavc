@@ -10,10 +10,10 @@ export function Logo() {
       <Image
         alt="UOAVC logo"
         className="transition-transform duration-300 ease-out hover:rotate-20 hover:scale-110"
-        height={64}
+        height={54}
         priority
         src="/logo.svg"
-        width={64}
+        width={54}
       />
     </Link>
   )

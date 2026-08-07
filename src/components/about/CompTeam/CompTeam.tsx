@@ -15,7 +15,7 @@ const CompTeam = ({ teamName, photo, players }: CompTeamProps) => {
       <h1 className="font-bold text-4xl text-brand-navy">{teamName}</h1>
 
       {photo && (
-        <div className="relative aspect-video w-full max-w-6xl">
+        <div className="relative aspect-video w-full max-w-[922px]">
           <Image alt={teamName} className="bg-gray-300" fill src={photo} />
         </div>
       )}
