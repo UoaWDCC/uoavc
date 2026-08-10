@@ -508,7 +508,6 @@ export interface SocialSessionRegistration {
    * Stripe Checkout Session ID used to reconcile webhook events to this registration.
    */
   stripeCheckoutSessionId?: string | null;
-
   updatedAt: string;
   createdAt: string;
 }
