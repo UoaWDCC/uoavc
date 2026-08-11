@@ -23,13 +23,10 @@ export function AwardsBanner({ awards, durationSeconds = 30, className }: Awards
   if (awards.length === 0) return null
 
   return (
-    <section
-      aria-label="Club awards"
-      className={cn("overflow-hidden bg-brand-yellow py-3 md:py-4", className)}
-    >
+    <section aria-label="Club awards" className={cn("overflow-hidden bg-brand-yellow", className)}>
       <div
-        className="flex w-max animate-marquee font-heading text-brand-navy text-xl uppercase tracking-wide motion-reduce:animate-none md:text-2xl"
-        style={{ "--marquee-duration": `${durationSeconds}s` } as React.CSSProperties}
+        className="flex w-max animate-marquee font-heading text-brand-primary text-2xl py-8 px-4 uppercase motion-reduce:animate-none md:text-5xl"
+        style={{ animationDuration: `${durationSeconds}s` }}
       >
         <AwardsTrack awards={awards} />
         {/* Duplicate track so the -50% translate loops seamlessly. */}

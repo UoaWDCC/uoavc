@@ -9,7 +9,8 @@
   --color-brand-light-blue: #93dbf4;
   --color-brand-light-grey: #edebe8;
 
-  --animate-marquee: marquee var(--marquee-duration, 30s) linear infinite;
+  /* Duration is the default; override per-instance with an inline animation-duration. */
+  --animate-marquee: marquee 30s linear infinite;
 
   @keyframes marquee {
     from {
