@@ -10,8 +10,7 @@ export const metadata: Metadata = {
   title: "Events",
 }
 
-// Three cards per row; "Load more" reveals another row.
-const PAST_EVENTS_PAGE_SIZE = 3
+const EVENTS_PER_ROW = 3
 
 const dateFormatter = new Intl.DateTimeFormat("en-NZ", {
   day: "numeric",
@@ -30,7 +29,7 @@ export default async function EventsPage({
   searchParams: Promise<{ past?: string }>
 }) {
   const { past } = await searchParams
-  const pastPage = Math.max(1, Number.parseInt(past ?? "1", 10) || 1)
+  const showAllPast = past === "all"
 
   const payload = await getPayload({ config: await config })
 
@@ -39,20 +38,21 @@ export default async function EventsPage({
       collection: "events",
       where: { status: { equals: "upcoming" } },
       sort: "date",
-      limit: 100,
+      limit: EVENTS_PER_ROW,
     }),
     payload.find({
       collection: "events",
       where: { status: { equals: "completed" } },
       sort: "-date",
-      limit: PAST_EVENTS_PAGE_SIZE * pastPage,
+      // A limit of 0 tells Payload to return every matching doc.
+      limit: showAllPast ? 0 : EVENTS_PER_ROW,
     }),
   ])
 
   return (
     <div className="flex flex-col items-center gap-8 bg-background px-6 py-6">
       <section className="flex flex-col items-center gap-6">
-        <h1 className="mb-8 text-center font-heading text-4xl text-brand-primary uppercase tracking-wide sm:text-6xl lg:text-7xl">
+        <h1 className="mb-8 text-center font-heading text-4xl text-brand-primary uppercase tracking-wide sm:text-6xl lg:text-8xl">
           Upcoming Events
         </h1>
 
@@ -61,7 +61,7 @@ export default async function EventsPage({
             No upcoming events right now — check back soon.
           </p>
         ) : (
-          <div className="flex max-w-[664px] flex-wrap justify-center gap-8">
+          <div className="flex max-w-[982px] flex-wrap justify-center gap-8 md:justify-start">
             {upcoming.docs.map((event) => (
               <EventCard
                 date={dateFormatter.format(new Date(event.date))}
@@ -77,7 +77,7 @@ export default async function EventsPage({
       </section>
 
       <section className="flex flex-col items-center gap-6">
-        <h2 className="m-8 text-center font-heading text-4xl text-brand-primary uppercase tracking-wide sm:text-6xl lg:text-7xl">
+        <h2 className="m-8 text-center font-heading text-4xl text-brand-primary uppercase tracking-wide sm:text-6xl lg:text-8xl">
           Past Events
         </h2>
 
@@ -86,7 +86,7 @@ export default async function EventsPage({
             No past events to display.
           </p>
         ) : (
-          <div className="flex max-w-[664px] flex-wrap justify-center gap-8">
+          <div className="flex max-w-[982px] flex-wrap justify-center gap-8 md:justify-start">
             {pastEvents.docs.map((event) => (
               <EventCard
                 date={dateFormatter.format(new Date(event.date))}
@@ -100,17 +100,13 @@ export default async function EventsPage({
           </div>
         )}
 
-        {pastEvents.hasNextPage ? (
+        {!showAllPast && pastEvents.hasNextPage ? (
           <Button asChild size="sm" variant="primary">
-            <Link href={`/events?past=${pastPage + 1}`} scroll={false}>
+            <Link href="/events?past=all" scroll={false}>
               Load more
             </Link>
           </Button>
-        ) : (
-          <Button size="sm" variant="primary">
-            Load more
-          </Button>
-        )}
+        ) : null}
       </section>
     </div>
   )
