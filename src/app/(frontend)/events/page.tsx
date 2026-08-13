@@ -52,7 +52,7 @@ export default async function EventsPage({
   return (
     <div className="flex flex-col items-center gap-8 bg-background px-6 py-6">
       <section className="flex flex-col items-center gap-6">
-        <h1 className="mb-8 text-center font-heading text-4xl text-brand-primary uppercase tracking-wide sm:text-6xl lg:text-8xl">
+        <h1 className="mb-18 text-center font-heading text-[110px] text-brand-primary uppercase tracking-wide">
           Upcoming Events
         </h1>
 
@@ -77,7 +77,7 @@ export default async function EventsPage({
       </section>
 
       <section className="flex flex-col items-center gap-6">
-        <h2 className="m-8 text-center font-heading text-4xl text-brand-primary uppercase tracking-wide sm:text-6xl lg:text-8xl">
+        <h2 className="m-18 text-center font-heading text-[110px] text-brand-primary uppercase tracking-wide">
           Past Events
         </h2>
 
@@ -101,7 +101,7 @@ export default async function EventsPage({
         )}
 
         {!showAllPast && pastEvents.hasNextPage ? (
-          <Button asChild size="sm" variant="primary">
+          <Button asChild className="mb-18 mt-7" size="md" variant="primary">
             <Link href="/events?past=all" scroll={false}>
               Load more
             </Link>
