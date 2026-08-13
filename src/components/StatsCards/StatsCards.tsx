@@ -9,7 +9,7 @@ const STATS = [
 
 export function StatsCards() {
   return (
-    <div className="flex flex-wrap justify-center gap-[50px]">
+    <div className="mx-auto grid w-fit grid-cols-1 gap-[50px] md:grid-cols-2 xl:grid-cols-4">
       {STATS.map((stat) => (
         <StatCard key={stat.label} {...stat} />
       ))}

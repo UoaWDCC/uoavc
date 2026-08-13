@@ -25,7 +25,7 @@ export function WhoWeAre() {
         </div>
       </div>
 
-      <div className="mt-29 px-6">
+      <div className="mt-29">
         <StatsCards />
       </div>
     </section>
