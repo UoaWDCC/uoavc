@@ -19,7 +19,7 @@ export default async function FaqPage() {
 
   return (
     <main className="flex flex-col items-center px-6 py-20">
-      <h1 className="text-center mb-30 font-heading text-6xl text-brand-primary uppercase tracking-wide sm:text-8xl">
+      <h1 className="mb-30 text-center font-heading text-6xl text-brand-primary uppercase tracking-wide sm:text-8xl">
         FAQ
       </h1>
       <FaqClient faqs={faqs} />
