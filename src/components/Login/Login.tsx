@@ -4,15 +4,7 @@ import Link from "next/link"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { cn } from "@/lib/utils"
-
-const INPUT_STYLES = cn(
-  "w-full rounded-xl border-1 border-brand-primary bg-white px-4 py-3 font-body text-xl text-brand-primary",
-  "placeholder:text-brand-primary",
-  "transition-colors duration-200 ease-in-out",
-  "hover:placeholder:text-brand-yellow",
-  "focus:text-brand-primary focus:placeholder:text-transparent focus:outline-none",
-)
+import { Textbox } from "@/components/ui/textbox"
 
 export function Login() {
   const [email, setEmail] = useState("")
@@ -30,9 +22,8 @@ export function Login() {
         size="default"
       >
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-          <input
+          <Textbox
             autoComplete="email"
-            className={INPUT_STYLES}
             name="email"
             onChange={(event) => setEmail(event.target.value)}
             placeholder="Enter email"
@@ -40,9 +31,8 @@ export function Login() {
             type="email"
             value={email}
           />
-          <input
+          <Textbox
             autoComplete="current-password"
-            className={INPUT_STYLES}
             name="password"
             onChange={(event) => setPassword(event.target.value)}
             placeholder="Enter password"
