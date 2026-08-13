@@ -290,6 +290,10 @@ export interface Executive {
 export interface Faq {
   id: string;
   /**
+   * Category of question, determines which category this FAQ displays under on the FAQ page
+   */
+  category: 'general' | 'sign-up';
+  /**
    * The question, shown as the FAQ entry heading.
    */
   question: string;
@@ -508,7 +512,6 @@ export interface SocialSessionRegistration {
    * Stripe Checkout Session ID used to reconcile webhook events to this registration.
    */
   stripeCheckoutSessionId?: string | null;
-
   updatedAt: string;
   createdAt: string;
 }
@@ -706,6 +709,7 @@ export interface ExecutivesSelect<T extends boolean = true> {
  * via the `definition` "faqs_select".
  */
 export interface FaqsSelect<T extends boolean = true> {
+  category?: T;
   question?: T;
   answer?: T;
   order?: T;
