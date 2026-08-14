@@ -9,7 +9,7 @@ const textboxVariants = cva(
     variants: {
       state: {
         default:
-          "border-brand-primary text-brand-primary placeholder:text-brand-primary hover:placeholder:text-brand-yellow focus:border-blue-500 focus:text-brand-primary focus:placeholder:text-transparent",
+          "border-brand-primary text-brand-primary placeholder:text-brand-primary hover:placeholder:text-brand-yellow focus:border-brand-primary focus:text-brand-primary focus:placeholder:text-transparent",
         error:
           "border-brand-yellow text-brand-primary placeholder:text-brand-yellow focus:border-brand-yellow focus:placeholder:text-transparent",
       },
