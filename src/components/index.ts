@@ -2,6 +2,6 @@ export { AwardsBanner } from "./AwardsBanner/AwardsBanner"
 export { EventCard } from "./EventCard/EventCard"
 export { Faq } from "./FAQ/FAQ"
 export { Footer } from "./Footer/Footer"
+export { Login } from "./Login/Login"
 export { Logo } from "./Logo/Logo"
-
 export { Navbar } from "./Navbar/Navbar"

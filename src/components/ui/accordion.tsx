@@ -22,7 +22,7 @@ function AccordionItem({
   return (
     <AccordionPrimitive.Item
       className={cn(
-        "w-full overflow-hidden border-2 border-secondary rounded-xl text-[20px] transition-colors duration-300 data-[state=open]:border-primary data-[state=open]:bg-background data-[state=closed]:hover:border-primary data-[state=closed]:hover:bg-transparent",
+        "w-full overflow-hidden rounded-xl border-2 border-secondary text-[20px] transition-colors duration-300 data-[state=open]:border-primary data-[state=open]:bg-background data-[state=closed]:hover:border-primary data-[state=closed]:hover:bg-transparent",
         className,
       )}
       data-slot="accordion-item"
@@ -40,7 +40,7 @@ function AccordionTrigger({
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
         className={cn(
-          "group/accordion-trigger relative flex h-[50px] flex-1 cursor-pointer items-center justify-between px-6 py-8 rounded-md text-left font-semibold text-[20px] text-primary outline-none transition-all duration-300 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-white data-[state=open]:border-b-2 data-[state=open]:border-primary **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-10 **:data-[slot=accordion-trigger-icon]:text-foreground shadow-md/20",
+          "group/accordion-trigger relative flex h-[50px] flex-1 cursor-pointer items-center justify-between rounded-md px-6 py-8 text-left font-semibold text-[20px] text-primary shadow-md/20 outline-none transition-all duration-300 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring disabled:pointer-events-none disabled:opacity-50 data-[state=open]:border-primary data-[state=open]:border-b-2 data-[state=open]:bg-white **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-10 **:data-[slot=accordion-trigger-icon]:text-primary",
           className,
         )}
         data-slot="accordion-trigger"
@@ -75,7 +75,7 @@ function AccordionContent({
     >
       <div
         className={cn(
-          "text-primary px-6 py-6 transition-colors hover:bg-transparent [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
+          "px-6 py-6 text-primary transition-colors hover:bg-transparent [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
           className,
         )}
       >
