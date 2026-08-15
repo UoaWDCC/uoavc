@@ -10,6 +10,20 @@ export const FAQs: CollectionConfig = {
   },
   fields: [
     {
+      name: "category",
+      type: "select",
+      required: true,
+      defaultValue: "general",
+      options: [
+        { label: "General", value: "general" },
+        { label: "Sign-Up", value: "sign-up" },
+      ],
+      admin: {
+        description:
+          "Category of question, determines which category this FAQ displays under on the FAQ page",
+      },
+    },
+    {
       name: "question",
       type: "text",
       required: true,
