@@ -25,7 +25,7 @@ export function AwardsBanner({ awards, durationSeconds = 30, className }: Awards
   return (
     <section aria-label="Club awards" className={cn("overflow-hidden bg-brand-yellow", className)}>
       <div
-        className="flex w-max animate-marquee font-heading text-brand-primary text-2xl py-8 px-4 uppercase motion-reduce:animate-none md:text-5xl"
+        className="flex w-max animate-marquee font-heading text-brand-primary text-2xl py-4 px-2 uppercase motion-reduce:animate-none md:text-5xl"
         style={{ animationDuration: `${durationSeconds}s` }}
       >
         <AwardsTrack awards={awards} />
