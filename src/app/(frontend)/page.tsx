@@ -5,6 +5,7 @@ import { getPayload } from "payload"
 import { Hero } from "@/components/Hero/Hero"
 import HomepageFaq from "@/components/HomepageFaq/HomepageFaq"
 import UpcomingEvents from "@/components/UpcomingEvents/UpcomingEvents"
+import { WhoWeAre } from "@/components/WhoWeAre/WhoWeAre"
 import config from "@/payload.config"
 
 export const dynamic = "force-dynamic"
@@ -34,6 +35,7 @@ export default async function HomePage() {
     <>
       <Hero />
       <UpcomingEvents />
+      <WhoWeAre />
       <HomepageFaq items={faqItems} />
     </>
   )
