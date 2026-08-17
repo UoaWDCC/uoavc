@@ -12,7 +12,6 @@
       "!**/node_modules",
       "!**/src/payload/payload-types.ts",
       "!**/src/payload-types.ts",
-      "!**/importMap.js",
       "!pnpm-lock.yaml",
       "!**/*.md",
       "!**/.next",
