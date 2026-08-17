@@ -14,7 +14,7 @@ type AboutClientProps = {
 const CompTeamsView = ({ compTeams }: { compTeams: CompTeamDoc[] }) => {
   if (compTeams.length === 0) {
     return (
-      <p className="text-center font-body text-brand-primary text-5xl">
+      <p className="text-center font-body text-5xl text-brand-primary">
         No comp team rosters to display.
       </p>
     )
@@ -43,7 +43,7 @@ const AboutClient = ({ executives, compTeams }: AboutClientProps) => {
   const [selected, setSelected] = useState("executives")
 
   return (
-    <div className="flex w-full max-w-[974px] flex-col items-center gap-16 my-8">
+    <div className="my-8 flex w-full max-w-[974px] flex-col items-center gap-16">
       <TogglePillGroup
         aria-label="About"
         onChange={setSelected}
