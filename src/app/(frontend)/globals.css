@@ -9,6 +9,18 @@
   --color-brand-light-blue: #93dbf4;
   --color-brand-light-grey: #edebe8;
   --color-brand-white: #f5f5f5;
+
+  /* Duration is the default; override per-instance with an inline animation-duration. */
+  --animate-marquee: marquee 30s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
 }
 
 @theme inline {
