@@ -6,6 +6,7 @@ import { lexicalEditor } from "@payloadcms/richtext-lexical"
 import { buildConfig } from "payload"
 import sharp from "sharp"
 import { Admin } from "./payload/collections/Admin"
+import { CompTeams } from "./payload/collections/CompTeams"
 import { Events } from "./payload/collections/Events"
 import { Executives } from "./payload/collections/Executives"
 import { FAQs } from "./payload/collections/FAQs"
@@ -29,6 +30,7 @@ export default buildConfig({
     Users,
     Media,
     Executives,
+    CompTeams,
     FAQs,
     Events,
     SocialSessions,
