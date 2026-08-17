@@ -72,6 +72,7 @@ export interface Config {
     users: User;
     media: Media;
     executives: Executive;
+    'comp-teams': CompTeam;
     faqs: Faq;
     events: Event;
     'social-sessions': SocialSession;
@@ -87,6 +88,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     executives: ExecutivesSelect<false> | ExecutivesSelect<true>;
+    'comp-teams': CompTeamsSelect<false> | CompTeamsSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
     'social-sessions': SocialSessionsSelect<false> | SocialSessionsSelect<true>;
@@ -276,6 +278,49 @@ export interface Executive {
   yearsOfExperience?: number | null;
   /**
    * Display order on the executive team page. Lower numbers appear first.
+   */
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Competitive squads and their rosters, shown on the public About page.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "comp-teams".
+ */
+export interface CompTeam {
+  id: string;
+  /**
+   * Squad name, e.g. 'UOAVC Mens'.
+   */
+  name: string;
+  /**
+   * Team photo shown above the roster.
+   */
+  photo?: (string | null) | Media;
+  /**
+   * Coach's name. Displayed under the roster as 'Coached by <name>'.
+   */
+  coach?: string | null;
+  /**
+   * Squad roster, listed in the order set here.
+   */
+  players?:
+    | {
+        /**
+         * Player name as displayed, e.g. 'C. Kevin'.
+         */
+        name: string;
+        /**
+         * Playing position, e.g. 'Setter', 'Outside', 'Libero'.
+         */
+        position: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Display order on the About page. Lower numbers appear first.
    */
   order?: number | null;
   updatedAt: string;
@@ -556,6 +601,10 @@ export interface PayloadLockedDocument {
         value: string | Executive;
       } | null)
     | ({
+        relationTo: 'comp-teams';
+        value: string | CompTeam;
+      } | null)
+    | ({
         relationTo: 'faqs';
         value: string | Faq;
       } | null)
@@ -700,6 +749,25 @@ export interface ExecutivesSelect<T extends boolean = true> {
   degree?: T;
   position?: T;
   yearsOfExperience?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "comp-teams_select".
+ */
+export interface CompTeamsSelect<T extends boolean = true> {
+  name?: T;
+  photo?: T;
+  coach?: T;
+  players?:
+    | T
+    | {
+        name?: T;
+        position?: T;
+        id?: T;
+      };
   order?: T;
   updatedAt?: T;
   createdAt?: T;

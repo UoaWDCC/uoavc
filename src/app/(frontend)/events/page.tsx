@@ -101,7 +101,7 @@ export default async function EventsPage({
         )}
 
         {!showAllPast && pastEvents.hasNextPage ? (
-          <Button asChild className="mb-18 mt-7" size="md" variant="primary">
+          <Button asChild className="mt-7 mb-18" size="md" variant="primary">
             <Link href="/events?past=all" scroll={false}>
               Load more
             </Link>
