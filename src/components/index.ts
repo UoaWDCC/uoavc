@@ -1,3 +1,4 @@
+export { AwardsBanner } from "./AwardsBanner/AwardsBanner"
 export { EventCard } from "./EventCard/EventCard"
 export { Faq } from "./FAQ/FAQ"
 export { Footer } from "./Footer/Footer"
