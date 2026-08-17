@@ -57,7 +57,7 @@ function SelectContent({
     <SelectPrimitive.Portal>
       <SelectPrimitive.Content
         className={cn(
-          "relative z-50 max-h-(--radix-select-content-available-height) w-(--radix-select-trigger-width) overflow-y-auto overflow-x-hidden rounded-xl bg-brand-white text-brand-primary shadow-md/20 data-[state=closed]:animate-out data-[state=open]:animate-in data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+          "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 relative z-50 max-h-(--radix-select-content-available-height) w-(--radix-select-trigger-width) overflow-y-auto overflow-x-hidden rounded-xl bg-brand-white text-brand-primary shadow-md/20 data-[state=closed]:animate-out data-[state=open]:animate-in",
           className,
         )}
         data-slot="select-content"
@@ -81,7 +81,7 @@ function SelectItem({
   return (
     <SelectPrimitive.Item
       className={cn(
-        "relative flex w-full cursor-pointer select-none items-center py-1.5 pr-3 pl-3.5 font-body text-base text-brand-primary outline-none transition-colors duration-150 before:absolute before:top-0 before:left-0 before:h-full before:w-[3px] before:bg-brand-primary before:opacity-0 data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-brand-light-grey data-highlighted:before:opacity-100 data-[state=checked]:bg-brand-light-grey data-[state=checked]:before:opacity-100",
+        "relative flex w-full cursor-pointer select-none items-center py-1.5 pr-3 pl-3.5 font-body text-base text-brand-primary outline-none transition-colors duration-150 before:absolute before:top-0 before:left-0 before:h-full before:w-[3px] before:bg-brand-primary before:opacity-0 data-disabled:pointer-events-none data-[state=checked]:bg-brand-light-grey data-highlighted:bg-brand-light-grey data-disabled:opacity-50 data-[state=checked]:before:opacity-100 data-highlighted:before:opacity-100",
         className,
       )}
       data-slot="select-item"
@@ -108,7 +108,7 @@ function SelectSeparator({
 }: React.ComponentProps<typeof SelectPrimitive.Separator>) {
   return (
     <SelectPrimitive.Separator
-      className={cn("pointer-events-none -mx-1 my-1 h-px bg-brand-light-grey", className)}
+      className={cn("-mx-1 pointer-events-none my-1 h-px bg-brand-light-grey", className)}
       data-slot="select-separator"
       {...props}
     />

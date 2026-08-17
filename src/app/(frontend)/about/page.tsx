@@ -23,7 +23,7 @@ export default async function AboutPage() {
           About
         </h1>
         {/* Placeholder hardcoded text - no payload collection for about page text */}
-        <p className="max-w-[974px] text-center font-body text-[20px] text-brand-primary py-4 px-2 my-4">
+        <p className="my-4 max-w-[974px] px-2 py-4 text-center font-body text-[20px] text-brand-primary">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
           ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
