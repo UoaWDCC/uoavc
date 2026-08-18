@@ -20,8 +20,8 @@ export default function HomepageFaq({ items }: HomepageFaqProps) {
         <div className="absolute inset-0 bg-[#FBD45E] [clip-path:polygon(54%_0,100%_0,100%_48%)]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl">
-        <h2 className="mb-4 font-heading text-6xl text-brand-primary uppercase sm:text-7xl xl:text-[140px] xl:leading-none">
+      <div className="relative z-10 mx-auto max-w-7xl pt-30">
+        <h2 className="mb-12 font-heading text-8xl text-brand-primary uppercase md:text-8xl xl:leading-none">
           FAQ
         </h2>
 
