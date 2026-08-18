@@ -4,7 +4,7 @@ import { getPayload } from "payload"
 
 import { Hero } from "@/components/Hero/Hero"
 import HomepageFaq from "@/components/HomepageFaq/HomepageFaq"
-import UpcomingEvents from "@/components/UpcomingEvents/UpcomingEvents"
+import SocialSessions from "@/components/SocialSessions/SocialSessions"
 import { WhoWeAre } from "@/components/WhoWeAre/WhoWeAre"
 import config from "@/payload.config"
 
@@ -34,7 +34,7 @@ export default async function HomePage() {
   return (
     <>
       <Hero />
-      <UpcomingEvents />
+      <SocialSessions />
       <WhoWeAre />
       <HomepageFaq items={faqItems} />
     </>
