@@ -24,7 +24,7 @@ export function StatCard({ variant, value, label }: StatCardProps) {
     ) : (
       <>
         {value.slice(0, multiplierIndex)}
-        <span className="ml-3 inline-block scale-x-175 align-middle text-[64px]">x</span>
+        <span className="ml-2.5 inline-block scale-x-175 align-middle text-5xl">x</span>
         {value.slice(multiplierIndex + 1)}
       </>
     )
@@ -32,20 +32,20 @@ export function StatCard({ variant, value, label }: StatCardProps) {
   return (
     <Card
       className={cn(
-        "group h-[199px] w-[280px] items-start justify-center gap-0 rounded-[10px] px-[30px] py-5 text-left ring-0 transition-colors duration-500",
+        "group h-40 w-60 items-start justify-center gap-0 rounded-lg px-6 py-4 text-left ring-0 transition-colors duration-500",
         bg,
       )}
     >
-      <div className="flex h-[159px] w-full flex-col">
+      <div className="flex h-32 w-full flex-col">
         <p
           className={cn(
-            "font-heading font-normal text-[128px] uppercase leading-none tracking-[-0.019em]",
+            "font-heading font-normal text-8xl uppercase leading-none tracking-tight",
             text,
           )}
         >
           {valueContent}
         </p>
-        <p className={cn("font-body font-medium text-xl leading-none", text)}>{label}</p>
+        <p className={cn("font-body font-medium text-base leading-none", text)}>{label}</p>
       </div>
     </Card>
   )

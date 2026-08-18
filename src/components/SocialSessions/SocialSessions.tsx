@@ -19,7 +19,7 @@ export default function SocialSessions() {
   return (
     <section className="bg-brand-primary py-20">
       <div className="mx-auto max-w-7xl px-5">
-        <h1 className="text-center font-heading text-6xl text-white uppercase md:text-8xl">
+        <h1 className="text-center font-heading text-8xl text-white uppercase md:text-8xl">
           Social Sessions
         </h1>
 
