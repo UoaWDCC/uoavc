@@ -25,7 +25,7 @@ export function EventCard({ variant, name, date, image, href }: EventCardProps) 
   return (
     <Card
       className={cn(
-        "group hover:-translate-y-[10px] w-[306px] translate-y-0 gap-0 overflow-hidden rounded-none border-[3px] bg-transparent p-0 transition-transform duration-500 ease-in-out",
+        "group hover:-translate-y-[10px] w-[306px] translate-y-0 gap-0 overflow-hidden rounded-xl border-[3px] bg-transparent p-0 transition-transform duration-500 ease-in-out",
         borderColor,
       )}
     >
