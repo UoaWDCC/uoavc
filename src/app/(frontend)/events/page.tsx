@@ -107,6 +107,14 @@ export default async function EventsPage({
             </Link>
           </Button>
         ) : null}
+
+        {showAllPast && pastEvents.docs.length > EVENTS_PER_ROW ? (
+          <Button asChild className="mt-7 mb-18" size="md" variant="primary">
+            <Link href="/events" scroll={false}>
+              Show less
+            </Link>
+          </Button>
+        ) : null}
       </section>
     </div>
   )
