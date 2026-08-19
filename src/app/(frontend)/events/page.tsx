@@ -50,7 +50,7 @@ export default async function EventsPage({
   ])
 
   return (
-    <div className="flex flex-col items-center gap-32 bg-background px-6 pt-20 pb-6">
+    <div className="flex flex-col items-center gap-20 bg-background px-6 pt-12 pb-32">
       <section className="flex flex-col items-center gap-6">
         <h1 className="mb-0 text-center font-heading text-8xl text-brand-primary uppercase tracking-wide md:text-8xl">
           Upcoming Events
@@ -111,7 +111,7 @@ export default async function EventsPage({
         )}
 
         {!showAllPast && pastEvents.hasNextPage ? (
-          <Button asChild className="mt-7 mb-32" size="md" variant="primary">
+          <Button asChild className="mt-7 mb-0" size="md" variant="primary">
             <Link href="/events?past=all" scroll={false}>
               Load more
             </Link>
@@ -119,7 +119,7 @@ export default async function EventsPage({
         ) : null}
 
         {showAllPast && pastEvents.docs.length > EVENTS_PER_ROW ? (
-          <Button asChild className="mt-7 mb-32" size="md" variant="primary">
+          <Button asChild className="mt-7 mb-0" size="md" variant="primary">
             <Link href="/events" scroll={false}>
               Show less
             </Link>
