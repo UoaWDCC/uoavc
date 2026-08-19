@@ -16,9 +16,9 @@ export function Login() {
   }
 
   return (
-    <div className="flex w-xl max-w-md flex-col gap-6">
+    <div className="flex w-xl max-w-102 flex-col gap-6">
       <Card
-        className="items-stretch gap-6 rounded-xl border-2 border-brand-primary bg-transparent px-6 py-10 ring-0"
+        className="items-stretch gap-6 rounded-xl border-2 border-brand-primary bg-transparent px-6 py-6 ring-0"
         size="default"
       >
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -43,7 +43,7 @@ export function Login() {
 
           <div className="flex justify-end">
             <Link
-              className="text-brand-primary text-xl opacity-80 transition-all duration-200 ease-in-out hover:underline"
+              className="text-base text-brand-primary opacity-80 transition-all duration-200 ease-in-out hover:underline"
               href="/forgot-password"
             >
               Forgot password?
@@ -58,7 +58,7 @@ export function Login() {
         </form>
       </Card>
 
-      <p className="text-center text-brand-primary text-lg opacity-80">
+      <p className="text-center text-base text-brand-primary opacity-80">
         Don&apos;t have an account?{" "}
         <Link
           className="font-semibold transition-all duration-200 ease-in-out hover:underline"

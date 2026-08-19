@@ -18,8 +18,8 @@ const buttonVariants = cva(
         cta: "border-brand-navy bg-brand-navy text-brand-yellow hover:bg-transparent hover:text-brand-navy",
       },
       size: {
-        sm: "h-[36px] gap-2.5 py-1.5 px-[24px] text-[0.8rem] rounded-[30px]",
-        md: "h-[50px] gap-2.5 py-2.5 px-[30px] text-xl rounded-[30px]",
+        sm: "h-8 gap-2 py-1 px-5 text-xs rounded-full",
+        md: "h-11 gap-2 py-2 px-6 text-base rounded-full",
         icon: "size-8",
         "icon-xs":
           "size-6 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3",
