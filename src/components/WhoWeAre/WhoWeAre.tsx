@@ -12,7 +12,7 @@ export function WhoWeAre() {
           Built For Every Player
         </h1>
 
-        <div className="mt-6 text-base md:text-[19px]">
+        <div className="mt-6 text-sm md:text-base">
           <p>
             The University of Auckland Volleyball Club caters to players of all skill levels – even
             those outside UoA.

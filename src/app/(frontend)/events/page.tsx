@@ -52,7 +52,7 @@ export default async function EventsPage({
   return (
     <div className="flex flex-col items-center gap-20 bg-background px-6 pt-12 pb-32">
       <section className="flex flex-col items-center gap-6">
-        <h1 className="mb-0 text-center font-heading text-8xl text-brand-primary uppercase tracking-wide md:text-8xl">
+        <h1 className="mb-0 text-center font-heading text-8xl text-brand-primary uppercase md:text-8xl">
           Upcoming Events
         </h1>
 
@@ -82,7 +82,7 @@ export default async function EventsPage({
       </section>
 
       <section className="flex flex-col items-center gap-6">
-        <h2 className="mt-18 mb-0 text-center font-heading text-8xl text-brand-primary uppercase tracking-wide md:text-8xl">
+        <h2 className="mt-18 mb-0 text-center font-heading text-8xl text-brand-primary uppercase md:text-8xl">
           Past Events
         </h2>
 
