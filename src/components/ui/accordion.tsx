@@ -69,7 +69,7 @@ function AccordionContent({
 }: React.ComponentProps<typeof AccordionPrimitive.Content>) {
   return (
     <AccordionPrimitive.Content
-      className="text-[20px] text-sm data-closed:animate-accordion-up data-open:animate-accordion-down"
+      className="text-sm data-closed:animate-accordion-up data-open:animate-accordion-down md:text-base"
       data-slot="accordion-content"
       {...props}
     >
