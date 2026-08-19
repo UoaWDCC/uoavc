@@ -8,11 +8,11 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <main className="flex min-h-[calc(100vh-96px)] flex-col items-center gap-12 px-6 pt-10 pb-16">
-      <h1 className="text-center font-heading text-8xl text-brand-primary uppercase tracking-wide">
+    <div className="flex min-h-[calc(100svh-82px)] flex-col items-center justify-center gap-12 px-6 pt-12 pb-28">
+      <h1 className="text-center font-heading text-8xl text-brand-primary uppercase tracking-wide md:text-8xl">
         Login
       </h1>
       <Login />
-    </main>
+    </div>
   )
 }

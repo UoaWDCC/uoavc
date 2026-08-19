@@ -4,7 +4,7 @@ import type * as React from "react"
 import { cn } from "@/lib/utils"
 
 const textboxVariants = cva(
-  "w-full rounded-xl border-1 bg-white px-4 py-3 font-body text-xl transition-colors duration-200 ease-in-out focus:outline-none",
+  "w-full rounded-xl border-1 bg-white px-4 py-2 font-body text-base transition-colors duration-200 ease-in-out focus:outline-none",
   {
     variants: {
       state: {

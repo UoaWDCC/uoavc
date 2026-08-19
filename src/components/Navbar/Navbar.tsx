@@ -38,12 +38,7 @@ function NavLink({
       {children}
       <span
         aria-hidden="true"
-        className={cn(
-          "transition-all duration-200 ease-out",
-          isActive
-            ? "translate-x-0 opacity-100"
-            : "-translate-x-1 opacity-0 group-hover:translate-x-0 group-hover:opacity-100",
-        )}
+        className="-translate-x-1 opacity-0 transition-all duration-200 ease-out group-hover:translate-x-0 group-hover:opacity-100"
       >
         &gt;
       </span>
