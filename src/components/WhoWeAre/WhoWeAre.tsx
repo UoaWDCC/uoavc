@@ -8,7 +8,7 @@ export function WhoWeAre() {
           Who We Are
         </p>
 
-        <h1 className="mt-4 font-heading text-8xl uppercase leading-none tracking-[-0.019em] md:text-9xl">
+        <h1 className="mt-4 font-heading text-8xl uppercase leading-none tracking-[-0.019em] md:text-8xl">
           Built For Every Player
         </h1>
 
@@ -25,7 +25,7 @@ export function WhoWeAre() {
         </div>
       </div>
 
-      <div className="mt-24">
+      <div className="mt-18">
         <StatsCards />
       </div>
     </section>

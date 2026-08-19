@@ -32,11 +32,11 @@ export function StatCard({ variant, value, label }: StatCardProps) {
   return (
     <Card
       className={cn(
-        "group h-40 w-60 items-start justify-center gap-0 rounded-lg px-6 py-4 text-left ring-0 transition-colors duration-500",
+        "group h-42 w-52 items-start justify-center gap-0 rounded-lg px-5 py-3 text-left ring-0 transition-colors duration-500",
         bg,
       )}
     >
-      <div className="flex h-32 w-full flex-col">
+      <div className="flex h-28 w-full flex-col">
         <p
           className={cn(
             "font-heading font-normal text-8xl uppercase leading-none tracking-tight",
