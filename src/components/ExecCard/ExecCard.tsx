@@ -25,7 +25,7 @@ export default function ExecCard({
 
   return (
     <article className="mx-auto flex w-full max-w-[220px] flex-col items-center text-center">
-      <p className="mb-3 min-h-10 max-w-full break-words text-center font-body font-bold text-brand-primary text-sm uppercase tracking-wide sm:min-h-12 sm:text-base">
+      <p className="mb-3 min-h-10 max-w-full break-words text-center font-body font-bold text-brand-primary text-lg uppercase tracking-wide sm:min-h-12 sm:text-xl">
         {role}
       </p>
 
@@ -47,12 +47,10 @@ export default function ExecCard({
         <p className="font-body text-brand-primary text-sm leading-snug">{degree}</p>
       ) : null}
       {position ? (
-        <p className="font-body font-semibold text-brand-primary text-sm leading-snug">
-          {position}
-        </p>
+        <p className="mt-1 font-body text-brand-primary text-sm leading-snug">{position}</p>
       ) : null}
       {typeof yearsOfExperience === "number" ? (
-        <p className="font-body text-brand-navy text-sm leading-snug">
+        <p className="mt-1 font-body text-brand-primary text-sm leading-snug">
           {yearsOfExperience} years exp.
         </p>
       ) : null}

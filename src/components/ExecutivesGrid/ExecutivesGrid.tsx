@@ -65,7 +65,7 @@ export default function ExecutivesGrid({ executives }: { executives: Executive[]
 
         return (
           <section className="mx-auto max-w-fit" key={section}>
-            <h2 className="mb-8 text-center font-heading text-2xl text-brand-primary uppercase sm:text-3xl">
+            <h2 className="mb-4 text-center font-heading text-[2.75rem] text-brand-primary uppercase">
               {section}
             </h2>
 
