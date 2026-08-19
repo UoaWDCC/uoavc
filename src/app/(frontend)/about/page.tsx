@@ -19,7 +19,7 @@ export default async function AboutPage() {
   return (
     <div className="flex flex-col items-center gap-8 bg-background px-6 pt-12 pb-24">
       <section className="flex flex-col items-center gap-6">
-        <h1 className="mb-0 text-center font-heading text-8xl text-brand-primary uppercase tracking-wide md:text-8xl">
+        <h1 className="mb-0 text-center font-heading text-8xl text-brand-primary uppercase md:text-8xl">
           About
         </h1>
         {/* Placeholder hardcoded text - no payload collection for about page text */}
