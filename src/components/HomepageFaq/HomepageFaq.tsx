@@ -1,6 +1,7 @@
 import Link from "next/link"
 
 import { Faq } from "@/components/FAQ/FAQ"
+import { Button } from "@/components/ui/button"
 
 interface FaqItem {
   question: string
@@ -33,12 +34,9 @@ export default function HomepageFaq({ items }: HomepageFaqProps) {
               </div>
 
               <div className="mt-6 flex justify-end">
-                <Link
-                  className="flex h-[50px] w-[220px] max-w-full items-center justify-center rounded-full border-2 border-brand-primary bg-brand-primary text-base text-white transition-colors hover:bg-transparent hover:text-brand-primary"
-                  href="/faq"
-                >
-                  More questions &gt;
-                </Link>
+                <Button asChild size="md" variant="primary">
+                  <Link href="/faq">More questions &gt;</Link>
+                </Button>
               </div>
             </div>
 
