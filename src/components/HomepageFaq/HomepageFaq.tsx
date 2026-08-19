@@ -43,11 +43,11 @@ export default function HomepageFaq({ items }: HomepageFaqProps) {
             <div className="max-w-[257px] text-brand-primary">
               <h3 className="mb-9 font-black text-xl uppercase">Still have questions?</h3>
 
-              <p className="mb-6 text-xl leading-normal">
+              <p className="mb-6 text-sm leading-normal md:text-base">
                 If there's anything we haven't covered that you would like to ask, please reach out!
               </p>
 
-              <p className="text-xl leading-normal">
+              <p className="text-sm leading-normal md:text-base">
                 Message us through Email, Instagram, TikTok or Discord provided below.
               </p>
             </div>
