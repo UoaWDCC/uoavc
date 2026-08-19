@@ -25,7 +25,7 @@ export default function HomepageFaq({ items }: HomepageFaqProps) {
           FAQ
         </h2>
 
-        <div className="grid gap-12 xl:grid-cols-[800px_257px] xl:gap-[134px]">
+        <div className="grid gap-12 xl:grid-cols-[1fr_257px] xl:gap-30">
           <div className="min-w-0">
             <div className="[&_[data-slot=accordion]]:!w-full [&_[data-slot=accordion]]:!px-0 [&_[data-slot=accordion-content]_div]:break-words">
               <Faq items={items} />
