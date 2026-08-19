@@ -17,8 +17,8 @@ export function EventCard({ variant, name, date, image, href }: EventCardProps) 
   const isPast = variant === "past"
   const headerBg = isPast ? "bg-brand-yellow" : "bg-brand-primary"
   const borderColor = isPast ? "border-brand-yellow" : "border-brand-primary"
-  const titleText = isPast ? "text-secondary-foreground" : "text-white"
-  const descText = isPast ? "text-secondary-foreground" : "text-white"
+  const titleText = isPast ? "text-brand-primary" : "text-white"
+  const descText = isPast ? "text-brand-primary" : "text-white"
   const ctaLabel = isPast ? "view gallery" : "learn more"
   const ctaVariant = isPast ? "secondary" : "tertiary"
 
