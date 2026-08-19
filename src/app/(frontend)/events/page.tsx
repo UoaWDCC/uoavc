@@ -50,18 +50,23 @@ export default async function EventsPage({
   ])
 
   return (
-    <div className="flex flex-col items-center gap-8 bg-background px-6 py-6">
+    <div className="flex flex-col items-center gap-32 bg-background px-6 pt-20 pb-6">
       <section className="flex flex-col items-center gap-6">
-        <h1 className="mb-18 text-center font-heading text-[110px] text-brand-primary uppercase tracking-wide">
+        <h1 className="mb-0 text-center font-heading text-8xl text-brand-primary uppercase tracking-wide md:text-8xl">
           Upcoming Events
         </h1>
+
+        <p className="mb-16 max-w-xl text-center text-brand-primary text-sm md:text-base">
+          Where members register to learn new skills, connect with fellow players, and simply enjoy
+          the good vibes of a session together.
+        </p>
 
         {upcoming.docs.length === 0 ? (
           <p className="text-center font-body text-brand-primary text-lg">
             No upcoming events right now — check back soon.
           </p>
         ) : (
-          <div className="flex max-w-[982px] flex-wrap justify-center gap-8 md:justify-start">
+          <div className="flex w-full max-w-[982px] flex-wrap justify-center gap-8">
             {upcoming.docs.map((event) => (
               <EventCard
                 date={dateFormatter.format(new Date(event.date))}
@@ -77,16 +82,21 @@ export default async function EventsPage({
       </section>
 
       <section className="flex flex-col items-center gap-6">
-        <h2 className="m-18 text-center font-heading text-[110px] text-brand-primary uppercase tracking-wide">
+        <h2 className="mt-18 mb-0 text-center font-heading text-8xl text-brand-primary uppercase tracking-wide md:text-8xl">
           Past Events
         </h2>
+
+        <p className="mb-16 max-w-xl text-center text-brand-primary text-sm md:text-base">
+          A look back at the sessions, socials, and tournaments we've shared as a club, and a
+          reminder of the memories and friendships made along the way.
+        </p>
 
         {pastEvents.docs.length === 0 ? (
           <p className="text-center font-body text-brand-primary text-lg">
             No past events to display.
           </p>
         ) : (
-          <div className="flex max-w-[982px] flex-wrap justify-center gap-8 md:justify-start">
+          <div className="flex w-full max-w-[982px] flex-wrap justify-center gap-8">
             {pastEvents.docs.map((event) => (
               <EventCard
                 date={dateFormatter.format(new Date(event.date))}
@@ -101,7 +111,7 @@ export default async function EventsPage({
         )}
 
         {!showAllPast && pastEvents.hasNextPage ? (
-          <Button asChild className="mt-7 mb-18" size="md" variant="primary">
+          <Button asChild className="mt-7 mb-32" size="md" variant="primary">
             <Link href="/events?past=all" scroll={false}>
               Load more
             </Link>
@@ -109,7 +119,7 @@ export default async function EventsPage({
         ) : null}
 
         {showAllPast && pastEvents.docs.length > EVENTS_PER_ROW ? (
-          <Button asChild className="mt-7 mb-18" size="md" variant="primary">
+          <Button asChild className="mt-7 mb-32" size="md" variant="primary">
             <Link href="/events" scroll={false}>
               Show less
             </Link>
