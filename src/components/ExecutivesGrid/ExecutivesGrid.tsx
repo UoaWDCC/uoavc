@@ -19,6 +19,10 @@ function getRoleSection(role: string) {
     return "ADMIN TEAM"
   }
 
+  if (upperRole === "SENIOR EVENT CO" || upperRole === "EVENT CO-ORDINATOR") {
+    return "EVENT CO-ORDINATORS"
+  }
+
   if (
     upperRole === "SOCIAL MEDIA MANAGER" ||
     upperRole === "MARKETING & MEDIA" ||
@@ -31,7 +35,13 @@ function getRoleSection(role: string) {
   return "EXECUTIVE TEAM"
 }
 
-const sectionOrder = ["CO-PRESIDENTS", "ADMIN TEAM", "SOCIAL MEDIA & MARKETING", "EXECUTIVE TEAM"]
+const sectionOrder = [
+  "CO-PRESIDENTS",
+  "ADMIN TEAM",
+  "SOCIAL MEDIA & MARKETING",
+  "EVENT CO-ORDINATORS",
+  "EXECUTIVE TEAM",
+]
 
 export default function ExecutivesGrid({ executives }: { executives: Executive[] }) {
   if (executives.length === 0) {
