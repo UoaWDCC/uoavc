@@ -1,3 +1,4 @@
+import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { getPayload } from "payload"
@@ -70,10 +71,15 @@ export default async function EventsPage({
             {upcoming.docs.map((event) => (
               <EventCard
                 date={dateFormatter.format(new Date(event.date))}
+                description={event.description as SerializedEditorState}
+                endTime={event.endTime}
                 href={event.googleFormUrl || `/events/${event.id}`}
                 image={getImageUrl(event.image)}
                 key={event.id}
+                location={event.location}
                 name={event.title}
+                price={event.price ?? 8}
+                startTime={event.startTime}
                 variant="upcoming"
               />
             ))}

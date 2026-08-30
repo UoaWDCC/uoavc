@@ -418,6 +418,10 @@ export interface Event {
    */
   location: string;
   /**
+   * Event price in NZD. Leave blank for a free event.
+   */
+  price?: number | null;
+  /**
    * Optional cover image for the event card.
    */
   image?: (string | null) | Media;
@@ -796,6 +800,7 @@ export interface EventsSelect<T extends boolean = true> {
   startTime?: T;
   endTime?: T;
   location?: T;
+  price?: T;
   image?: T;
   googleFormUrl?: T;
   status?: T;

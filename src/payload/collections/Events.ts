@@ -71,6 +71,12 @@ export const Events: CollectionConfig = {
       admin: { description: "Venue or address for the event." },
     },
     {
+      name: "price",
+      type: "number",
+      min: 0,
+      admin: { description: "Event price in NZD. Leave blank for a free event." },
+    },
+    {
       name: "image",
       type: "upload",
       relationTo: "media",
