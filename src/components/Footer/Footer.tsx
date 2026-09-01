@@ -60,7 +60,7 @@ export function Footer() {
           </div>
 
           {/* Page Links */}
-          <div className="flex flex-col items-start gap-6.75 md:flex-row md:gap-13.5 lg:gap-20.5">
+          <div className="hidden items-start sm:flex sm:flex-col sm:gap-8 md:flex-row md:gap-13.5 lg:gap-20.5">
             {/* Events */}
             <div className="md:pt-8.5">
               <h4 className="mb-3.5 font-semibold text-[17px]">Events</h4>
