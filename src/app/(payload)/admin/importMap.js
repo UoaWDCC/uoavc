@@ -27,6 +27,7 @@ import {
   RscEntryLexicalField as RscEntryLexicalField_44fe37237e0ebf4470c9990d8cb7b07e,
 } from "@payloadcms/richtext-lexical/rsc"
 
+/** @type import('payload').ImportMap */
 export const importMap = {
   "@payloadcms/richtext-lexical/rsc#RscEntryLexicalCell":
     RscEntryLexicalCell_44fe37237e0ebf4470c9990d8cb7b07e,

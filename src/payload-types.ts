@@ -418,6 +418,14 @@ export interface Event {
    */
   location: string;
   /**
+   * Price charged to club members. Leave blank for free.
+   */
+  memberPrice?: number | null;
+  /**
+   * Standard price charged to guests (non-members). Leave blank for free.
+   */
+  nonMemberPrice?: number | null;
+  /**
    * Optional cover image for the event card.
    */
   image?: (string | null) | Media;
@@ -796,6 +804,8 @@ export interface EventsSelect<T extends boolean = true> {
   startTime?: T;
   endTime?: T;
   location?: T;
+  memberPrice?: T;
+  nonMemberPrice?: T;
   image?: T;
   googleFormUrl?: T;
   status?: T;
