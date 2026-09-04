@@ -418,9 +418,13 @@ export interface Event {
    */
   location: string;
   /**
-   * Event price in NZD. Leave blank for a free event.
+   * Price charged to club members. Leave blank for free.
    */
-  price?: number | null;
+  memberPrice?: number | null;
+  /**
+   * Standard price charged to guests (non-members). Leave blank for free.
+   */
+  nonMemberPrice?: number | null;
   /**
    * Optional cover image for the event card.
    */
@@ -800,7 +804,8 @@ export interface EventsSelect<T extends boolean = true> {
   startTime?: T;
   endTime?: T;
   location?: T;
-  price?: T;
+  memberPrice?: T;
+  nonMemberPrice?: T;
   image?: T;
   googleFormUrl?: T;
   status?: T;

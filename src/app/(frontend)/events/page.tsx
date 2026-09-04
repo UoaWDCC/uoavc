@@ -77,8 +77,9 @@ export default async function EventsPage({
                 image={getImageUrl(event.image)}
                 key={event.id}
                 location={event.location}
+                memberPrice={event.memberPrice}
                 name={event.title}
-                price={event.price ?? 8}
+                nonMemberPrice={event.nonMemberPrice}
                 startTime={event.startTime}
                 variant="upcoming"
               />

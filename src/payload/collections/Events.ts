@@ -71,10 +71,20 @@ export const Events: CollectionConfig = {
       admin: { description: "Venue or address for the event." },
     },
     {
-      name: "price",
+      name: "memberPrice",
       type: "number",
       min: 0,
-      admin: { description: "Event price in NZD. Leave blank for a free event." },
+      admin: {
+        description: "Price charged to club members. Leave blank for free.",
+      },
+    },
+    {
+      name: "nonMemberPrice",
+      type: "number",
+      min: 0,
+      admin: {
+        description: "Standard price charged to guests (non-members). Leave blank for free.",
+      },
     },
     {
       name: "image",

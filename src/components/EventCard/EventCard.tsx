@@ -10,6 +10,17 @@ import { cn } from "@/lib/utils"
 import { Button } from "../ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card"
 
+const SIGN_UP_HREF = "/sign-up"
+
+// Matches the events grid: three 260px cards with a 32px gap between them, so
+// the dialog lines up with the row of cards behind it.
+const DIALOG_WIDTH = "max-w-[844px]"
+
+// A blank price in Payload means the event is free for that audience.
+function formatPrice(amount?: number | null) {
+  return amount ? `$${amount}` : "Free"
+}
+
 type EventCardProps = {
   variant: "upcoming" | "past"
   name: string
@@ -20,7 +31,6 @@ type EventCardProps = {
   endTime?: string | null
   location?: string
   description?: SerializedEditorState
-  price?: number | null
   memberPrice?: number | null
   nonMemberPrice?: number | null
 }
@@ -35,7 +45,6 @@ export function EventCard({
   endTime,
   location,
   description,
-  price,
   memberPrice,
   nonMemberPrice,
 }: EventCardProps) {
@@ -90,14 +99,23 @@ export function EventCard({
   )
 
   if (isPast) return card
-  const hasMemberPricing = memberPrice != null || nonMemberPrice != null
+
+  const priceLabel = `${formatPrice(memberPrice)} members / ${formatPrice(nonMemberPrice)} non-members`
 
   return (
     <Dialog.Root>
       {card}
       <Dialog.Portal>
         <Dialog.Overlay className="data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-40 bg-white/50 backdrop-blur-[1px] data-[state=closed]:animate-out data-[state=open]:animate-in" />
-        <Dialog.Content className="-translate-x-1/2 -translate-y-1/2 fixed top-1/2 left-1/2 z-50 max-h-[calc(100vh-3rem)] w-[calc(100%-2rem)] max-w-4xl overflow-y-auto rounded-lg border-2 border-brand-primary bg-white px-6 py-7 text-brand-primary shadow-lg outline-none md:px-10 md:py-9">
+        <Dialog.Content
+          // Radix warns when a dialog has no Description; events without one
+          // opt out explicitly instead.
+          aria-describedby={description ? undefined : ""}
+          className={cn(
+            "-translate-x-1/2 -translate-y-1/2 data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-1/2 left-1/2 z-50 max-h-[calc(100vh-3rem)] w-[calc(100%-2rem)] overflow-y-auto rounded-lg border-2 border-brand-primary bg-white px-6 py-7 text-brand-primary shadow-lg outline-none data-[state=closed]:animate-out data-[state=open]:animate-in md:px-10 md:py-9",
+            DIALOG_WIDTH,
+          )}
+        >
           <Dialog.Title className="pr-10 font-heading text-3xl uppercase md:text-4xl">
             {name}
           </Dialog.Title>
@@ -123,17 +141,9 @@ export function EventCard({
                 {endTime ? ` - ${endTime}` : ""}
               </p>
             ) : null}
-            {price != null ? (
-              <p>
-                <strong>Price:</strong> ${price}
-              </p>
-            ) : hasMemberPricing ? (
-              <p>
-                <strong>Price:</strong> {memberPrice != null ? `$${memberPrice} members` : null}
-                {memberPrice != null && nonMemberPrice != null ? " / " : null}
-                {nonMemberPrice != null ? `$${nonMemberPrice} non-members` : null}
-              </p>
-            ) : null}
+            <p>
+              <strong>Price:</strong> {priceLabel}
+            </p>
           </div>
 
           <div className="mt-6 grid gap-y-6 md:grid-cols-2 md:items-start md:gap-x-10">
@@ -162,7 +172,7 @@ export function EventCard({
                 </Dialog.Description>
               ) : null}
               <Button asChild className="mt-auto" size="md" variant="tertiary">
-                <Link href={href}>Sign up!</Link>
+                <Link href={SIGN_UP_HREF}>Sign up!</Link>
               </Button>
             </div>
           </div>
