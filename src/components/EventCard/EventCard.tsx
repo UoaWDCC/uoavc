@@ -160,7 +160,7 @@ export function EventCard({
                 </Dialog.Description>
               ) : null}
               <Button asChild className="mt-auto" size="md" variant="tertiary">
-                <Link href="/sign-up">Sign up!</Link>
+                <Link href={href}>Sign up!</Link>
               </Button>
             </div>
           </div>
