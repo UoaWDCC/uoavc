@@ -71,6 +71,22 @@ export const Events: CollectionConfig = {
       admin: { description: "Venue or address for the event." },
     },
     {
+      name: "memberPrice",
+      type: "number",
+      min: 0,
+      admin: {
+        description: "Price charged to club members. Leave blank for free.",
+      },
+    },
+    {
+      name: "nonMemberPrice",
+      type: "number",
+      min: 0,
+      admin: {
+        description: "Standard price charged to guests (non-members). Leave blank for free.",
+      },
+    },
+    {
       name: "image",
       type: "upload",
       relationTo: "media",
