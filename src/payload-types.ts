@@ -194,13 +194,80 @@ export interface User {
    */
   lastName: string;
   /**
-   * University of Auckland UPI, if the member is a UoA student.
+   * Member's gender identity.
+   */
+  genderIdentity?: ('woman' | 'man' | 'non-binary' | 'another' | 'prefer-not-to-say') | null;
+  /**
+   * Member's ethnicity.
+   */
+  ethnicity?: ('european' | 'maori' | 'pacific' | 'asian' | 'melaa' | 'other' | 'prefer-not-to-say') | null;
+  /**
+   * Member's relationship to the University of Auckland. Decides which study fields apply.
+   */
+  affiliation?: ('uoa' | 'other-tertiary' | 'not-student') | null;
+  /**
+   * University of Auckland student ID.
+   */
+  studentId?: string | null;
+  /**
+   * University of Auckland UPI, if the member is a UoA student, staff or alumni.
    */
   upi?: string | null;
+  /**
+   * University of Auckland faculty.
+   */
+  faculty?:
+    | (
+        | 'arts-education'
+        | 'business'
+        | 'creative-arts'
+        | 'engineering-design'
+        | 'law'
+        | 'medical-health'
+        | 'science'
+        | 'other'
+      )
+    | null;
+  /**
+   * Whether a non-UoA member is currently studying.
+   */
+  currentlyStudying?: boolean | null;
+  /**
+   * Where and what a non-UoA member is studying.
+   */
+  studyDetails?: string | null;
   /**
    * Contact phone number.
    */
   phone?: string | null;
+  /**
+   * Whether the member has a HIWA gym membership.
+   */
+  hiwaMember?: boolean | null;
+  /**
+   * Whether the member holds volleyball referee qualifications.
+   */
+  refereeQualified?: boolean | null;
+  /**
+   * Interest in competitive or social volleyball.
+   */
+  playInterest?: ('competitive' | 'social' | 'both') | null;
+  /**
+   * Interest in buying club merch.
+   */
+  merchInterest?: ('yes' | 'no' | 'maybe') | null;
+  /**
+   * Events or activities the member would like to see beyond social sessions.
+   */
+  preferredActivities?: string | null;
+  /**
+   * How the member intends to pay their membership.
+   */
+  paymentMethod?: ('card' | 'cash') | null;
+  /**
+   * Member agreed to the UOAVC Code of Conduct when signing up.
+   */
+  acceptedCodeOfConduct?: boolean | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -709,8 +776,22 @@ export interface AdminSelect<T extends boolean = true> {
 export interface UsersSelect<T extends boolean = true> {
   firstName?: T;
   lastName?: T;
+  genderIdentity?: T;
+  ethnicity?: T;
+  affiliation?: T;
+  studentId?: T;
   upi?: T;
+  faculty?: T;
+  currentlyStudying?: T;
+  studyDetails?: T;
   phone?: T;
+  hiwaMember?: T;
+  refereeQualified?: T;
+  playInterest?: T;
+  merchInterest?: T;
+  preferredActivities?: T;
+  paymentMethod?: T;
+  acceptedCodeOfConduct?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
