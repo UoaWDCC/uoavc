@@ -105,21 +105,7 @@ function validate(values: FormValues): FieldErrors {
 const optional = (value: string) => value.trim() || undefined
 const yesNo = (value: string) => (value ? value === "yes" : undefined)
 
-// Works out which of the two study sections the member filled in, since the
-// form signposts them instead of asking for the affiliation directly.
-function toAffiliation(values: FormValues) {
-  if (values.studentId.trim() || values.upi.trim() || values.faculty) return "uoa"
-  if (values.currentlyStudying === "yes") return "other-tertiary"
-  if (values.currentlyStudying === "no") return "not-student"
-  return undefined
-}
-
-// Maps form state onto the Users collection, dropping the study fields for
-// whichever branch the member didn't fill in.
 function toUserData(values: FormValues) {
-  const affiliation = toAffiliation(values)
-  const isUoa = affiliation === "uoa"
-
   return {
     email: values.email.trim(),
     password: values.password,
@@ -127,12 +113,11 @@ function toUserData(values: FormValues) {
     lastName: values.lastName.trim(),
     genderIdentity: optional(values.genderIdentity),
     ethnicity: optional(values.ethnicity),
-    affiliation,
-    studentId: isUoa ? optional(values.studentId) : undefined,
-    upi: isUoa ? optional(values.upi) : undefined,
-    faculty: isUoa ? optional(values.faculty) : undefined,
-    currentlyStudying: isUoa ? undefined : yesNo(values.currentlyStudying),
-    studyDetails: isUoa ? undefined : optional(values.studyDetails),
+    studentId: optional(values.studentId),
+    upi: optional(values.upi),
+    faculty: optional(values.faculty),
+    currentlyStudying: yesNo(values.currentlyStudying),
+    studyDetails: optional(values.studyDetails),
     hiwaMember: yesNo(values.hiwaMember),
     refereeQualified: yesNo(values.refereeQualified),
     playInterest: optional(values.playInterest),
@@ -149,7 +134,7 @@ async function readErrorMessage(response: Response) {
   return error?.data?.errors?.[0]?.message ?? error?.message ?? GENERIC_ERROR
 }
 
-export function CreateAccountForm() {
+export const CreateAccountForm = () => {
   const router = useRouter()
   const [values, setValues] = useState<FormValues>(INITIAL_VALUES)
   const [errors, setErrors] = useState<FieldErrors>({})
@@ -169,7 +154,7 @@ export function CreateAccountForm() {
     onChange: (value: string) => setValue(key, value),
   })
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     const nextErrors = validate(values)
