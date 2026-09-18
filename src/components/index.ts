@@ -1,4 +1,5 @@
 export { AwardsBanner } from "./AwardsBanner/AwardsBanner"
+export { CreateAccountForm } from "./CreateAccount/CreateAccountForm"
 export { EventCard } from "./EventCard/EventCard"
 export { Faq } from "./FAQ/FAQ"
 export { Footer } from "./Footer/Footer"
