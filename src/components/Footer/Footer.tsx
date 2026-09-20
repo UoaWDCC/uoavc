@@ -9,12 +9,12 @@ export function Footer() {
         {/* Main Section */}
         <div className="flex flex-col gap-10.25 md:flex-row md:justify-between">
           {/* Title */}
-          <div className="max-w-md">
+          <div className="mx-auto w-full max-w-md text-center md:mx-0 md:text-left">
             <h3 className="inline-block origin-center font-heading text-[34px] uppercase tracking-tight hover:animate-[wiggle_1500ms_ease-out]">
               Contact Us!
             </h3>
             <a
-              className="mt-8.5 block text-center text-[17px] text-brand-light-grey/90 md:text-left"
+              className="wrap-break-word mt-8.5 block text-center text-[17px] text-brand-light-grey/90 md:text-left"
               href="mailto:uoavolleyball+secretary@gmail.com"
             >
               uoavolleyball+secretary@gmail.com
@@ -60,7 +60,7 @@ export function Footer() {
           </div>
 
           {/* Page Links */}
-          <div className="hidden items-start sm:flex sm:flex-col sm:gap-8 md:flex-row md:gap-13.5 lg:gap-20.5">
+          <div className="hidden items-center text-center sm:flex sm:flex-col sm:gap-8 md:flex-row md:items-start md:gap-13.5 md:text-left lg:gap-20.5">
             {/* Events */}
             <div className="md:pt-8.5">
               <h4 className="mb-3.5 font-semibold text-[17px]">Events</h4>
