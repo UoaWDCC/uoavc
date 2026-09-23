@@ -50,7 +50,7 @@ export function EventCard({
   const card = (
     <Card
       className={cn(
-        "group hover:-translate-y-2 w-65 translate-y-0 gap-0 overflow-hidden rounded-xl border-2 bg-transparent p-0 transition-transform duration-500 ease-in-out",
+        "group hover:-translate-y-2 w-full max-w-88 translate-y-0 gap-0 overflow-hidden rounded-xl border-2 bg-transparent p-0 transition-transform duration-500 ease-in-out sm:w-65",
         borderColor,
       )}
     >
@@ -67,7 +67,13 @@ export function EventCard({
       <CardContent className="overflow-hidden bg-transparent px-0">
         <div className="relative h-52 w-full bg-transparent">
           {image ? (
-            <Image alt={name} className="object-cover" fill sizes="260px" src={image} />
+            <Image
+              alt={name}
+              className="object-cover"
+              fill
+              sizes="(min-width: 640px) 260px, 352px"
+              src={image}
+            />
           ) : (
             <div className="flex h-full w-full items-center justify-center bg-muted text-muted-foreground">
               <ImageIcon aria-hidden="true" className="h-7 w-7" />
