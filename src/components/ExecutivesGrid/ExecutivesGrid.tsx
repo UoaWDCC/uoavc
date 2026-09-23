@@ -20,7 +20,7 @@ function getRoleSection(role: string) {
   }
 
   if (upperRole === "SENIOR EVENT CO" || upperRole === "EVENT CO-ORDINATOR") {
-    return "EVENT COORDINATORS"
+    return "EVENT CO-ORDINATORS"
   }
 
   if (
@@ -39,7 +39,7 @@ const sectionOrder = [
   "CO-PRESIDENTS",
   "ADMIN TEAM",
   "SOCIAL MEDIA & MARKETING",
-  "EVENT COORDINATORS",
+  "EVENT CO-ORDINATORS",
   "EXECUTIVE TEAM",
 ]
 
@@ -65,7 +65,7 @@ export default function ExecutivesGrid({ executives }: { executives: Executive[]
   }
 
   return (
-    <div className="w-full min-w-0 space-y-16">
+    <div className="w-full space-y-14 sm:space-y-16">
       {sectionOrder.map((section) => {
         const peopleInSection = groupedExecutives[section]
 
@@ -74,19 +74,12 @@ export default function ExecutivesGrid({ executives }: { executives: Executive[]
         }
 
         return (
-          <section className="mx-auto w-full max-w-[952px]" key={section}>
-            <h2 className="mb-6 text-center font-heading text-[clamp(1.75rem,9.2vw,2.25rem)] text-brand-primary uppercase leading-tight sm:mb-4 sm:text-[2.75rem]">
-              {section === "SOCIAL MEDIA & MARKETING" ? (
-                <>
-                  SOCIAL MEDIA
-                  <br className="sm:hidden" /> <span>&amp; MARKETING</span>
-                </>
-              ) : (
-                section
-              )}
+          <section className="w-full sm:mx-auto sm:max-w-fit" key={section}>
+            <h2 className="mb-[35px] text-balance text-center font-heading text-[40px] text-brand-primary uppercase leading-[1.1] tracking-[-0.019em] sm:mb-4 sm:text-[2.75rem] sm:leading-normal sm:tracking-normal">
+              {section}
             </h2>
 
-            <div className="mx-auto grid grid-cols-2 items-start gap-x-5 gap-y-10 sm:flex sm:flex-wrap sm:justify-center sm:gap-x-6">
+            <div className="mx-auto grid max-w-[952px] grid-cols-2 gap-x-[18px] gap-y-10 sm:flex sm:flex-wrap sm:justify-center sm:gap-x-6">
               {peopleInSection.map((executive) => (
                 <ExecCard
                   degree={executive.degree}

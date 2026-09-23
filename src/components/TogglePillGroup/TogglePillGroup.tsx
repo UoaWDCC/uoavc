@@ -14,11 +14,10 @@ type TogglePillGroupProps = {
   onChange: (value: string) => void
   "aria-label": string
   className?: string
-  responsive?: boolean
 }
 
 const pillItemClasses = cn(
-  "h-auto rounded-full border-2 px-6 py-2 font-heading font-normal text-[2.75rem] uppercase leading-none",
+  "h-auto rounded-full border-2 px-[17.5px] pt-[7px] pb-[6px] font-heading font-normal text-[30px] uppercase leading-none tracking-[-0.01em] sm:px-6 sm:py-2 sm:text-[2.75rem] sm:tracking-normal",
   "transition-colors duration-200",
   "border-brand-primary bg-transparent text-brand-primary",
   // Selected pills must not change on hover. The plain hover: classes exist to
@@ -37,12 +36,11 @@ export function TogglePillGroup({
   onChange,
   "aria-label": ariaLabel,
   className,
-  responsive = false,
 }: TogglePillGroupProps) {
   return (
     <ToggleGroup
       aria-label={ariaLabel}
-      className={cn("gap-8", responsive && "max-sm:gap-3", className)}
+      className={cn("gap-3 sm:gap-8", className)}
       onValueChange={(next) => {
         // Radix emits "" when the selected item is clicked again; ignore it so
         // one option is always selected.
@@ -52,15 +50,7 @@ export function TogglePillGroup({
       value={value}
     >
       {options.map((option) => (
-        <ToggleGroupItem
-          className={cn(
-            pillItemClasses,
-            responsive &&
-              "max-sm:px-[0.5em] max-sm:py-[0.2em] max-sm:text-[clamp(1.375rem,calc(12.5vw_-_1.125rem),1.875rem)]",
-          )}
-          key={option.value}
-          value={option.value}
-        >
+        <ToggleGroupItem className={pillItemClasses} key={option.value} value={option.value}>
           {option.label}
         </ToggleGroupItem>
       ))}

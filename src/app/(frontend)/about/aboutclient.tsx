@@ -14,14 +14,14 @@ type AboutClientProps = {
 const CompTeamsView = ({ compTeams }: { compTeams: CompTeamDoc[] }) => {
   if (compTeams.length === 0) {
     return (
-      <p className="text-center font-body text-brand-primary text-lg">
+      <p className="text-center font-body text-2xl text-brand-primary sm:text-5xl">
         No comp team rosters to display.
       </p>
     )
   }
 
   return (
-    <div className="flex w-full flex-col items-center gap-16 sm:gap-0">
+    <div className="flex w-full flex-col items-center gap-[92px] pb-[26px] sm:gap-0 sm:pb-0">
       {compTeams.map((team) => (
         <CompTeam
           coach={team.coach}
@@ -43,16 +43,14 @@ const AboutClient = ({ executives, compTeams }: AboutClientProps) => {
   const [selected, setSelected] = useState("executives")
 
   return (
-    <div className="mt-16 flex w-full min-w-0 max-w-[974px] flex-col items-center gap-14 sm:my-8 sm:gap-16">
+    <div className="flex w-full max-w-[974px] flex-col items-center gap-[57px] sm:my-8 sm:gap-16">
       <TogglePillGroup
         aria-label="About"
-        className="max-w-full"
         onChange={setSelected}
         options={[
           { label: "EXECUTIVES", value: "executives" },
           { label: "COMP TEAM", value: "comp-team" },
         ]}
-        responsive
         value={selected}
       />
 
