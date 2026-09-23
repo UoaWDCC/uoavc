@@ -21,29 +21,27 @@ const CompTeam = ({ teamName, photo, coach, players }: CompTeamProps) => {
   const photoAlt = photo?.alt || `${teamName} team photo`
 
   return (
-    <section className="mx-4 flex w-full flex-col items-center gap-8 py-12">
-      <h2 className="text-center font-heading text-3xl text-brand-primary uppercase sm:text-4xl">
+    <section className="flex w-full min-w-0 flex-col items-center gap-10 text-center [overflow-wrap:anywhere] sm:gap-8 sm:py-12">
+      <h2 className="w-full text-center font-heading text-4xl text-brand-primary uppercase">
         {teamName}
       </h2>
 
-      <div className="relative aspect-video w-full max-w-[922px] overflow-hidden rounded-xl bg-[#D9D9D9]">
+      <div className="relative aspect-[5/3] w-full max-w-[922px] overflow-hidden bg-[#D5D5D5] sm:aspect-video sm:rounded-xl">
         {photoUrl ? (
           <Image
             alt={photoAlt}
             className="object-cover"
             fill
-            sizes="(max-width: 922px) 100vw, 922px"
+            sizes="(max-width: 639px) calc(100vw - 70px), (max-width: 970px) calc(100vw - 48px), 922px"
             src={photoUrl}
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center font-body text-slate-500 text-sm">
-            No team photo
-          </div>
+          <span className="sr-only">No team photo for {teamName}</span>
         )}
       </div>
 
       {players.length > 0 ? (
-        <ul className="flex flex-col items-center gap-1 font-body text-brand-navy">
+        <ul className="flex w-full flex-col font-body text-base text-brand-primary leading-6 sm:gap-1">
           {players.map((player) => (
             <li key={player.id ?? `${player.name}-${player.position}`}>
               {player.name} - {player.position}
@@ -51,13 +49,11 @@ const CompTeam = ({ teamName, photo, coach, players }: CompTeamProps) => {
           ))}
         </ul>
       ) : (
-        <p className="font-body text-brand-navy">Roster to be announced.</p>
+        <p className="w-full font-body text-base text-brand-primary">Roster to be announced.</p>
       )}
 
       {coach ? (
-        <p className="font-body font-semibold text-brand-primary uppercase tracking-wide">
-          Coached by {coach}
-        </p>
+        <p className="w-full font-body text-base text-brand-primary">Coach: {coach}</p>
       ) : null}
     </section>
   )

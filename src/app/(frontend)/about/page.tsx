@@ -17,13 +17,13 @@ export default async function AboutPage() {
   ])
 
   return (
-    <div className="flex flex-col items-center gap-8 bg-background px-6 pt-12 pb-24">
-      <section className="flex flex-col items-center gap-6">
-        <h1 className="mb-0 text-center font-heading text-8xl text-brand-primary uppercase md:text-8xl">
+    <div className="flex flex-col items-center bg-brand-white px-[35px] pt-12 pb-24 sm:px-6">
+      <section className="flex w-full max-w-[974px] flex-col items-center gap-10 sm:gap-6">
+        <h1 className="text-center font-heading text-[clamp(4.5rem,23vw,5.625rem)] text-brand-primary uppercase leading-none md:text-8xl">
           About
         </h1>
         {/* Placeholder hardcoded text - no payload collection for about page text */}
-        <p className="mb-6 max-w-3xl text-center font-body text-brand-primary text-sm md:text-base">
+        <p className="w-full max-w-[320px] text-center font-body text-base text-brand-primary leading-6 sm:max-w-3xl">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
           ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
