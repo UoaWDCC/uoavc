@@ -202,10 +202,6 @@ export interface User {
    */
   ethnicity?: ('european' | 'maori' | 'pacific' | 'asian' | 'melaa' | 'other' | 'prefer-not-to-say') | null;
   /**
-   * Member's relationship to the University of Auckland. Decides which study fields apply.
-   */
-  affiliation?: ('uoa' | 'other-tertiary' | 'not-student') | null;
-  /**
    * University of Auckland student ID.
    */
   studentId?: string | null;
@@ -778,7 +774,6 @@ export interface UsersSelect<T extends boolean = true> {
   lastName?: T;
   genderIdentity?: T;
   ethnicity?: T;
-  affiliation?: T;
   studentId?: T;
   upi?: T;
   faculty?: T;

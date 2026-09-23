@@ -1,6 +1,5 @@
 import type { CollectionConfig } from "payload"
 import {
-  AFFILIATION_OPTIONS,
   ETHNICITY_OPTIONS,
   FACULTY_OPTIONS,
   GENDER_OPTIONS,
@@ -8,10 +7,6 @@ import {
   PAYMENT_METHOD_OPTIONS,
   PLAY_INTEREST_OPTIONS,
 } from "@/lib/memberOptions"
-
-const isUoa = (data: Partial<{ affiliation: string }>) => data?.affiliation === "uoa"
-const isNonUoa = (data: Partial<{ affiliation: string }>) =>
-  Boolean(data?.affiliation) && data.affiliation !== "uoa"
 
 export const Users: CollectionConfig = {
   slug: "users",
@@ -62,19 +57,9 @@ export const Users: CollectionConfig = {
       admin: { description: "Member's ethnicity." },
     },
     {
-      name: "affiliation",
-      type: "select",
-      options: AFFILIATION_OPTIONS,
-      admin: {
-        description:
-          "Member's relationship to the University of Auckland. Decides which study fields apply.",
-      },
-    },
-    {
       name: "studentId",
       type: "text",
       admin: {
-        condition: isUoa,
         description: "University of Auckland student ID.",
       },
     },
@@ -90,7 +75,6 @@ export const Users: CollectionConfig = {
       type: "select",
       options: FACULTY_OPTIONS,
       admin: {
-        condition: isUoa,
         description: "University of Auckland faculty.",
       },
     },
@@ -98,7 +82,6 @@ export const Users: CollectionConfig = {
       name: "currentlyStudying",
       type: "checkbox",
       admin: {
-        condition: isNonUoa,
         description: "Whether a non-UoA member is currently studying.",
       },
     },
@@ -106,7 +89,6 @@ export const Users: CollectionConfig = {
       name: "studyDetails",
       type: "text",
       admin: {
-        condition: isNonUoa,
         description: "Where and what a non-UoA member is studying.",
       },
     },

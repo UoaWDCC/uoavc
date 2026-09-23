@@ -24,12 +24,6 @@ export const ETHNICITY_OPTIONS: MemberOption[] = [
   { label: "Prefer not to say", value: "prefer-not-to-say" },
 ]
 
-export const AFFILIATION_OPTIONS: MemberOption[] = [
-  { label: "UoA student, staff or alumni", value: "uoa" },
-  { label: "Student at AUT or another tertiary institution", value: "other-tertiary" },
-  { label: "Not a student", value: "not-student" },
-]
-
 export const FACULTY_OPTIONS: MemberOption[] = [
   { label: "Arts and Education", value: "arts-education" },
   { label: "Business School", value: "business" },
