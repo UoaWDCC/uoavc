@@ -11,7 +11,7 @@ export function Hero() {
 
       <div className="relative z-10 grid min-h-[calc(100svh-82px)] grid-cols-1 md:h-full md:min-h-0 md:grid-cols-2">
         <div className="order-2 flex min-w-0 items-center justify-start px-[31px] pb-5 md:order-1 md:justify-center md:px-6 md:pb-0">
-          <div className="relative aspect-[485/583] w-[clamp(160px,50vw,196px)] md:w-[clamp(180px,min(32vw,57.2vh),485px)]">
+          <div className="-translate-y-6 relative aspect-[485/583] w-[clamp(160px,50vw,196px)] md:w-[clamp(180px,min(32vw,57.2vh),485px)] md:translate-y-0">
             <Image
               alt="UOAVC volleyball mascot"
               className="origin-[50%_50%] object-contain transition-transform duration-500 ease-out hover:rotate-[11deg] hover:scale-[1.07]"
