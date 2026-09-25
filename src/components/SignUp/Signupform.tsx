@@ -25,7 +25,7 @@ export function SignupForm() {
 
   return (
     <Card className="mx-auto w-[70%] border-3 border-brand-primary bg-transparent px-10 py-8">
-      <form className="flex flex-col gap-10">
+      <form className="flex flex-col gap-10" onSubmit={() => null}>
         <label className="flex items-center gap-2 py-6 text-brand-primary text-lg">
           <input className="size-6 accent-brand-primary" name="oneSessionOnly" type="checkbox" />I
           will only sign up and attend one social session this week
@@ -60,7 +60,7 @@ export function SignupForm() {
 
           <label className="flex flex-col gap-1 text-brand-primary text-lg" htmlFor={uoavcMemberId}>
             Are you a UOAVC member?*
-            <Select name="uoavcMember">
+            <Select name="uoavcMember" required>
               <SelectTrigger className="w-[calc((100%-3rem)/2)]" id={uoavcMemberId}>
                 <SelectValue placeholder="Select answer" />
               </SelectTrigger>
@@ -87,7 +87,7 @@ export function SignupForm() {
           </div>
           <label className="flex flex-col gap-1 text-brand-primary text-lg" htmlFor={hiwaMemberId}>
             Do you have HIWA membership?*
-            <Select name="hiwaMember">
+            <Select name="hiwaMember" required>
               <SelectTrigger className="w-[calc((100%-3rem)/2)]" id={hiwaMemberId}>
                 <SelectValue placeholder="Select answer" />
               </SelectTrigger>
@@ -154,7 +154,7 @@ export function SignupForm() {
             htmlFor={paymentMethodId}
           >
             How would you like to make your payment?*
-            <Select name="paymentMethod">
+            <Select name="paymentMethod" required>
               <SelectTrigger className="w-[calc((100%-3rem)/2)]" id={paymentMethodId}>
                 <SelectValue placeholder="Select payment method" />
               </SelectTrigger>
@@ -195,9 +195,7 @@ export function SignupForm() {
         </section>
 
         <div className="flex justify-center pt-4">
-          <Button>
-            <Link href="">Complete sign-up</Link>
-          </Button>
+          <Button type="submit">Complete sign-up</Button>
         </div>
       </form>
     </Card>
