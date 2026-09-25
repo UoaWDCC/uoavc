@@ -60,7 +60,7 @@ export function Footer() {
           </div>
 
           {/* Page Links */}
-          <div className="hidden items-center text-center sm:flex sm:flex-col sm:gap-8 md:flex-row md:items-start md:gap-8 md:text-left lg:gap-20.5">
+          <div className="hidden md:flex md:items-start md:gap-8 lg:gap-20.5">
             {/* Events */}
             <div className="md:pt-8.5">
               <h4 className="mb-3.5 font-semibold text-[17px]">Events</h4>
@@ -131,7 +131,7 @@ export function Footer() {
             </div>
 
             {/* Logo */}
-            <div className="md:hidden md:pt-12.75 lg:block">
+            <div className="hidden pt-12.75 lg:block">
               <Logo />
             </div>
           </div>
