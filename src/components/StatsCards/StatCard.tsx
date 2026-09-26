@@ -35,7 +35,7 @@ export function StatCard({ variant, value, label, className }: StatCardProps) {
   return (
     <Card
       className={cn(
-        "group min-h-32 w-full max-w-52 items-start justify-center gap-0 rounded-lg px-4 py-3 text-left ring-0 transition-colors duration-500 md:h-42 md:w-52 md:px-5",
+        "group aspect-7/5 w-full items-start justify-center gap-0 rounded-lg px-4 py-3 text-left ring-0 transition-colors duration-500 md:aspect-auto md:h-42 md:w-52 md:px-5",
         bg,
         className,
       )}
@@ -51,7 +51,7 @@ export function StatCard({ variant, value, label, className }: StatCardProps) {
         </p>
         <p
           className={cn(
-            "font-body font-medium text-sm leading-tight md:text-base md:leading-none",
+            "font-body font-medium text-xs leading-tight md:text-base md:leading-none",
             text,
           )}
         >
