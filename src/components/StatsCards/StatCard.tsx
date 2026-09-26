@@ -5,9 +5,10 @@ type StatCardProps = {
   variant: "navy" | "light-grey"
   value: string
   label: string
+  className?: string
 }
 
-export function StatCard({ variant, value, label }: StatCardProps) {
+export function StatCard({ variant, value, label, className }: StatCardProps) {
   const isNavy = variant === "navy"
   const bg = isNavy
     ? "bg-brand-primary hover:bg-brand-white"
@@ -24,7 +25,9 @@ export function StatCard({ variant, value, label }: StatCardProps) {
     ) : (
       <>
         {value.slice(0, multiplierIndex)}
-        <span className="ml-2.5 inline-block scale-x-175 align-middle text-5xl">x</span>
+        <span className="ml-1.5 inline-block scale-x-175 align-middle text-[min(27cqw,3rem)] md:ml-2.5 md:text-5xl">
+          x
+        </span>
         {value.slice(multiplierIndex + 1)}
       </>
     )
@@ -32,20 +35,28 @@ export function StatCard({ variant, value, label }: StatCardProps) {
   return (
     <Card
       className={cn(
-        "group h-42 w-52 items-start justify-center gap-0 rounded-lg px-5 py-3 text-left ring-0 transition-colors duration-500",
+        "group @container aspect-7/5 w-full items-start justify-center gap-0 rounded-lg px-[11%] py-3 text-left ring-0 transition-colors duration-500 md:aspect-auto md:h-42 md:w-52 md:px-5",
         bg,
+        className,
       )}
     >
-      <div className="flex h-28 w-full flex-col">
+      <div className="flex w-full flex-col md:h-28">
         <p
           className={cn(
-            "font-heading font-normal text-8xl uppercase leading-none tracking-tight",
+            "font-heading font-normal text-[min(54cqw,6rem)] uppercase leading-none tracking-tight md:text-8xl",
             text,
           )}
         >
           {valueContent}
         </p>
-        <p className={cn("font-body font-medium text-base leading-none", text)}>{label}</p>
+        <p
+          className={cn(
+            "font-body font-medium text-[min(10cqw,0.875rem)] leading-tight whitespace-nowrap md:text-base md:leading-none",
+            text,
+          )}
+        >
+          {label}
+        </p>
       </div>
     </Card>
   )
