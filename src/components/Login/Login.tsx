@@ -16,7 +16,7 @@ export function Login() {
   }
 
   return (
-    <div className="flex w-xl max-w-102 flex-col gap-6">
+    <div className="flex w-full max-w-102 flex-col gap-6">
       <Card
         className="items-stretch gap-6 rounded-xl border-2 border-brand-primary bg-transparent px-6 py-6 ring-0"
         size="default"
