@@ -23,11 +23,11 @@ export default function SocialSessions() {
           Social Sessions
         </h1>
 
-        <p className="mx-auto mt-7 max-w-5xl text-center text-sm text-white md:text-base">
+        <p className="mx-auto mt-7 max-w-5xl text-center text-base text-white">
           The University of Auckland Volleyball Club caters to players of all skill levels, even
           those outside UOA!
         </p>
-        <p className="mx-auto mb-18 max-w-5xl text-center text-sm text-white md:text-base">
+        <p className="mx-auto mb-18 max-w-5xl text-center text-base text-white">
           Beginners, pros, and everyone in between, come train, compete, and connect with our
           volleyball community.
         </p>
@@ -45,7 +45,7 @@ export default function SocialSessions() {
                 />
               </div>
 
-              <h3 className="mt-7 text-center font-heading text-3xl text-white uppercase md:text-4xl">
+              <h3 className="mt-7 text-center font-heading text-[40px] text-white uppercase md:text-4xl">
                 {session.title}
               </h3>
 
