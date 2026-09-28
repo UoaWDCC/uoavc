@@ -65,7 +65,7 @@ export default function ExecutivesGrid({ executives }: { executives: Executive[]
   }
 
   return (
-    <div className="w-full space-y-16">
+    <div className="w-full space-y-14 sm:space-y-16">
       {sectionOrder.map((section) => {
         const peopleInSection = groupedExecutives[section]
 
@@ -74,12 +74,12 @@ export default function ExecutivesGrid({ executives }: { executives: Executive[]
         }
 
         return (
-          <section className="mx-auto max-w-fit" key={section}>
-            <h2 className="mb-4 text-center font-heading text-[2.75rem] text-brand-primary uppercase">
+          <section className="w-full sm:mx-auto sm:max-w-fit" key={section}>
+            <h2 className="mb-[35px] text-balance text-center font-heading text-[40px] text-brand-primary uppercase leading-[1.1] tracking-[-0.019em] sm:mb-4 sm:text-[2.75rem] sm:leading-normal sm:tracking-normal">
               {section}
             </h2>
 
-            <div className="mx-auto flex max-w-[952px] flex-wrap justify-center gap-x-6 gap-y-10">
+            <div className="mx-auto grid max-w-[952px] grid-cols-2 gap-x-[18px] gap-y-10 sm:flex sm:flex-wrap sm:justify-center sm:gap-x-6">
               {peopleInSection.map((executive) => (
                 <ExecCard
                   degree={executive.degree}
