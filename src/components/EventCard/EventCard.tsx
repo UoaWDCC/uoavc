@@ -105,69 +105,72 @@ export function EventCard({
     <Dialog.Root>
       {card}
       <Dialog.Portal>
-        <Dialog.Overlay className="data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-40 bg-white/50 backdrop-blur-[1px] data-[state=closed]:animate-out data-[state=open]:animate-in" />
+        <Dialog.Overlay className="data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-40 bg-white/50 backdrop-blur-[1px] duration-1000 data-[state=closed]:animate-out data-[state=open]:animate-in md:duration-150" />
         <Dialog.Content
           aria-describedby={description ? undefined : ""}
-          className="-translate-x-1/2 -translate-y-1/2 data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-1/2 left-1/2 z-50 max-h-[calc(100vh-3rem)] w-[calc(100%-2rem)] max-w-[844px] overflow-y-auto rounded-lg border-2 border-brand-primary bg-white px-6 py-7 text-brand-primary shadow-lg outline-none data-[state=closed]:animate-out data-[state=open]:animate-in md:px-10 md:py-9"
+          className="-translate-x-1/2 -translate-y-1/2 data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:slide-out-to-bottom-[calc(50vh+50%)] data-[state=open]:slide-in-from-bottom-[calc(50vh+50%)] md:data-[state=closed]:slide-out-to-bottom-0 md:data-[state=open]:slide-in-from-bottom-0 md:data-[state=closed]:zoom-out-95 md:data-[state=open]:zoom-in-95 fixed top-1/2 left-1/2 z-50 flex max-h-[calc(100vh-3rem)] w-[max(calc(100%-4.5rem),min(calc(100%-2rem),368px))] max-w-[844px] flex-col text-brand-primary outline-none duration-1000 ease-[cubic-bezier(0.32,0.72,0,1)] data-[state=closed]:animate-out data-[state=open]:animate-in md:w-[calc(100%-2rem)] md:duration-150 md:ease-[ease]"
         >
-          <Dialog.Title className="pr-10 font-heading text-3xl uppercase md:text-4xl">
-            {name}
-          </Dialog.Title>
           <Dialog.Close
             aria-label="Close event details"
-            className="absolute top-5 right-5 cursor-pointer rounded-sm p-1 outline-none transition-colors hover:bg-brand-light-grey focus-visible:ring-3 focus-visible:ring-ring/50 md:top-8 md:right-8"
+            className="mb-2 cursor-pointer self-end rounded-sm p-1 outline-none transition-colors hover:bg-brand-light-grey focus-visible:ring-3 focus-visible:ring-ring/50 md:absolute md:top-8 md:right-8 md:z-10 md:mb-0"
           >
-            <X className="size-6" strokeWidth={1.5} />
+            <X className="size-8 md:size-6" strokeWidth={1.5} />
           </Dialog.Close>
 
-          <div className="mt-3 grid gap-x-10 gap-y-1 text-sm md:grid-cols-2 md:text-base">
-            <p>
-              <strong>Date:</strong> {date}
-            </p>
-            {location ? (
-              <p>
-                <strong>Location:</strong> {location}
-              </p>
-            ) : null}
-            {startTime ? (
-              <p>
-                <strong>Time:</strong> {startTime}
-                {endTime ? ` - ${endTime}` : ""}
-              </p>
-            ) : null}
-            <p>
-              <strong>Price:</strong> {priceLabel}
-            </p>
-          </div>
+          <div className="min-h-0 overflow-y-auto rounded-lg border-3 border-brand-primary bg-white px-8 py-7 shadow-lg md:border-2 md:px-10 md:py-9 max-md:[scrollbar-width:none] max-md:[&::-webkit-scrollbar]:hidden">
+            <Dialog.Title className="font-heading text-5xl uppercase leading-none md:pr-10 md:text-4xl">
+              {name}
+            </Dialog.Title>
 
-          <div className="mt-6 grid gap-y-6 md:grid-cols-2 md:items-start md:gap-x-10">
-            {image ? (
-              <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
-                <Image
-                  alt={name}
-                  className="object-cover"
-                  fill
-                  sizes="(min-width: 768px) 400px, calc(100vw - 5rem)"
-                  src={image}
-                />
+            <div className="mt-6 flex flex-col gap-6 md:mt-3 md:grid md:grid-cols-2 md:items-start md:gap-x-10">
+              <div className="order-2 grid gap-x-10 gap-y-1 text-base md:order-0 md:col-span-2 md:grid-cols-2">
+                <p>
+                  <strong>Date:</strong> {date}
+                </p>
+                {location ? (
+                  <p>
+                    <strong>Location:</strong> {location}
+                  </p>
+                ) : null}
+                {startTime ? (
+                  <p>
+                    <strong>Time:</strong> {startTime}
+                    {endTime ? ` - ${endTime}` : ""}
+                  </p>
+                ) : null}
+                <p>
+                  <strong>Price:</strong> {priceLabel}
+                </p>
               </div>
-            ) : (
-              <div className="flex aspect-[4/3] items-center justify-center rounded-lg bg-muted text-muted-foreground">
-                <ImageIcon aria-hidden="true" className="size-8" />
-              </div>
-            )}
-            <div className="flex h-full flex-col items-end gap-6">
-              {description ? (
-                <Dialog.Description asChild>
-                  <RichText
-                    className="w-full text-sm leading-relaxed md:text-base [&_a]:underline [&_ol]:list-decimal [&_ol]:pl-5 [&_p+p]:mt-3 [&_ul]:list-disc [&_ul]:pl-5"
-                    data={description}
+
+              {image ? (
+                <div className="relative order-1 aspect-[4/3] overflow-hidden rounded-lg md:order-0">
+                  <Image
+                    alt={name}
+                    className="object-cover"
+                    fill
+                    sizes="(min-width: 768px) 400px, calc(100vw - 5rem)"
+                    src={image}
                   />
-                </Dialog.Description>
-              ) : null}
-              <Button asChild className="mt-auto" size="md" variant="tertiary">
-                <Link href={href}>Sign up!</Link>
-              </Button>
+                </div>
+              ) : (
+                <div className="order-1 flex aspect-[4/3] items-center justify-center rounded-lg bg-muted text-muted-foreground md:order-0">
+                  <ImageIcon aria-hidden="true" className="size-8" />
+                </div>
+              )}
+              <div className="order-3 flex h-full flex-col items-center gap-6 md:order-0 md:items-end">
+                {description ? (
+                  <Dialog.Description asChild>
+                    <RichText
+                      className="w-full text-base leading-relaxed [&_a]:underline [&_ol]:list-decimal [&_ol]:pl-5 [&_p+p]:mt-3 [&_ul]:list-disc [&_ul]:pl-5"
+                      data={description}
+                    />
+                  </Dialog.Description>
+                ) : null}
+                <Button asChild className="mt-auto" size="md" variant="tertiary">
+                  <Link href={href}>Sign up!</Link>
+                </Button>
+              </div>
             </div>
           </div>
         </Dialog.Content>
