@@ -51,13 +51,13 @@ export default async function EventsPage({
   ])
 
   return (
-    <div className="flex flex-col items-center gap-20 bg-background px-6 pt-12 pb-32">
+    <div className="flex flex-col items-center gap-12 bg-background px-6 pt-12 pb-20 sm:gap-20 sm:pb-32">
       <section className="flex flex-col items-center gap-6">
-        <h1 className="mb-0 text-center font-heading text-8xl text-brand-primary uppercase md:text-8xl">
+        <h1 className="mb-0 text-center font-heading text-7xl text-brand-primary uppercase sm:text-8xl">
           Upcoming Events
         </h1>
 
-        <p className="mb-16 max-w-xl text-center text-brand-primary text-sm md:text-base">
+        <p className="mb-10 max-w-xl text-center text-brand-primary text-sm sm:mb-16 md:text-base">
           Where members register to learn new skills, connect with fellow players, and simply enjoy
           the good vibes of a session together.
         </p>
@@ -89,11 +89,11 @@ export default async function EventsPage({
       </section>
 
       <section className="flex flex-col items-center gap-6">
-        <h2 className="mt-18 mb-0 text-center font-heading text-8xl text-brand-primary uppercase md:text-8xl">
+        <h2 className="mt-8 mb-0 text-center font-heading text-7xl text-brand-primary uppercase sm:mt-18 sm:text-8xl">
           Past Events
         </h2>
 
-        <p className="mb-16 max-w-xl text-center text-brand-primary text-sm md:text-base">
+        <p className="mb-10 max-w-xl text-center text-brand-primary text-sm sm:mb-16 md:text-base">
           A look back at the sessions, socials, and tournaments we've shared as a club, and a
           reminder of the memories and friendships made along the way.
         </p>
