@@ -12,8 +12,17 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Textbox } from "@/components/ui/textbox"
+import type { SocialSession } from "@/payload-types"
 
-export function SignupForm() {
+export type SignUpResult = "registered" | "waitlisted"
+
+type SignupFormProps = {
+  session: SocialSession
+  onSuccess: (result: SignUpResult) => void
+}
+
+// Props aren't used yet, #167 adds the session info and the submit that calls onSuccess
+export function SignupForm(_props: SignupFormProps) {
   const firstNameId = useId()
   const lastNameId = useId()
   const uoavcMemberId = useId()
