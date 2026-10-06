@@ -51,7 +51,7 @@ export function StatCard({ variant, value, label, className }: StatCardProps) {
         </p>
         <p
           className={cn(
-            "font-body font-medium text-[min(10cqw,0.875rem)] leading-tight whitespace-nowrap md:text-base md:leading-none",
+            "whitespace-nowrap font-body font-medium text-[min(10cqw,0.875rem)] leading-tight md:text-base md:leading-none",
             text,
           )}
         >
