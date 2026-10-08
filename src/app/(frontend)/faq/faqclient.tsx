@@ -15,7 +15,7 @@ export default function FaqClient({ faqs }: { faqs: ClientFaq[] }) {
   const selectedFaqs = faqs.filter((faq) => faq.category === selected)
 
   return (
-    <div className="mb-8 flex flex-col items-center gap-12">
+    <div className="mb-8 flex w-full flex-col items-center gap-8 sm:gap-12">
       <TogglePillGroup
         aria-label="FAQ"
         onChange={setSelected}

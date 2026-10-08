@@ -19,10 +19,10 @@ export default async function FaqPage() {
 
   return (
     <main className="flex flex-col items-center gap-6 px-6 pt-12 pb-20">
-      <h1 className="mb-0 text-center font-heading text-8xl text-brand-primary uppercase md:text-8xl">
+      <h1 className="mb-0 text-center font-heading font-normal text-7xl text-brand-primary uppercase sm:text-8xl">
         FAQ
       </h1>
-      <p className="mb-16 max-w-lg text-center font-body text-brand-primary text-sm md:text-base">
+      <p className="mb-10 max-w-lg text-center font-body text-brand-primary text-sm sm:mb-16 md:text-base">
         Answers to the questions we get asked most, so you know exactly what to expect and feel
         ready before you join us.
       </p>
