@@ -1,21 +1,9 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import type { SocialSession } from "@/payload-types"
 
-const socialSessions = [
-  {
-    title: "MONDAY SOCIAL SESSION",
-    image: "/eventimage.avif",
-    link: "#",
-  },
-  {
-    title: "FRIDAY SOCIAL SESSION",
-    image: "/eventimage.avif",
-    link: "#",
-  },
-]
-
-export default function SocialSessions() {
+export default function SocialSessions({ sessions }: { sessions: SocialSession[] }) {
   return (
     <section className="bg-brand-primary py-20">
       <div className="mx-auto max-w-7xl px-5">
@@ -33,34 +21,44 @@ export default function SocialSessions() {
         </p>
 
         <div className="mt-16 flex flex-wrap justify-center gap-14">
-          {socialSessions.map((session) => (
-            <div className="flex w-full max-w-sm flex-col items-center" key={session.title}>
-              <div className="w-full max-w-sm overflow-hidden rounded-lg shadow-lg transition-transform duration-300 hover:scale-110">
-                <Image
-                  alt={session.title}
-                  className="h-64 w-full object-cover"
-                  height={256}
-                  src={session.image}
-                  width={427}
-                />
-              </div>
+          {sessions.length === 0 ? (
+            <p className="text-center text-white">
+              No upcoming social sessions at the moment. Check back soon!
+            </p>
+          ) : (
+            sessions.map((session) => {
+              const image = typeof session.image === "object" ? session.image : null
 
-              <h3 className="mt-7 text-center font-heading text-[40px] text-white uppercase md:text-4xl">
-                {session.title}
-              </h3>
+              return (
+                <div className="flex w-full max-w-sm flex-col items-center" key={session.id}>
+                  <div className="w-full max-w-sm overflow-hidden rounded-lg shadow-lg transition-transform duration-300 hover:scale-110">
+                    <Image
+                      alt={image?.alt || session.title}
+                      className="h-64 w-full object-cover"
+                      height={256}
+                      src={image?.url || "/eventimage.avif"}
+                      width={427}
+                    />
+                  </div>
 
-              <div className="mt-5">
-                <Button
-                  asChild
-                  className="border-2 border-brand-yellow"
-                  size="md"
-                  variant="tertiary"
-                >
-                  <Link href={session.link}>Sign up!</Link>
-                </Button>
-              </div>
-            </div>
-          ))}
+                  <h3 className="mt-7 text-center font-heading text-[40px] text-white uppercase md:text-4xl">
+                    {session.title}
+                  </h3>
+
+                  <div className="mt-5">
+                    <Button
+                      asChild
+                      className="border-2 border-brand-yellow"
+                      size="md"
+                      variant="tertiary"
+                    >
+                      <Link href={`/social-sessions/${session.id}/sign-up`}>Sign up!</Link>
+                    </Button>
+                  </div>
+                </div>
+              )
+            })
+          )}
         </div>
       </div>
     </section>
