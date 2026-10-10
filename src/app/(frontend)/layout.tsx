@@ -2,6 +2,7 @@ import { Inter, Staatliches } from "next/font/google"
 import type React from "react"
 import "./globals.css"
 import { Footer, Navbar } from "@/components"
+import { Toaster } from "@/components/ui/sonner"
 
 const staatliches = Staatliches({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Toaster />
       </body>
     </html>
   )
