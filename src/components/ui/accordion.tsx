@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 function Accordion({ className, ...props }: React.ComponentProps<typeof AccordionPrimitive.Root>) {
   return (
     <AccordionPrimitive.Root
-      className={cn("flex w-[800px] flex-col gap-6 px-10", className)}
+      className={cn("flex w-full max-w-[800px] flex-col gap-4 sm:gap-6 sm:px-10", className)}
       data-slot="accordion"
       {...props}
     />
@@ -40,7 +40,7 @@ function AccordionTrigger({
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
         className={cn(
-          "group/accordion-trigger relative flex h-[50px] flex-1 cursor-pointer items-center justify-between rounded-md px-6 py-8 text-left font-semibold text-[20px] text-primary shadow-md/20 outline-none transition-all duration-300 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring disabled:pointer-events-none disabled:opacity-50 data-[state=open]:border-primary data-[state=open]:border-b-2 data-[state=open]:bg-white **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-10 **:data-[slot=accordion-trigger-icon]:text-primary",
+          "group/accordion-trigger relative flex min-h-[50px] flex-1 cursor-pointer items-center justify-between gap-3 rounded-md px-4 py-4 text-left font-semibold text-base text-primary shadow-md/20 outline-none transition-all duration-300 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring disabled:pointer-events-none disabled:opacity-50 data-[state=open]:border-primary data-[state=open]:border-b-2 data-[state=open]:bg-white **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-7 **:data-[slot=accordion-trigger-icon]:text-primary sm:h-[50px] sm:px-6 sm:py-8 sm:text-[20px] sm:**:data-[slot=accordion-trigger-icon]:size-10",
           className,
         )}
         data-slot="accordion-trigger"
@@ -75,7 +75,7 @@ function AccordionContent({
     >
       <div
         className={cn(
-          "px-6 py-6 text-primary transition-colors hover:bg-transparent [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
+          "break-words px-4 py-6 text-primary transition-colors hover:bg-transparent sm:px-6 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
           className,
         )}
       >
