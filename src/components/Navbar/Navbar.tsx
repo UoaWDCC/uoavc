@@ -3,6 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { AuthNavItem } from "./AuthNavItem"
+import { MobileMenu } from "./MobileMenu"
 import { FOCUS_RING, NavLink } from "./NavLink"
 
 export function Navbar() {
