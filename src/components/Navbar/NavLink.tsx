@@ -35,12 +35,10 @@ export function NavLink({
   href,
   children,
   className,
-  onClick,
 }: {
   href: string
   children: ReactNode
   className?: string
-  onClick?: () => void
 }) {
   const pathname = usePathname()
   const isActive =
