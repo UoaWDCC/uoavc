@@ -1,6 +1,8 @@
 import Image from "next/image"
 
 export function Hero() {
+  // Responsive breakpoints: 431px for larger phones, 600px for wider mobile,
+  // 768px for the two-column tablet layout, and 880px for desktop.
   return (
     <section className="relative min-h-[calc(100svh-82px)] overflow-hidden min-[880px]:h-[calc(100svh-82px)] min-[880px]:min-h-0">
       <div className="pointer-events-none absolute inset-0 translate-y-[45px] min-[880px]:translate-y-0">
