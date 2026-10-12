@@ -5,6 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import type { ReactNode } from "react"
 import { cn } from "@/lib/utils"
+import { MobileMenu } from "./MobileMenu"
 
 const HOVER_BOLD_TEXT_SHADOW = "hover:[text-shadow:0.4px_0_0_currentColor,-0.4px_0_0_currentColor]"
 
@@ -62,12 +63,13 @@ export function Navbar() {
           width={54}
         />
       </Link>
-      <div className="flex items-center gap-[54px] text-[15px] md:gap-[68px] lg:gap-[82px]">
+      <div className="hidden items-center text-[15px] md:flex md:gap-[68px] lg:gap-[82px]">
         <NavLink href="/events">Events</NavLink>
         <NavLink href="/about">About</NavLink>
         <NavLink href="/faq">FAQ</NavLink>
         <NavLink href="/log-in">Login</NavLink>
       </div>
+      <MobileMenu />
     </nav>
   )
 }
