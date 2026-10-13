@@ -2,14 +2,15 @@
 
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { toast } from "sonner"
 import { logout, useAuth } from "@/lib/auth"
 import { cn } from "@/lib/utils"
 import { NavArrow, NavLink, navItemClassName } from "./NavLink"
 
-// const MESSAGES = {
-//   success: "You've been logged out.",
-//   error: "We couldn't log you out. Please try again.",
-// }
+const MESSAGES = {
+  success: "You've been logged out.",
+  error: "We couldn't log you out. Please try again.",
+}
 
 /**
  * Works as a "Log-in" link when user is logged out, and "Log out" button when logged in.
@@ -25,10 +26,10 @@ export function AuthNavItem({ className }: { className?: string }) {
     setPending(false)
 
     if (!ok) {
-      // toast.error(MESSAGES.error)
+      toast.error(MESSAGES.error)
       return
     }
-    // toast.success(MESSAGES.success)
+    toast.success(MESSAGES.success)
     router.refresh()
   }
 

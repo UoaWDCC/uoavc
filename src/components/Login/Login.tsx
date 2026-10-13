@@ -3,17 +3,18 @@
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Textbox } from "@/components/ui/textbox"
 import { login } from "@/lib/auth"
 import { getSafeRedirect } from "@/lib/safeRedirect"
 
-// const MESSAGES = {
-//   success: "You're logged in.",
-//   invalidCredentials: "Incorrect email or password.",
-//   error: "We couldn't log you in. Please try again.",
-// }
+const MESSAGES = {
+  success: "You're logged in.",
+  invalidCredentials: "Incorrect email or password.",
+  error: "We couldn't log you in. Please try again.",
+}
 
 export function Login() {
   const router = useRouter()
@@ -30,11 +31,15 @@ export function Login() {
 
     if (!result.ok) {
       setSubmitting(false)
-      // toast.error
+      toast.error(
+        result.reason === "invalid-credentials"
+          ? "Incorrect email or password."
+          : "We couldn't log you in. Please try again.",
+      )
       return
     }
 
-    // toast.success(MESSAGES.success)
+    toast.success(MESSAGES.success)
     const redirect = new URLSearchParams(window.location.search).get("redirect") // Avoids a Suspense boundary
     router.replace(getSafeRedirect(redirect, window.location.origin)) // Redirect back to homepage instead of login page
     router.refresh()
