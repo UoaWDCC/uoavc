@@ -2,56 +2,15 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
-import type { ReactNode } from "react"
-import { cn } from "@/lib/utils"
+import { AuthNavItem } from "./AuthNavItem"
 import { MobileMenu } from "./MobileMenu"
-
-const HOVER_BOLD_TEXT_SHADOW = "hover:[text-shadow:0.4px_0_0_currentColor,-0.4px_0_0_currentColor]"
-
-const FOCUS_RING =
-  "rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-
-function NavLink({
-  href,
-  children,
-  className,
-}: {
-  href: string
-  children: ReactNode
-  className?: string
-}) {
-  const pathname = usePathname()
-  const isActive =
-    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`)
-
-  return (
-    <Link
-      aria-current={isActive ? "page" : undefined}
-      className={cn(
-        "group inline-flex items-center gap-[5px] text-primary transition-all duration-200 ease-out hover:text-brand-yellow",
-        HOVER_BOLD_TEXT_SHADOW,
-        FOCUS_RING,
-        className,
-      )}
-      href={href}
-    >
-      {children}
-      <span
-        aria-hidden="true"
-        className="-translate-x-1 opacity-0 transition-all duration-200 ease-out group-hover:translate-x-0 group-hover:opacity-100"
-      >
-        &gt;
-      </span>
-    </Link>
-  )
-}
+import { FOCUS_RING, NavLink } from "./NavLink"
 
 export function Navbar() {
   return (
     <nav
       aria-label="Main"
-      className="sticky top-0 z-50 flex items-center justify-between bg-background py-[14px] pr-[20px] pl-[20px] md:pr-[27px]"
+      className="sticky top-0 z-50 flex items-center justify-between bg-background py-3.5 pr-5 pl-5 md:pr-6.75"
     >
       <Link aria-label="UOAVC home" className={FOCUS_RING} href="/">
         <Image
@@ -63,11 +22,11 @@ export function Navbar() {
           width={54}
         />
       </Link>
-      <div className="hidden items-center text-[15px] md:flex md:gap-[68px] lg:gap-[82px]">
+      <div className="flex items-center gap-13.5 text-[15px] md:gap-17 lg:gap-20.5">
         <NavLink href="/events">Events</NavLink>
         <NavLink href="/about">About</NavLink>
         <NavLink href="/faq">FAQ</NavLink>
-        <NavLink href="/log-in">Login</NavLink>
+        <AuthNavItem />
       </div>
       <MobileMenu />
     </nav>

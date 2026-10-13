@@ -1,18 +1,48 @@
 "use client"
 
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Textbox } from "@/components/ui/textbox"
+import { login } from "@/lib/auth"
+import { getSafeRedirect } from "@/lib/safeRedirect"
+
+const MESSAGES = {
+  success: "You're logged in.",
+  invalidCredentials: "Incorrect email or password.",
+  error: "We couldn't log you in. Please try again.",
+}
 
 export function Login() {
+  const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [submitting, setSubmitting] = useState(false)
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    // actual sign-in logic
+    if (submitting) return
+    setSubmitting(true)
+
+    const result = await login(email.trim(), password)
+
+    if (!result.ok) {
+      setSubmitting(false)
+      toast.error(
+        result.reason === "invalid-credentials"
+          ? "Incorrect email or password."
+          : "We couldn't log you in. Please try again.",
+      )
+      return
+    }
+
+    toast.success(MESSAGES.success)
+    const redirect = new URLSearchParams(window.location.search).get("redirect") // Avoids a Suspense boundary
+    router.replace(getSafeRedirect(redirect, window.location.origin)) // Redirect back to homepage instead of login page
+    router.refresh()
   }
 
   return (
@@ -51,8 +81,8 @@ export function Login() {
           </div>
 
           <div className="flex justify-center pt-3">
-            <Button size="md" type="submit" variant="primary">
-              Sign-in
+            <Button disabled={submitting} size="md" type="submit" variant="primary">
+              {submitting ? "Signing in..." : "Sign-in"}
             </Button>
           </div>
         </form>
