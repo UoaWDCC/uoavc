@@ -1,6 +1,7 @@
 import type { CollectionConfig } from "payload"
 import { socialSessionAvailability } from "../endpoints/socialSessionAvailability"
 import { socialSessionCheckout } from "../endpoints/socialSessionCheckout"
+import { socialSessionCheckoutRelease } from "../endpoints/socialSessionCheckoutRelease"
 
 // SocialSessions — registrable weekly club sessions with capacity, waitlist,
 // and member/non-member pricing. Registrations are made on-site through the
@@ -35,6 +36,11 @@ export const SocialSessions: CollectionConfig = {
       path: "/:id/checkout",
       method: "post",
       handler: socialSessionCheckout,
+    },
+    {
+      path: "/:id/checkout/release",
+      method: "post",
+      handler: socialSessionCheckoutRelease,
     },
   ],
   admin: {

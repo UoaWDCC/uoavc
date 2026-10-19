@@ -127,11 +127,14 @@ export const socialSessionCheckout: PayloadHandler = async (req) => {
         registrationId: String(registration.id),
         socialSessionId: id,
       },
-      // Auto-expire abandoned checkouts (Stripe max is 24h from now).
-      expires_at: Math.floor(Date.now() / 1000) + 60 * 60 * 24,
-      // TODO: confirm these frontend routes once the checkout result pages exist.
+      // Auto-expire abandoned checkouts quickly (Stripe minimum is 30 minutes)
+      // so a held spot doesn't sit locked for a day during a sign-up rush.
+      expires_at: Math.floor(Date.now() / 1000) + 60 * 30,
+      // TODO: confirm the success route once the checkout result page exists.
       success_url: `${siteUrl}/social-sessions/${id}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${siteUrl}/social-sessions/${id}/checkout/cancelled`,
+      // Send people back to the sign-up form so it can release the held spot
+      // immediately instead of waiting on the checkout.session.expired webhook.
+      cancel_url: `${siteUrl}/social-sessions/${id}/sign-up/form?payment=failed&registration=${registration.id}`,
     })
 
     // Store the session id so the webhook can match events back to this row

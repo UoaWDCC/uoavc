@@ -11,7 +11,14 @@ export const SocialSessionRegistrations: CollectionConfig = {
   slug: "social-session-registrations",
   admin: {
     useAsTitle: "id",
-    defaultColumns: ["socialSession", "user", "registrationStatus", "registeredAt"],
+    defaultColumns: [
+      "socialSession",
+      "user",
+      "guestName",
+      "guestEmail",
+      "registrationStatus",
+      "registeredAt",
+    ],
     description: "Member and guest registrations for social sessions.",
   },
   access: {
