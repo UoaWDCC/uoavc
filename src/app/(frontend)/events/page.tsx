@@ -107,10 +107,15 @@ export default async function EventsPage({
             {pastEvents.docs.map((event) => (
               <EventCard
                 date={dateFormatter.format(new Date(event.date))}
-                href={event.googleFormUrl || `/events/${event.id}`}
+                description={event.description as SerializedEditorState}
+                endTime={event.endTime}
                 image={getImageUrl(event.image)}
                 key={event.id}
+                location={event.location}
+                memberPrice={event.memberPrice}
                 name={event.title}
+                nonMemberPrice={event.nonMemberPrice}
+                startTime={event.startTime}
                 variant="past"
               />
             ))}

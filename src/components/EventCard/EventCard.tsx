@@ -19,7 +19,7 @@ type EventCardProps = {
   name: string
   date: string
   image?: string
-  href: string
+  href?: string
   startTime?: string
   endTime?: string | null
   location?: string
@@ -88,19 +88,13 @@ export function EventCard({
               className="pointer-events-auto h-9 rounded-full px-6 py-2 text-sm"
               variant={isPast ? "secondary" : "tertiary"}
             >
-              {isPast ? (
-                <Link href={href}>view gallery</Link>
-              ) : (
-                <Dialog.Trigger>learn more</Dialog.Trigger>
-              )}
+              <Dialog.Trigger>learn more</Dialog.Trigger>
             </Button>
           </div>
         </div>
       </CardContent>
     </Card>
   )
-
-  if (isPast) return card
 
   const priceLabel = `${formatPrice(memberPrice)} members / ${formatPrice(nonMemberPrice)} non-members`
 
@@ -170,9 +164,11 @@ export function EventCard({
                     />
                   </Dialog.Description>
                 ) : null}
-                <Button asChild className="mt-auto" size="md" variant="tertiary">
-                  <Link href={href}>Sign up!</Link>
-                </Button>
+                {href ? (
+                  <Button asChild className="mt-auto" size="md" variant="tertiary">
+                    <Link href={href}>Sign up!</Link>
+                  </Button>
+                ) : null}
               </div>
             </div>
           </div>
