@@ -54,6 +54,10 @@ Then fill in each variable in `.env`:
 | `STRIPE_SECRET_KEY` | Yes | Stripe secret key (use a `sk_test_...` key in development). Required by the social session checkout endpoint. |
 | `STRIPE_WEBHOOK_SECRET` | Yes | Stripe webhook signing secret (`whsec_...`), used to verify incoming payment events. |
 | `NEXT_PUBLIC_SITE_URL` | Yes | Public base URL of the site (e.g. `http://localhost:3000` in development). Used to build Stripe Checkout `success_url` / `cancel_url`. |
+| `S3_BUCKET` | Yes | Name of the Cloudflare R2 bucket that stores Media uploads. |
+| `S3_ENDPOINT` | Yes | R2 S3 API endpoint (`https://<account-id>.r2.cloudflarestorage.com`). |
+| `S3_ACCESS_KEY_ID` | Yes | R2 API token access key ID. |
+| `S3_SECRET_ACCESS_KEY` | Yes | R2 API token secret access key. |
 
 ### Scripts
 

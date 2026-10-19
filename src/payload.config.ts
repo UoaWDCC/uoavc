@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url"
 import { mongooseAdapter } from "@payloadcms/db-mongodb"
 import { resendAdapter } from "@payloadcms/email-resend"
 import { lexicalEditor } from "@payloadcms/richtext-lexical"
+import { s3Storage } from "@payloadcms/storage-s3"
 import { buildConfig } from "payload"
 import sharp from "sharp"
 import { Admin } from "./payload/collections/Admin"
@@ -50,5 +51,23 @@ export default buildConfig({
     defaultFromName: "UOAVC",
     apiKey: process.env.RESEND_API_KEY || "",
   }),
-  plugins: [],
+  plugins: [
+    s3Storage({
+      collections: {
+        media: true,
+      },
+      bucket: process.env.S3_BUCKET || "",
+      config: {
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID || "",
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || "",
+        },
+        region: "auto",
+        endpoint: process.env.S3_ENDPOINT || "",
+        forcePathStyle: true,
+        // R2 rejects the AWS SDK's default upload checksums with a 400/501
+        requestChecksumCalculation: "WHEN_REQUIRED",
+      },
+    }),
+  ],
 })
