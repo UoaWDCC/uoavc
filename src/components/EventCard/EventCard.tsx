@@ -56,7 +56,10 @@ export function EventCard({
     >
       <CardHeader className={cn("rounded-none px-4 py-4", headerBg)}>
         <CardTitle
-          className={cn("font-heading font-normal text-5xl uppercase leading-none", titleText)}
+          className={cn(
+            "truncate font-heading font-normal text-5xl uppercase leading-none",
+            titleText,
+          )}
         >
           {name}
         </CardTitle>
