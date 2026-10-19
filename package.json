@@ -19,6 +19,7 @@
     "@payloadcms/email-resend": "^3.79.1",
     "@payloadcms/next": "^3.79.1",
     "@payloadcms/richtext-lexical": "^3.79.1",
+    "@payloadcms/storage-s3": "3.79.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^13.4.4",
