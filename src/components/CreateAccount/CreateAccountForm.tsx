@@ -13,6 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Textbox } from "@/components/ui/textbox"
+import { login } from "@/lib/auth"
 import {
   ETHNICITY_OPTIONS,
   FACULTY_OPTIONS,
@@ -181,14 +182,9 @@ export const CreateAccountForm = () => {
       }
 
       // Sign the new member straight in so they can register for sessions.
-      const loginResponse = await fetch("/api/users/login", {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: values.email.trim(), password: values.password }),
-      })
+      const loginResult = await login(values.email.trim(), values.password) // Navbar flips to "Log out" straight away
 
-      router.push(loginResponse.ok ? "/" : "/log-in")
+      router.push(loginResult.ok ? "/" : "/log-in")
     } catch {
       setFormError(GENERIC_ERROR)
       setSubmitting(false)
